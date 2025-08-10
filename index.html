@@ -14,6 +14,19 @@
       align-items: center;
       height: 100vh;
       margin: 0;
+      flex-direction: column;
+    }
+    .logo {
+      margin-top: 15px;
+      margin-bottom: 20px;
+      opacity: 0.3;
+      font-weight: 900;
+      font-size: 2.5rem;
+      font-family: 'Segoe UI Black', Arial, sans-serif;
+      color: #fff;
+      user-select: none;
+      letter-spacing: 2px;
+      text-shadow: 1px 1px 2px #0009;
     }
     .container {
       background: #222;
@@ -52,23 +65,39 @@
       background: #22c55e;
     }
     #qrcode {
-      margin: 20px auto;
+      margin: 20px auto 10px;
       width: 200px;
       height: 200px;
       background: white;
       padding: 10px;
       border-radius: 12px;
     }
-    .success-msg {
-      margin-top: 15px;
+    .success-page {
+      background: #222;
+      padding: 30px 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.6);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+    .success-page h2 {
       color: #22c55e;
-      font-weight: bold;
-      display: none;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+    .success-page p.note {
+      margin-top: 20px;
+      font-size: 1rem;
+      color: #ccc;
     }
   </style>
 </head>
 <body>
-  <div class="container">
+
+  <div class="logo">1LION E-SPORTS</div>
+
+  <div class="container" id="formContainer">
     <h2>Register at 1lionesports</h2>
     <div id="qrcode"></div>
     <p>Registration Fee: ₹5</p>
@@ -77,14 +106,18 @@
       <input type="text" id="txnId" placeholder="Enter UPI Transaction ID" required />
       <button type="submit">Submit Registration</button>
     </form>
-    <p class="success-msg" id="successMsg">Registration submitted! We will verify your payment soon.</p>
+  </div>
+
+  <div class="success-page" id="successPage" style="display:none;">
+    <h2>Your payment is successful, waiting for confirmation.</h2>
+    <p class="note">If you have any problem, then contact <strong>6370027283</strong> only on WhatsApp.</p>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <script>
     const upiID = "6370027283@fam";
     const upiName = "1lionesports";
-    const amount = "5";  // Updated amount to ₹5
+    const amount = "5";
     const upiLink = `upi://pay?pa=${encodeURIComponent(upiID)}&pn=${encodeURIComponent(upiName)}&am=${amount}&cu=INR`;
 
     new QRCode(document.getElementById("qrcode"), {
@@ -94,13 +127,18 @@
     });
 
     const form = document.getElementById('regForm');
-    const successMsg = document.getElementById('successMsg');
+    const formContainer = document.getElementById('formContainer');
+    const successPage = document.getElementById('successPage');
 
     form.addEventListener('submit', e => {
       e.preventDefault();
-      form.reset();
-      successMsg.style.display = 'block';
+
+      // Yahan pe form data backend bhejne ka logic add kar sakte ho
+
+      formContainer.style.display = 'none';
+      successPage.style.display = 'block';
     });
   </script>
+
 </body>
 </html>
