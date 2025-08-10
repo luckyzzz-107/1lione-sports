@@ -7,35 +7,44 @@
   <style>
     body {
       font-family: Arial, sans-serif;
+      margin: 0;
+      height: 100vh;
       background: linear-gradient(135deg, #4a90e2, #145388);
+      background-image: url('https://i.postimg.cc/K8S3ZDM1/file-000000004e7c61f9a8329db0f8e13da4.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      background-attachment: fixed;
       color: #fff;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
       flex-direction: column;
     }
     .logo {
       margin-top: 15px;
       margin-bottom: 20px;
-      opacity: 0.3;
+      opacity: 0.6;
       font-weight: 900;
-      font-size: 2.5rem;
+      font-size: 2rem;
       font-family: 'Segoe UI Black', Arial, sans-serif;
       color: #fff;
       user-select: none;
       letter-spacing: 2px;
       text-shadow: 1px 1px 2px #0009;
+      text-align: center;
+      z-index: 10;
     }
     .container {
-      background: #222;
+      background: rgba(34, 34, 34, 0.85);
       padding: 20px 30px;
       border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      box-shadow: 0 0 15px rgba(0,0,0,0.7);
       max-width: 400px;
       width: 100%;
       text-align: center;
+      z-index: 20;
+      position: relative;
     }
     h2 {
       margin-bottom: 20px;
@@ -73,13 +82,16 @@
       border-radius: 12px;
     }
     .success-page {
-      background: #222;
+      background: rgba(34, 34, 34, 0.85);
       padding: 30px 25px;
       border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.6);
+      box-shadow: 0 0 15px rgba(0,0,0,0.7);
       max-width: 400px;
       width: 100%;
       text-align: center;
+      display: none;
+      z-index: 20;
+      position: relative;
     }
     .success-page h2 {
       color: #22c55e;
@@ -108,7 +120,7 @@
     </form>
   </div>
 
-  <div class="success-page" id="successPage" style="display:none;">
+  <div class="success-page" id="successPage">
     <h2>Your payment is successful, waiting for confirmation.</h2>
     <p class="note">If you have any problem, then contact <strong>6370027283</strong> only on WhatsApp.</p>
   </div>
@@ -132,9 +144,6 @@
 
     form.addEventListener('submit', e => {
       e.preventDefault();
-
-      // Yahan pe form data backend bhejne ka logic add kar sakte ho
-
       formContainer.style.display = 'none';
       successPage.style.display = 'block';
     });
