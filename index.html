@@ -1,55 +1,119 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>1Lion Esports Registration</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body { font-family: Arial, sans-serif; background: #0d0d0d; color: #fff; text-align: center; }
-    .container { max-width: 400px; margin: auto; background: #1a1a1a; padding: 20px; border-radius: 10px; }
-    input, button { width: 100%; padding: 10px; margin: 8px 0; border: none; border-radius: 5px; }
-    button { background: #ff9800; color: white; font-weight: bold; cursor: pointer; }
-    button:hover { background: #e68900; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1 Lion Esports Registration</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #000000, #1a1a1a);
+        color: white;
+        text-align: center;
+    }
+    header {
+        padding: 20px;
+    }
+    header img {
+        width: 150px;
+        height: auto;
+    }
+    h1 {
+        color: gold;
+        font-size: 28px;
+        margin-top: 10px;
+    }
+    form {
+        background: #111;
+        padding: 20px;
+        max-width: 350px;
+        margin: 20px auto;
+        border-radius: 10px;
+        box-shadow: 0 0 20px gold;
+    }
+    input {
+        width: 90%;
+        padding: 12px;
+        margin: 10px 0;
+        border: 2px solid gold;
+        border-radius: 5px;
+        background: black;
+        color: white;
+        font-size: 16px;
+    }
+    input:focus {
+        outline: none;
+        box-shadow: 0 0 10px gold;
+    }
+    button {
+        width: 100%;
+        padding: 12px;
+        background: gold;
+        color: black;
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    button:hover {
+        background: orange;
+    }
+    footer {
+        margin-top: 20px;
+        color: gray;
+        font-size: 12px;
+    }
+</style>
 </head>
 <body>
-  <div class="container">
-    <h2>1Lion Esports Registration</h2>
-    <form id="regForm">
-      <input type="text" name="name" placeholder="Player Name" required>
-      <input type="text" name="uid" placeholder="Free Fire UID" required>
-      <input type="tel" name="phone" placeholder="Phone Number" required>
-      <button type="submit">Pay ₹30 & Register</button>
-    </form>
-  </div>
 
-  <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbzIq-m-KJ7vt1BAq0uNGGlEib125rPhc4l-wbKUgJS-5HoygmP01zU7oYtZf8vZYZB2jw/exec";
-    const upiID = "6370027283@fam";
-    const amount = "30";
+<header>
+    <img src="logo.png" alt="1 Lion Esports Logo">
+    <h1>1 Lion Esports Registration</h1>
+</header>
 
-    document.getElementById('regForm').addEventListener('submit', e => {
-      e.preventDefault();
+<form id="regForm">
+    <input type="text" id="name" placeholder="Player Name" required>
+    <input type="text" id="gameID" placeholder="Game ID" required>
+    <input type="tel" id="phone" placeholder="Phone Number" required>
+    <button type="submit">Pay ₹30 & Register</button>
+</form>
 
-      const formData = new FormData(e.target);
-      const name = formData.get("name");
-      const uid = formData.get("uid");
-      const phone = formData.get("phone");
+<footer>
+    © 2025 1 Lion Esports. All Rights Reserved.
+</footer>
 
-      // Open UPI Payment
-      const upiLink = `upi://pay?pa=${upiID}&pn=1Lion%20Esports&am=${amount}&cu=INR`;
-      window.location.href = upiLink;
+<script>
+    const scriptURL = "PASTE_YOUR_WEB_APP_URL_HERE"; // Yaha apna Apps Script ka Web App URL paste karo
 
-      // Send Data to Google Sheet
-      fetch(scriptURL, {
-        method: "POST",
-        body: JSON.stringify({ 
-          name: name, 
-          gameID: uid, 
-          phone: phone, 
-          email: "", 
+    document.getElementById("regForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        let formData = {
+            name: document.getElementById("name").value,
+            gameID: document.getElementById("gameID").value,
+            phone: document.getElementById("phone").value
+        };
+
+        fetch(scriptURL, {
+            method: 'POST',
+            body: JSON.stringify(formData)
         })
-      }).then(res => alert("Registration submitted!")).catch(err => alert("Error: " + err));
+        .then(res => res.json())
+        .then(data => {
+            if(data.status === "success") {
+                alert("Registration Successful! Please complete payment.");
+                window.location.href = "upi://pay?pa=6370027283@fam&pn=1LionEsports&am=30&cu=INR";
+            } else {
+                alert("Something went wrong!");
+            }
+        })
+        .catch(err => alert("Error: " + err));
     });
-  </script>
+</script>
+
 </body>
 </html>
