@@ -1,119 +1,299 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>1 Lion Esports Registration</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>1 Lion Esports — Registration</title>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 <style>
-    body {
-        margin: 0;
-        font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(135deg, #000000, #1a1a1a);
-        color: white;
-        text-align: center;
-    }
-    header {
-        padding: 20px;
-    }
-    header img {
-        width: 150px;
-        height: auto;
-    }
-    h1 {
-        color: gold;
-        font-size: 28px;
-        margin-top: 10px;
-    }
-    form {
-        background: #111;
-        padding: 20px;
-        max-width: 350px;
-        margin: 20px auto;
-        border-radius: 10px;
-        box-shadow: 0 0 20px gold;
-    }
-    input {
-        width: 90%;
-        padding: 12px;
-        margin: 10px 0;
-        border: 2px solid gold;
-        border-radius: 5px;
-        background: black;
-        color: white;
-        font-size: 16px;
-    }
-    input:focus {
-        outline: none;
-        box-shadow: 0 0 10px gold;
-    }
-    button {
-        width: 100%;
-        padding: 12px;
-        background: gold;
-        color: black;
-        font-size: 18px;
-        font-weight: bold;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-    button:hover {
-        background: orange;
-    }
-    footer {
-        margin-top: 20px;
-        color: gray;
-        font-size: 12px;
-    }
+  :root{
+    --gold:#ffd24d;
+    --gold-deep:#e6b800;
+    --bg-1:#040406;
+    --glass: rgba(255,255,255,0.03);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: 'Orbitron', sans-serif;
+    background: radial-gradient(circle at 10% 10%, rgba(255,215,0,0.03), transparent 10%),
+                radial-gradient(circle at 90% 80%, rgba(255,215,0,0.02), transparent 10%),
+                linear-gradient(180deg,#030409 0%, #07070a 100%);
+    color:#fff;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:28px 16px;
+  }
+
+  /* subtle moving star texture */
+  .stars {
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity:0.12;
+    animation: drift 120s linear infinite;
+  }
+  @keyframes drift { from{transform:translate(0,0)} to{transform:translate(-800px,-400px)} }
+
+  header{z-index:2; text-align:center; margin-top:8px}
+  .logo {
+    width:110px; height:110px; border-radius:18px;
+    display:inline-flex; align-items:center; justify-content:center;
+    background:linear-gradient(180deg, rgba(255,215,0,0.05), rgba(255,215,0,0.02));
+    box-shadow: 0 6px 30px rgba(255,180,0,0.06), 0 0 24px rgba(255,200,60,0.06);
+    padding:8px;
+    filter: drop-shadow(0 0 16px rgba(255,200,60,0.08));
+    margin:0 auto;
+  }
+  .logo img{ width:84px; height:84px; object-fit:contain; display:block; }
+
+  h1{ margin:12px 0 2px; color:var(--gold); text-shadow:0 0 14px rgba(255,200,50,0.12); font-size:22px}
+  p.lead{ margin:0; color:rgba(255,255,255,0.6); font-size:13px }
+
+  /* Card */
+  .card {
+    z-index:2;
+    width:100%;
+    max-width:760px;
+    margin-top:28px;
+    display:grid;
+    grid-template-columns: 1fr 420px;
+    gap:28px;
+    align-items:start;
+  }
+
+  /* Left promo */
+  .promo{
+    background: linear-gradient(180deg, rgba(255,215,0,0.015), rgba(255,215,0,0.01));
+    border:1px solid rgba(255,215,0,0.06);
+    padding:22px;
+    border-radius:14px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  }
+  .promo h2{ color:var(--gold); margin:0 0 8px; font-size:20px }
+  .promo p{ color:rgba(255,255,255,0.7); line-height:1.4; font-size:14px; margin:0 0 12px }
+
+  /* Right form */
+  .panel {
+    background: linear-gradient(180deg, rgba(10,10,10,0.9), rgba(6,6,6,0.9));
+    border-radius:12px;
+    padding:20px;
+    border: 1px solid rgba(255,215,0,0.06);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  }
+  .field{ margin-bottom:12px; }
+  input[type="text"], input[type="tel"]{
+    width:100%; padding:12px 14px; border-radius:10px; border:1px solid rgba(255,255,255,0.06);
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.2)); color:#fff; font-size:15px;
+    text-align:center;
+  }
+  input:focus{ outline:none; box-shadow:0 0 14px rgba(255,200,50,0.06); border-color:rgba(255,215,0,0.22) }
+
+  .muted{ font-size:13px; color:rgba(255,255,255,0.6); margin-top:6px }
+
+  .btn {
+    display:inline-flex; align-items:center; justify-content:center;
+    gap:10px; width:100%; padding:12px 14px; border-radius:10px; border:none;
+    background: linear-gradient(90deg,var(--gold), var(--gold-deep));
+    color:#071218; font-weight:700; font-size:16px; cursor:pointer;
+    box-shadow: 0 8px 30px rgba(255,200,60,0.12);
+  }
+  .btn:active{ transform: translateY(1px) }
+
+  .secondary{ margin-top:10px; display:flex; gap:10px; }
+
+  .wa-btn{
+    display:inline-flex; gap:10px; align-items:center; justify-content:center;
+    padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.04);
+    background:transparent; color:var(--gold); cursor:pointer; font-weight:600; text-decoration:none;
+  }
+
+  /* success overlay */
+  .overlay {
+    position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:999;
+    background: linear-gradient(180deg, rgba(1,1,1,0.6), rgba(0,0,0,0.6));
+    backdrop-filter: blur(4px);
+  }
+  .success-box {
+    width:90%; max-width:520px; padding:30px; border-radius:16px; text-align:center;
+    background: linear-gradient(180deg, rgba(10,10,10,0.95), rgba(5,5,5,0.9));
+    box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+    border: 1px solid rgba(255,215,0,0.12);
+  }
+  .tick {
+    width:120px; height:120px; border-radius:999px; display:inline-flex; align-items:center; justify-content:center;
+    background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.12), rgba(255,215,0,0.12));
+    box-shadow: 0 0 40px rgba(255,200,60,0.12), 0 6px 30px rgba(255,180,0,0.06);
+    margin:0 auto 18px;
+    animation: pop 0.45s ease-out;
+  }
+  @keyframes pop { from{ transform: scale(0.4); opacity:0 } to{ transform: scale(1); opacity:1 } }
+
+  .tick svg { width:64px; height:64px; fill: var(--gold-deep); filter: drop-shadow(0 6px 18px rgba(255,200,40,0.14)); }
+
+  .success-title{ font-size:22px; color:var(--gold); margin:6px 0 8px }
+  .success-sub{ color:rgba(255,255,255,0.8); margin-bottom:14px }
+
+  .success-actions{ display:flex; gap:10px; justify-content:center; margin-top:12px; flex-wrap:wrap }
+  .action-btn{ padding:10px 14px; border-radius:10px; font-weight:700; cursor:pointer; border:none }
+  .action-wa{ background: linear-gradient(90deg,#25D366,#06b84a); color:#02130a }
+  .action-close{ background:transparent; color:var(--gold); border:1px solid rgba(255,215,0,0.08) }
+
+  /* small screen */
+  @media(max-width:920px){
+    .card{ grid-template-columns: 1fr; padding:0 6px }
+    .promo{ order:2 }
+  }
 </style>
 </head>
 <body>
 
+<div class="stars" aria-hidden="true"></div>
+
 <header>
-    <img src="logo.png" alt="1 Lion Esports Logo">
-    <h1>1 Lion Esports Registration</h1>
+  <div class="logo">
+    <!-- ====== PLACEHOLDER LOGO ======
+         If you want me to embed your logo directly, upload the image here in chat.
+         OR replace the src below with a direct data URI or GitHub raw link.
+    -->
+    <img id="logoImg" src="DATA_URI_OR_RAW_GITHUB_LINK_HERE" alt="1 Lion Logo" />
+  </div>
+  <h1>1 LION ESPORTS — Free Fire</h1>
+  <p class="lead">Register. Pay ₹30. Send payment proof on WhatsApp to confirm your slot.</p>
 </header>
 
-<form id="regForm">
-    <input type="text" id="name" placeholder="Player Name" required>
-    <input type="text" id="gameID" placeholder="Game ID" required>
-    <input type="tel" id="phone" placeholder="Phone Number" required>
-    <button type="submit">Pay ₹30 & Register</button>
-</form>
+<main class="card" role="main" aria-labelledby="title">
+  <section class="promo">
+    <h2>How to Join</h2>
+    <p>Fill your name, Free Fire UID and WhatsApp number. After submit — pay via UPI. Send payment screenshot on WhatsApp to get confirmed.</p>
+    <p class="muted">Tournament fee: <strong>₹30</strong> • UPI: <strong>6370027283@fam</strong></p>
+  </section>
 
-<footer>
-    © 2025 1 Lion Esports. All Rights Reserved.
-</footer>
+  <aside class="panel" aria-label="Registration panel">
+    <form id="regForm" autocomplete="off">
+      <div class="field">
+        <input id="name" name="name" type="text" placeholder="Player Name" required />
+      </div>
+      <div class="field">
+        <input id="gameID" name="gameID" type="text" placeholder="Free Fire UID" required />
+      </div>
+      <div class="field">
+        <input id="phone" name="phone" type="tel" placeholder="Phone (WhatsApp)" required pattern="[0-9]{10,13}" />
+      </div>
+
+      <button id="payBtn" class="btn" type="submit">Pay ₹30 & Register</button>
+
+      <div class="secondary">
+        <a id="waHelp" class="wa-btn" href="#" target="_blank">Support on WhatsApp</a>
+      </div>
+
+      <p id="statusMsg" class="muted" style="margin-top:12px; display:none"></p>
+    </form>
+  </aside>
+</main>
+
+<!-- Success overlay -->
+<div id="overlay" class="overlay" role="dialog" aria-modal="true">
+  <div class="success-box">
+    <div class="tick" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M9 16.2l-3.5-3.5a1 1 0 0 0-1.4 1.4l4.2 4.2a1 1 0 0 0 1.4 0l10-10a1 1 0 0 0-1.4-1.4L9 16.2z"/></svg>
+    </div>
+    <div class="success-title">Registration Submitted</div>
+    <div class="success-sub">Payment pending. Click below to open UPI app and then send payment proof on WhatsApp.</div>
+
+    <div class="success-actions">
+      <button id="openWa" class="action-btn action-wa">Message Admin on WhatsApp</button>
+      <button id="closeOverlay" class="action-btn action-close">Done</button>
+    </div>
+  </div>
+</div>
 
 <script>
-    const scriptURL = "PASTE_YOUR_WEB_APP_URL_HERE"; // Yaha apna Apps Script ka Web App URL paste karo
+/* ===== CONFIG - EDIT IF NEEDED ===== */
+const WEB_APP_URL = "PASTE_YOUR_WEB_APP_URL_HERE"; // <- replace with your Apps Script Web App URL
+const UPI_ID = "6370027283@fam";
+const AMOUNT = "30";
+const ADMIN_WA = "916370027283"; // admin WhatsApp with country code
+/* =================================== */
 
-    document.getElementById("regForm").addEventListener("submit", function(e) {
-        e.preventDefault();
+const logoImg = document.getElementById('logoImg');
+// If you want me to embed the logo now, upload and I'll replace this src with a data URI automatically.
+// For now it will show broken image if not replaced; replace with a raw GitHub URL or data URI.
 
-        let formData = {
-            name: document.getElementById("name").value,
-            gameID: document.getElementById("gameID").value,
-            phone: document.getElementById("phone").value
-        };
+const regForm = document.getElementById('regForm');
+const overlay = document.getElementById('overlay');
+const openWa = document.getElementById('openWa');
+const closeOverlay = document.getElementById('closeOverlay');
+const statusMsg = document.getElementById('statusMsg');
+const waHelp = document.getElementById('waHelp');
 
-        fetch(scriptURL, {
-            method: 'POST',
-            body: JSON.stringify(formData)
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.status === "success") {
-                alert("Registration Successful! Please complete payment.");
-                window.location.href = "upi://pay?pa=6370027283@fam&pn=1LionEsports&am=30&cu=INR";
-            } else {
-                alert("Something went wrong!");
-            }
-        })
-        .catch(err => alert("Error: " + err));
+// set WhatsApp support quick link
+waHelp.href = `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent("Hello Admin, I need help with tournament registration.")}`;
+
+regForm.addEventListener('submit', async function(e){
+  e.preventDefault();
+  statusMsg.style.display = 'none';
+
+  const name = document.getElementById('name').value.trim();
+  const gameID = document.getElementById('gameID').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+
+  if(!name || !gameID || !phone){ alert('Please fill all fields'); return; }
+
+  // show temporary status
+  statusMsg.style.display = 'block';
+  statusMsg.textContent = 'Saving registration...';
+
+  // Save to Google Sheet via Apps Script
+  try {
+    const payload = { name: name, gameID: gameID, phone: phone, paymentStatus: "Pending" };
+    const resp = await fetch(WEB_APP_URL, {
+      method: 'POST',
+      headers: { 'Content-Type':'application/json' },
+      body: JSON.stringify(payload)
     });
-</script>
 
+    // handle response
+    let json = {};
+    try { json = await resp.json(); } catch(e){ /* ignore parse error */ }
+
+    if(resp.ok){
+      statusMsg.textContent = 'Saved. Opening UPI...';
+      // show success overlay (asks user to send screenshot on WhatsApp)
+      showSuccessOverlay(name, gameID);
+      // open UPI deep link (mobile will open UPI app)
+      const upiLink = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent('1 LION ESPORTS')}&am=${encodeURIComponent(AMOUNT)}&cu=INR`;
+      // small delay so overlay appears, then open UPI
+      setTimeout(()=> { window.location.href = upiLink; }, 700);
+    } else {
+      statusMsg.textContent = 'Failed to save registration. Try again.';
+      alert('Server error. Please try again or contact admin on WhatsApp.');
+    }
+  } catch(err) {
+    statusMsg.textContent = 'Network error - could not save.';
+    alert('Network error: ' + err.message + '. If this continues, message admin on WhatsApp.');
+  }
+});
+
+function showSuccessOverlay(name, uid){
+  overlay.style.display = 'flex';
+  // set whatsapp message to include name & uid for quick proof sharing
+  openWa.onclick = function(){
+    const msg = `Paid ₹${AMOUNT} for tournament. Name: ${name} UID: ${uid}. Please confirm.`;
+    const waUrl = `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent(msg)}`;
+    window.open(waUrl, '_blank');
+  };
+  closeOverlay.onclick = function(){ overlay.style.display = 'none'; };
+}
+
+/* Accessibility: allow ESC to close overlay */
+document.addEventListener('keydown', function(e){
+  if(e.key === "Escape"){ overlay.style.display = 'none'; }
+});
+</script>
 </body>
 </html>
