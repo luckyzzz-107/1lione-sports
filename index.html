@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>1lionesports - Register with Payment</title>
+  <title>1lionesports Registration with Manual UPI Verification</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #6b73ff 0%, #000dff 100%);
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #4a90e2, #145388);
+      color: #fff;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -15,127 +16,92 @@
       margin: 0;
     }
     .container {
-      background: white;
-      padding: 2rem 3rem;
+      background: #222;
+      padding: 20px 30px;
       border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
       max-width: 400px;
       width: 100%;
       text-align: center;
     }
     h2 {
-      margin-bottom: 1.5rem;
-      color: #000dff;
+      margin-bottom: 20px;
+      color: #4ade80;
     }
-    input[type="tel"] {
+    input[type="tel"], input[type="text"] {
       width: 100%;
-      padding: 0.75rem;
-      margin-bottom: 1rem;
-      border: 1.5px solid #000dff;
-      border-radius: 5px;
-      font-size: 1rem;
+      padding: 12px 10px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
     }
     button {
-      background: #000dff;
-      color: white;
+      background: #4ade80;
+      color: #222;
       border: none;
-      padding: 0.75rem 1.5rem;
-      font-size: 1.1rem;
-      border-radius: 5px;
+      padding: 12px 0;
+      width: 100%;
+      font-size: 18px;
+      border-radius: 6px;
       cursor: pointer;
+      font-weight: bold;
       transition: background 0.3s ease;
-      margin-top: 1rem;
     }
     button:hover {
-      background: #6b73ff;
-    }
-    .payment-section {
-      margin: 1.5rem 0;
-      font-weight: bold;
-      color: #555;
-    }
-    .hidden {
-      display: none;
-    }
-    .success-message {
-      color: green;
-      font-weight: 700;
-      margin-top: 1rem;
+      background: #22c55e;
     }
     #qrcode {
-      margin: 10px auto;
+      margin: 20px auto;
       width: 200px;
       height: 200px;
+      background: white;
+      padding: 10px;
+      border-radius: 12px;
+    }
+    .success-msg {
+      margin-top: 15px;
+      color: #22c55e;
+      font-weight: bold;
+      display: none;
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <h2>Register at 1lionesports</h2>
+    <div id="qrcode"></div>
+    <p>Registration Fee: ₹100</p>
+    <form id="regForm">
+      <input type="tel" id="phone" placeholder="Enter Phone Number" required pattern="[0-9]{10}" />
+      <input type="text" id="txnId" placeholder="Enter UPI Transaction ID" required />
+      <button type="submit">Submit Registration</button>
+    </form>
+    <p class="success-msg" id="successMsg">Registration submitted! We will verify your payment soon.</p>
+  </div>
 
-<div class="container">
-  <h2>Register at 1lionesports</h2>
-  <form id="registrationForm">
-    <input type="tel" id="phone" placeholder="Enter Phone Number" required pattern="[0-9]{10}" />
-    
-    <div class="payment-section">
-      <p>Registration Fee: ₹100</p>
-      <div id="qrcode"></div>
-      <button type="button" id="payBtn">I Have Paid</button>
-    </div>
-    
-    <button type="submit" id="submitBtn" disabled>Complete Registration</button>
-  </form>
-  <p class="success-message hidden" id="successMsg">Registration Successful! Thank you.</p>
-</div>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script>
+    const upiID = "6370027283@fam";
+    const upiName = "1lionesports";
+    const amount = "100";
+    const upiLink = `upi://pay?pa=${encodeURIComponent(upiID)}&pn=${encodeURIComponent(upiName)}&am=${amount}&cu=INR`;
 
-<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-<script>
-  // Teri UPI ID ke saath UPI payment link banaya
-  const upiID = "6370027283@fam";
-  const upiName = "1lionesports";
-  const amount = "100"; // Registration fee
+    new QRCode(document.getElementById("qrcode"), {
+      text: upiLink,
+      width: 200,
+      height: 200,
+    });
 
-  const upiLink = `upi://pay?pa=${encodeURIComponent(upiID)}&pn=${encodeURIComponent(upiName)}&am=${amount}&cu=INR`;
+    const form = document.getElementById('regForm');
+    const successMsg = document.getElementById('successMsg');
 
-  // QR Code generate kar raha hai
-  new QRCode(document.getElementById("qrcode"), {
-    text: upiLink,
-    width: 200,
-    height: 200,
-  });
-
-  const payBtn = document.getElementById('payBtn');
-  const submitBtn = document.getElementById('submitBtn');
-  const form = document.getElementById('registrationForm');
-  const successMsg = document.getElementById('successMsg');
-
-  let paymentDone = false;
-
-  payBtn.addEventListener('click', () => {
-    alert('Payment Confirmed! You can now complete your registration.');
-    paymentDone = true;
-    submitBtn.disabled = false;
-    payBtn.disabled = true;
-    payBtn.style.opacity = 0.6;
-  });
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (!paymentDone) {
-      alert('Please confirm your payment before submitting.');
-      return;
-    }
-
-    // Yahan backend integration kar sakta hai data save karne ke liye
-
-    form.reset();
-    submitBtn.disabled = true;
-    payBtn.disabled = false;
-    payBtn.style.opacity = 1;
-    paymentDone = false;
-
-    successMsg.classList.remove('hidden');
-  });
-</script>
-
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      // Simple validation passed, yahan backend nahi hai toh bas message dikhayenge
+      form.reset();
+      successMsg.style.display = 'block';
+    });
+  </script>
 </body>
 </html>
