@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>1lionesports - Register with Payment</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #6b73ff 0%, #000dff 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 2rem 3rem;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 1.5rem;
+      color: #000dff;
+    }
+    input[type="tel"] {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1.5px solid #000dff;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    button {
+      background: #000dff;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1.1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-top: 1rem;
+    }
+    button:hover {
+      background: #6b73ff;
+    }
+    .payment-section {
+      margin: 1.5rem 0;
+      font-weight: bold;
+      color: #555;
+    }
+    .hidden {
+      display: none;
+    }
+    .success-message {
+      color: green;
+      font-weight: 700;
+      margin-top: 1rem;
+    }
+    img {
+      width: 200px;
+      margin: 10px 0;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Register at 1lionesports</h2>
+  <form id="registrationForm">
+    <input type="tel" id="phone" placeholder="Enter Phone Number" required pattern="[0-9]{10}" />
+    
+    <div class="payment-section">
+      <p>Registration Fee: ₹100</p>
+      <!-- Replace below src with your actual QR code image URL -->
+      <img src="https://i.ibb.co/2NPThzZ/sample-qr.png" alt="Scan to Pay" />
+      <button type="button" id="payBtn">I Have Paid</button>
+    </div>
+    
+    <button type="submit" id="submitBtn" disabled>Complete Registration</button>
+  </form>
+  <p class="success-message hidden" id="successMsg">Registration Successful! Thank you.</p>
+</div>
+
+<script>
+  const payBtn = document.getElementById('payBtn');
+  const submitBtn = document.getElementById('submitBtn');
+  const form = document.getElementById('registrationForm');
+  const successMsg = document.getElementById('successMsg');
+
+  let paymentDone = false;
+
+  payBtn.addEventListener('click', () => {
+    alert('Payment Confirmed! You can now complete your registration.');
+    paymentDone = true;
+    submitBtn.disabled = false;
+    payBtn.disabled = true;
+    payBtn.style.opacity = 0.6;
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!paymentDone) {
+      alert('Please confirm your payment before submitting.');
+      return;
+    }
+
+    // TODO: Save form data to backend or database here
+
+    form.reset();
+    submitBtn.disabled = true;
+    payBtn.disabled = false;
+    payBtn.style.opacity = 1;
+    paymentDone = false;
+
+    successMsg.classList.remove('hidden');
+  });
+</script>
+
+</body>
+</html>
