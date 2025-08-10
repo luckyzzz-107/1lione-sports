@@ -62,11 +62,10 @@
       font-weight: 700;
       margin-top: 1rem;
     }
-    img {
+    #qrcode {
+      margin: 10px auto;
       width: 200px;
-      margin: 10px 0;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      height: 200px;
     }
   </style>
 </head>
@@ -79,8 +78,7 @@
     
     <div class="payment-section">
       <p>Registration Fee: ₹100</p>
-      <!-- Replace below src with your actual QR code image URL -->
-      <img src="https://i.ibb.co/2NPThzZ/sample-qr.png" alt="Scan to Pay" />
+      <div id="qrcode"></div>
       <button type="button" id="payBtn">I Have Paid</button>
     </div>
     
@@ -89,7 +87,22 @@
   <p class="success-message hidden" id="successMsg">Registration Successful! Thank you.</p>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <script>
+  // Teri UPI ID ke saath UPI payment link banaya
+  const upiID = "6370027283@fam";
+  const upiName = "1lionesports";
+  const amount = "100"; // Registration fee
+
+  const upiLink = `upi://pay?pa=${encodeURIComponent(upiID)}&pn=${encodeURIComponent(upiName)}&am=${amount}&cu=INR`;
+
+  // QR Code generate kar raha hai
+  new QRCode(document.getElementById("qrcode"), {
+    text: upiLink,
+    width: 200,
+    height: 200,
+  });
+
   const payBtn = document.getElementById('payBtn');
   const submitBtn = document.getElementById('submitBtn');
   const form = document.getElementById('registrationForm');
@@ -112,7 +125,7 @@
       return;
     }
 
-    // TODO: Save form data to backend or database here
+    // Yahan backend integration kar sakta hai data save karne ke liye
 
     form.reset();
     submitBtn.disabled = true;
