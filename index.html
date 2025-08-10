@@ -71,7 +71,7 @@
   <div class="container">
     <h2>Register at 1lionesports</h2>
     <div id="qrcode"></div>
-    <p>Registration Fee: ₹100</p>
+    <p>Registration Fee: ₹5</p>
     <form id="regForm">
       <input type="tel" id="phone" placeholder="Enter Phone Number" required pattern="[0-9]{10}" />
       <input type="text" id="txnId" placeholder="Enter UPI Transaction ID" required />
@@ -84,7 +84,7 @@
   <script>
     const upiID = "6370027283@fam";
     const upiName = "1lionesports";
-    const amount = "100";
+    const amount = "5";  // Updated amount to ₹5
     const upiLink = `upi://pay?pa=${encodeURIComponent(upiID)}&pn=${encodeURIComponent(upiName)}&am=${amount}&cu=INR`;
 
     new QRCode(document.getElementById("qrcode"), {
@@ -98,7 +98,6 @@
 
     form.addEventListener('submit', e => {
       e.preventDefault();
-      // Simple validation passed, yahan backend nahi hai toh bas message dikhayenge
       form.reset();
       successMsg.style.display = 'block';
     });
