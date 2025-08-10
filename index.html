@@ -1,153 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>1lionesports Registration with Manual UPI Verification</title>
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Successful - 1LION E-SPORTS</title>
+<style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(135deg, #4a90e2, #145388);
-      background-image: url('https://i.postimg.cc/K8S3ZDM1/file-000000004e7c61f9a8329db0f8e13da4.png');
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-      background-attachment: fixed;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
+        background-color: #f4f6f8;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 20px;
     }
-    .logo {
-      margin-top: 15px;
-      margin-bottom: 20px;
-      opacity: 0.6;
-      font-weight: 900;
-      font-size: 2rem;
-      font-family: 'Segoe UI Black', Arial, sans-serif;
-      color: #fff;
-      user-select: none;
-      letter-spacing: 2px;
-      text-shadow: 1px 1px 2px #0009;
-      text-align: center;
-      z-index: 10;
+    .success-box {
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        display: inline-block;
+        padding: 30px;
+        max-width: 400px;
+        margin-top: 50px;
+        animation: fadeIn 0.8s ease-in-out;
     }
-    .container {
-      background: rgba(34, 34, 34, 0.85);
-      padding: 20px 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.7);
-      max-width: 400px;
-      width: 100%;
-      text-align: center;
-      z-index: 20;
-      position: relative;
+    @keyframes fadeIn {
+        from {opacity: 0; transform: translateY(20px);}
+        to {opacity: 1; transform: translateY(0);}
     }
-    h2 {
-      margin-bottom: 20px;
-      color: #4ade80;
+    .tick {
+        width: 80px;
+        height: 80px;
+        background: #4CAF50;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        animation: pop 0.4s ease-in-out;
     }
-    input[type="tel"], input[type="text"] {
-      width: 100%;
-      padding: 12px 10px;
-      margin-bottom: 15px;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
+    @keyframes pop {
+        0% {transform: scale(0);}
+        100% {transform: scale(1);}
     }
-    button {
-      background: #4ade80;
-      color: #222;
-      border: none;
-      padding: 12px 0;
-      width: 100%;
-      font-size: 18px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background 0.3s ease;
+    .tick svg {
+        width: 40px;
+        height: 40px;
+        fill: white;
     }
-    button:hover {
-      background: #22c55e;
+    h1 {
+        color: #4CAF50;
+        margin-bottom: 10px;
     }
-    #qrcode {
-      margin: 20px auto 10px;
-      width: 200px;
-      height: 200px;
-      background: white;
-      padding: 10px;
-      border-radius: 12px;
+    p {
+        color: #555;
+        font-size: 15px;
     }
-    .success-page {
-      background: rgba(34, 34, 34, 0.85);
-      padding: 30px 25px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.7);
-      max-width: 400px;
-      width: 100%;
-      text-align: center;
-      display: none;
-      z-index: 20;
-      position: relative;
+    .note {
+        margin-top: 15px;
+        font-size: 13px;
+        color: #888;
     }
-    .success-page h2 {
-      color: #22c55e;
-      font-size: 1.8rem;
-      margin-bottom: 15px;
+    .whatsapp-btn {
+        display: inline-block;
+        background-color: #25D366;
+        color: white;
+        padding: 10px 18px;
+        border-radius: 8px;
+        text-decoration: none;
+        margin-top: 20px;
+        font-weight: bold;
     }
-    .success-page p.note {
-      margin-top: 20px;
-      font-size: 1rem;
-      color: #ccc;
-    }
-  </style>
+</style>
 </head>
 <body>
 
-  <div class="logo">1LION E-SPORTS</div>
-
-  <div class="container" id="formContainer">
-    <h2>Register at 1lionesports</h2>
-    <div id="qrcode"></div>
-    <p>Registration Fee: ₹5</p>
-    <form id="regForm">
-      <input type="tel" id="phone" placeholder="Enter Phone Number" required pattern="[0-9]{10}" />
-      <input type="text" id="txnId" placeholder="Enter UPI Transaction ID" required />
-      <button type="submit">Submit Registration</button>
-    </form>
-  </div>
-
-  <div class="success-page" id="successPage">
-    <h2>Your payment is successful, waiting for confirmation.</h2>
-    <p class="note">If you have any problem, then contact <strong>6370027283</strong> only on WhatsApp.</p>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-  <script>
-    const upiID = "6370027283@fam";
-    const upiName = "1lionesports";
-    const amount = "5";
-    const upiLink = `upi://pay?pa=${encodeURIComponent(upiID)}&pn=${encodeURIComponent(upiName)}&am=${amount}&cu=INR`;
-
-    new QRCode(document.getElementById("qrcode"), {
-      text: upiLink,
-      width: 200,
-      height: 200,
-    });
-
-    const form = document.getElementById('regForm');
-    const formContainer = document.getElementById('formContainer');
-    const successPage = document.getElementById('successPage');
-
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      formContainer.style.display = 'none';
-      successPage.style.display = 'block';
-    });
-  </script>
+<div class="success-box">
+    <div class="tick">
+        <svg viewBox="0 0 24 24">
+            <path d="M9 16.17l-3.88-3.88a1 1 0 1 0-1.41 1.41l4.59 4.59a1 1 0 0 0 1.41 0l10-10a1 1 0 0 0-1.41-1.41L9 16.17z"/>
+        </svg>
+    </div>
+    <h1>Payment Successful</h1>
+    <p>Your payment is successful. Waiting for confirmation.</p>
+    <p class="note">If you have any problem then contact <b>6370027283</b> (WhatsApp only)</p>
+    <a class="whatsapp-btn" href="https://wa.me/916370027283" target="_blank">Contact on WhatsApp</a>
+</div>
 
 </body>
 </html>
