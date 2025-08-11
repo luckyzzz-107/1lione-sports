@@ -10,94 +10,34 @@
     * {box-sizing: border-box;}
     body {
       margin: 0; font-family: 'Orbitron', sans-serif;
-      background: radial-gradient(circle at 10% 10%, rgba(255,215,0,0.03), transparent 10%),
-                  radial-gradient(circle at 90% 80%, rgba(255,215,0,0.02), transparent 10%),
-                  linear-gradient(180deg,#030409 0%,#07070a 100%);
+      background: linear-gradient(180deg,#030409 0%,#07070a 100%);
       color: #fff; min-height: 100vh; display: flex;
       flex-direction: column; align-items: center; padding: 20px;
     }
     header {text-align:center; margin-top:20px;}
-    header img {
-      width:108px; border-radius:18px;
-      filter: drop-shadow(0 0 18px rgba(255,200,60,0.12));
-    }
-    h1 {
-      margin: 12px 0 6px; color: var(--gold);
-      text-shadow: 0 0 14px rgba(255,200,50,0.08);
-      font-size:24px;
-    }
-    .lead { color: rgba(255,255,255,0.6); font-size:14px; }
+    header img { width:108px; border-radius:18px; }
+    h1 { margin: 12px 0 6px; color: var(--gold); font-size:24px; }
     .card {
-      background: linear-gradient(180deg, rgba(10,10,10,0.9), rgba(6,6,6,0.9));
-      border-radius:14px; padding:18px; max-width:400px;
-      margin-top:28px; width:100%;
-      border:1px solid rgba(255,215,0,0.06);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.7);
+      border-radius:14px; padding:18px; max-width:400px; margin-top:28px; width:100%;
+      border:1px solid rgba(255,215,0,0.2);
     }
     input {
       width:100%; padding:12px; margin:10px 0; border-radius:8px;
-      background: rgba(0,0,0,0.15); border:1px solid rgba(255,215,0,0.1);
-      color:#fff; text-align:center; font-size:15px;
-    }
-    input:focus {
-      outline: none; box-shadow: 0 0 12px rgba(255,200,50,0.08); border-color: rgba(255,215,0,0.2);
+      background: rgba(0,0,0,0.15); border:1px solid rgba(255,215,0,0.2);
+      color:#fff; text-align:center;
     }
     .btn {
       width:100%; padding:12px; border:none; border-radius:8px;
       background:linear-gradient(90deg,var(--gold), var(--gold-deep));
-      color: #071218; font-weight:700; font-size:16px; cursor:pointer;
-      box-shadow: 0 8px 30px rgba(255,200,60,0.12);
+      color: #071218; font-weight:700; cursor:pointer;
       margin-top:10px;
     }
-    .status {
-      display:none; margin-top:12px; color:#bdf1a9; font-size:15px;
-    }
+    .status { display:none; margin-top:12px; color:#bdf1a9; }
     .wa-link {
       display:none; margin-top:14px; font-size:14px;
       background:#25D366; color:#012; padding:10px 12px;
       border-radius:8px; text-decoration:none; font-weight:600;
-    }
-    /* Rules Section */
-    .rules {
-      max-width: 800px;
-      margin: 40px auto;
-      background: rgba(0,0,0,0.25);
-      border: 1px solid rgba(255,215,0,0.12);
-      border-radius: 12px;
-      padding: 20px;
-      color: #fff;
-    }
-    .rules h2 {
-      text-align: center;
-      color: var(--gold);
-      margin-bottom: 18px;
-    }
-    .rules h3 {
-      margin-top: 20px;
-      color: var(--gold);
-    }
-    .rules ol, .rules ul {
-      margin: 8px 0 0 18px;
-      padding: 0;
-    }
-    .rules li {
-      margin: 4px 0;
-    }
-    .rules .no-list {
-      list-style: none;
-      padding-left: 0;
-    }
-    .rules-content {
-      max-height: 500px;
-      overflow-y: auto;
-      padding-right: 6px;
-    }
-    .rules-content::-webkit-scrollbar {
-      width: 6px;
-    }
-    .rules-content::-webkit-scrollbar-thumb {
-      background-color: var(--gold);
-      border-radius: 3px;
     }
   </style>
 </head>
@@ -106,7 +46,7 @@
   <header>
     <img src="https://i.postimg.cc/23d0f0rK/logo.png" alt="1 Lion Logo">
     <h1>1 LION ESPORTS — Registration</h1>
-    <div class="lead">Pay ₹30 (UPI: 6370027283@fam). After payment, send screenshot on WhatsApp to confirm your slot.</div>
+    <p>Pay ₹30 (UPI: 6370027283@fam). After payment, send screenshot on WhatsApp to confirm your slot.</p>
   </header>
 
   <div class="card">
@@ -118,54 +58,8 @@
     <a id="waLink" class="wa-link" target="_blank">Message Admin on WhatsApp</a>
   </div>
 
-  <section class="rules">
-    <h2>Rules &amp; Regulations</h2>
-    <div class="rules-content">
-      <h3>Instructions Before Joining</h3>
-      <ol>
-        <li>Enter your FF MAX account name only.</li>
-        <li>Do not put UID/GAME-ID and try to use simple font in your GameName.</li>
-        <li>Match room ID and password will be sent 8–10 minutes before the match.</li>
-      </ol>
-
-      <h3>Eligibility Rules</h3>
-      <ol>
-        <li>Only players with Level 40+ ID are allowed.</li>
-        <li>Headshot rate must be ≤ 70% in BR career.</li>
-        <li>Play only on Android, iOS, tablets, or phones (emulators are not allowed).</li>
-      </ol>
-
-      <h3>Prohibited Behavior</h3>
-      <ul class="no-list">
-        <li>❌ Aimbot</li>
-        <li>❌ No recoil</li>
-        <li>❌ Hacking</li>
-        <li>❌ Game modifying tools</li>
-        <li>❌ Glitches</li>
-        <li>❌ Teaming up with opponents</li>
-        <li>❌ Inviting unregistered players</li>
-      </ul>
-
-      <h3>Some Important Tips</h3>
-      <ol>
-        <li>If player Game-ID is blacklisted, then prizes will not proceed without recording proofs. Players can be asked for proofs, so recording the game is a must.</li>
-        <li>If slots are not full, then the winning prize may be changed as per the structure.</li>
-        <li>If you are killed by any hacker or team-up player, record evidence for a full refund.</li>
-        <li>Abusing any Player/Host will lead to an immediate ban.</li>
-      </ol>
-
-      <h3>Raise Your Query</h3>
-      <p>✉️ Raise issues with customer support within 2 hours of match end time.</p>
-
-      <h3>Note</h3>
-      <p>⚠️ 1 Lion eSports reserves the right to modify prizes and rules.</p>
-
-      <p style="text-align:center;margin-top:12px;font-weight:bold;color:var(--gold)">ALL THE BEST PLAYER'S 👍</p>
-    </div>
-  </section>
-
 <script>
-  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxS9uD2xLac_Cjdt1-8sPMxZy3hZehUAN9BmJ7rR7J_V_LmwMBy579Iz2KPP3IgxdmhGA/exec";
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbx5Qs122hZMsSukOV1EdQIyrRRtohbU_vNe2eLi1IBGPJuNa-tLU3pFVfrwtySdc6l10Q/exec";
   const UPI_ID = "6370027283@fam";
   const AMOUNT = "30";
   const ADMIN_WA = "916370027283";
