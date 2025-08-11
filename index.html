@@ -1,331 +1,135 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>1 Lion eSports — Registration & Payment</title>
-<style>
-  :root{
-    --gold:#ffd166;
-    --bg:#07070a;
-    --card:#0f0f12;
-    --muted:#dcdcdc;
-    --green:#25D366;
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0; font-family:Inter, Arial, Helvetica, sans-serif;
-    background:linear-gradient(180deg,#000,#070707); color:var(--muted);
-    -webkit-font-smoothing:antialiased; text-align:center; padding:18px 12px 60px;
-  }
-
-  /* header */
-  .header{max-width:980px;margin:0 auto 14px;display:flex;align-items:center;gap:12px;justify-content:center}
-  img.logo{width:96px;height:auto;border-radius:10px;box-shadow:0 10px 30px rgba(255,209,77,0.06)}
-  h1{color:var(--gold);margin:0;font-size:20px}
-
-  /* card */
-  .card{max-width:880px;margin:14px auto;padding:18px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:12px;border:1px solid rgba(255,209,77,0.06)}
-  .inner{max-width:520px;margin:0 auto}
-  .field{width:100%;padding:12px;margin:8px 0;border-radius:8px;border:0;background:#0b0b0d;color:#fff;font-size:15px}
-  .btn{width:100%;padding:12px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--gold),#e6b800);color:#000;font-weight:700;font-size:16px;cursor:pointer}
-  .muted{color:#bfbfbf;font-size:13px;margin-top:8px}
-
-  /* terms (large) */
-  .terms{
-    margin-top:18px;text-align:left;padding:18px;border-radius:10px;background:rgba(255,215,0,0.02);border-left:4px solid rgba(255,215,0,0.06);
-    color:#eee;font-size:14px;line-height:1.5;
-  }
-  .terms h2{color:var(--gold);margin-top:0}
-  .terms p{margin:10px 0}
-
-  /* payment section */
-  .payment{max-width:720px;margin:18px auto;padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,215,0,0.02), rgba(255,215,0,0.01)); border-top:3px solid rgba(255,215,0,0.06)}
-  .qr{width:260px;height:260px;object-fit:contain;border-radius:8px;background:#fff;padding:8px}
-  .copyRow{display:flex;gap:8px;align-items:center;justify-content:center;margin-top:8px}
-  .smallBtn{padding:8px 12px;border-radius:8px;border:0;background:rgba(0,0,0,0.7);color:white;cursor:pointer}
-  .tx{width:100%;padding:12px;margin-top:12px;border-radius:8px;border:0;background:#0b0b0d;color:#fff}
-
-  /* verifying & success */
-  .center{display:flex;align-items:center;justify-content:center;gap:12px}
-  .hidden{display:none}
-  .verifying{font-size:16px;color:var(--muted);padding:18px}
-  /* success animation */
-  .successWrap{max-width:720px;margin:20px auto;padding:18px;border-radius:12px;background:linear-gradient(90deg, rgba(0,0,0,0.6), rgba(0,0,0,0.4));border:1px solid rgba(0,0,0,0.2);color:#fff}
-  .check {
-    width:120px;height:120px;border-radius:60px;background:linear-gradient(180deg,#22c55e,#159e3b);
-    display:flex;align-items:center;justify-content:center;margin:0 auto 12px;
-    box-shadow:0 12px 30px rgba(21,158,59,0.18);
-    transform:scale(0);animation:pop 700ms cubic-bezier(.2,.9,.3,1) forwards;
-  }
-  .check svg{width:64px;height:64px;fill:white}
-  @keyframes pop{0%{transform:scale(0)}60%{transform:scale(1.12)}100%{transform:scale(1)}}
-
-  .waBtn{display:inline-block;background:var(--green);color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none;font-weight:700;margin-top:12px}
-
-  /* rules (show only after payment success) */
-  .rules{max-width:900px;margin:22px auto;padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,215,0,0.02), rgba(255,215,0,0.01));border-top:3px solid rgba(255,215,0,0.12);text-align:left;color:#eee}
-  .rules h2{color:var(--gold);margin:0 0 8px}
-  .rules h3{margin:10px 0 6px;color:var(--gold);font-size:15px}
-  .rules ul,.rules ol{margin:6px 0 12px 20px;color:#ddd}
-  .rules p{margin:6px 0;color:#ddd;font-size:14px}
-  @media (max-width:420px){
-    .field{font-size:14px;padding:10px}
-    img.logo{width:80px}
-    .qr{width:200px;height:200px}
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1 Lion eSports Registration</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body style="background-color: black; color: white; font-family: Arial, sans-serif;">
+    <header style="text-align:center; padding:10px;">
+        <img src="https://i.postimg.cc/PJZ36DTH/file-000000004e7c61f9a8329db0f8e13da4.png" alt="Logo" style="max-height: 80px;">
+        <h1 style="color:gold;">1 Lion eSports Tournament Registration</h1>
+    </header>
 
-  <!-- HEADER -->
-  <div class="header">
-    <img class="logo" id="siteLogo"
-         src="https://i.postimg.cc/PJZ36DTH/file-000000004e7c61f9a8329db0f8e13da4.png"
-         alt="1 Lion eSports Logo"
-         onerror="this.onerror=null;this.src='https://i.postimg.cc/23d0f0rK/logo.png'">
-    <div>
-      <h1>1 Lion eSports</h1>
-      <div class="muted">Tournament Registration — ₹30 Entry</div>
-    </div>
-  </div>
+    <main style="max-width:600px;margin:auto;">
+        <!-- Registration Form -->
+        <section id="registration-form">
+            <h2 style="color:gold;">Register Now</h2>
+            <form id="esportsForm">
+                <label>Your Real Name:</label>
+                <input type="text" id="origName" required style="width:100%;padding:8px;margin:5px 0;">
 
-  <!-- REGISTRATION FORM CARD -->
-  <div class="card">
-    <div class="inner">
-      <form id="regForm" autocomplete="off">
-        <input class="field" id="origName" name="origName" placeholder="Original Name" required>
-        <input class="field" id="inGame" name="inGame" placeholder="In-Game Name (FF MAX account name)" required>
-        <input class="field" id="uid" name="uid" placeholder="UID" required>
-        <input class="field" id="mobile" name="mobile" placeholder="Mobile Number (with country code if outside India)" required>
-        <button class="btn" id="submitBtn" type="submit">Register & Proceed to Payment ₹30</button>
-        <div class="muted" style="margin-top:8px">After registering you'll be shown a payment QR — keep your transaction ID ready.</div>
-      </form>
+                <label>In-Game Name:</label>
+                <input type="text" id="inGame" required style="width:100%;padding:8px;margin:5px 0;">
 
-      <!-- PROFESSIONAL TERMS & CONDITIONS (visible BEFORE payment) -->
-      <div class="terms" id="termsBox">
-        <h2>Terms & Conditions — 1 Lion eSports Tournament</h2>
+                <label>UID:</label>
+                <input type="text" id="uid" required style="width:100%;padding:8px;margin:5px 0;">
 
-        <p><strong>1. Organizer & Affiliation</strong><br>
-        This tournament is organized by <strong>1 Lion eSports</strong>. It is not affiliated, endorsed, or sponsored by Garena Free Fire or its parent companies. The Free Fire name and logo are used strictly for identification and promotional purposes under fair use.</p>
+                <label>Mobile Number:</label>
+                <input type="tel" id="mobile" required style="width:100%;padding:8px;margin:5px 0;">
 
-        <p><strong>2. Registration & Eligibility</strong><br>
-        Participants must register with their authentic Original Name, in-game name (FF MAX account name), UID, and an active mobile number. Only players with Level 40+ in BR career are eligible to participate. Emulators are strictly prohibited.</p>
+                <button type="submit" style="background:gold;color:black;padding:10px;width:100%;border:none;border-radius:5px;">Register</button>
+            </form>
+        </section>
 
-        <p><strong>3. Entry Fee & Refunds</strong><br>
-        Entry fee is non-refundable except in cases of verified technical failure or confirmed hacking with video evidence. Refund decisions are at the sole discretion of 1 Lion eSports and require supporting proof.</p>
+        <!-- Payment Section -->
+        <section id="payment-section" style="display:none; text-align:center;">
+            <h2 style="color:gold;">Complete Your Payment</h2>
+            <p>Scan the QR Code below to pay ₹30</p>
+            <img src="https://i.postimg.cc/bwL6FpcZ/Screenshot-2025-08-11-13-23-48-62-ba41e9a642e6e0e2b03656bfbbffd6e4.jpg" alt="QR Code" style="max-width:250px;border:2px solid gold;border-radius:10px;">
+            <p>OR Pay via UPI ID: <strong>acharya107@fam</strong></p>
 
-        <p><strong>4. Conduct & Fair Play</strong><br>
-        Any use of cheats, external tools, or teaming with opponents is strictly prohibited. Verified violations will lead to immediate disqualification and blacklisting.</p>
+            <label>Enter Transaction ID:</label>
+            <input type="text" id="transactionId" required style="width:100%;padding:8px;margin:5px 0;">
+            <button id="submitPayment" style="background:gold;color:black;padding:10px;width:100%;border:none;border-radius:5px;">Submit Payment</button>
+        </section>
 
-        <p><strong>5. Prize Policy</strong><br>
-        Prize distribution and structure are subject to change depending on slot availability. 1 Lion eSports reserves the right to modify prizes and rules before the start of the tournament.</p>
+        <!-- Success Section -->
+        <section id="success-section" style="display:none; text-align:center;">
+            <h2 style="color:lightgreen;">✅ Payment Successful 🎉</h2>
+            <p><strong>IMPORTANT NOTICE:</strong></p>
+            <p>Contact the owner on WhatsApp with your payment proof to confirm your slot.</p>
+            <a href="https://wa.me/918888888888" target="_blank" style="background-color:green;color:white;padding:10px 20px;border-radius:5px;text-decoration:none;">Message on WhatsApp</a>
+        </section>
 
-        <p><strong>6. Privacy & Data</strong><br>
-        By registering you agree that your submitted name, UID and phone number will be stored for tournament administration. Data will not be shared publicly beyond necessary match announcements.</p>
+        <!-- Rules Section -->
+        <section id="rules-section" style="display:none;">
+            <h2 style="color:gold;">Rules and Regulations</h2>
+            <div style="color:white; background:black; padding:15px; border-radius:10px;">
+                <h3>Instructions Before Joining:</h3>
+                <ul>
+                    <li>Enter your FF MAX account name only.</li>
+                    <li>Do not put UID/GAME-ID and try to use simple font in your GameName.</li>
+                    <li>Match room ID and password will be sent 8–10 minutes before the match.</li>
+                </ul>
+                <h3>Eligibility Rules:</h3>
+                <ul>
+                    <li>Only players with Level 40+ ID are allowed.</li>
+                    <li>Headshot rate must be ≤ 70% in BR career.</li>
+                    <li>Play only on Android, iOS, tablets, or phones (emulators are not allowed).</li>
+                </ul>
+                <h3>Prohibited Behavior:</h3>
+                <ul>
+                    <li>❌ Aimbot</li>
+                    <li>❌ No recoil</li>
+                    <li>❌ Hacking</li>
+                    <li>❌ Game modifying tools</li>
+                    <li>❌ Glitches</li>
+                    <li>❌ Teaming up with opponents</li>
+                    <li>❌ Inviting unregistered players</li>
+                </ul>
+                <h3>Some Important Tips:</h3>
+                <ul>
+                    <li>If player Game-ID is blacklisted, then prizes will not proceed without recording proofs. Recording the game is a must.</li>
+                    <li>If slots are not full, then the winning prize may be changed as per the structure.</li>
+                    <li>If you are killed by any hacker or team-up player, record evidence for a full refund.</li>
+                    <li>Abusing any Player/Host will lead to an immediate ban.</li>
+                </ul>
+                <h3>Raise Your Query:</h3>
+                <p>✉️ Raise issues with customer support within 2 hours of match end time.</p>
+                <p><b>Note:</b> 1 Lion eSports reserves the right to modify prizes and rules.</p>
+                <p style="text-align:center;">ALL THE BEST PLAYER'S 👍</p>
+            </div>
+        </section>
+    </main>
 
-        <p><strong>7. Disputes</strong><br>
-        All disputes will be handled by the tournament admin. Decisions made by 1 Lion eSports are final.</p>
+    <script>
+        const form = document.getElementById("esportsForm");
+        const paymentSection = document.getElementById("payment-section");
+        const successSection = document.getElementById("success-section");
+        const rulesSection = document.getElementById("rules-section");
 
-        <p style="margin-top:10px"><em>By clicking Register you confirm you have read, understood, and agree to the Terms & Conditions above.</em></p>
-      </div>
-    </div>
-  </div>
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const data = {
+                origName: document.getElementById("origName").value,
+                inGame: document.getElementById("inGame").value,
+                uid: document.getElementById("uid").value,
+                mobile: document.getElementById("mobile").value
+            };
 
-  <!-- PAYMENT CARD (hidden until registration saved) -->
-  <div id="paymentCard" class="payment hidden">
-    <h3>Complete Payment — ₹30</h3>
-    <p style="margin:6px 0 12px">Scan the QR below using your UPI app or copy the UPI ID.</p>
+            fetch("https://script.google.com/macros/s/AKfycbxzQ9RhwlSXn0avXQRzt7g-lIcn1zVxVxsr3P8KjNnr31hsZ3g4rSyDc7SblOR-aodJxQ/exec", {
+                method: "POST",
+                body: JSON.stringify(data)
+            }).then(() => {
+                form.style.display = "none";
+                paymentSection.style.display = "block";
+            }).catch(err => alert("Error: " + err));
+        });
 
-    <img id="qrImg" class="qr"
-         src="https://i.postimg.cc/bwL6FpcZ/Screenshot-2025-08-11-13-23-48-62-ba41e9a642e6e0e2b03656bfbbffd6e4.jpg"
-         alt="Payment QR">
-
-    <div style="margin-top:12px"><strong>UPI ID:</strong> <span id="upiText">acharya107@fam</span></div>
-
-    <div class="copyRow">
-      <button class="smallBtn" onclick="copyText('#upiText')">Copy UPI ID</button>
-      <button class="smallBtn" onclick="showQrForShare()">Open QR (save/share)</button>
-    </div>
-
-    <input id="txnInput" class="tx" type="text" placeholder="Enter Transaction ID (from your UPI app)" />
-    <button class="btn" id="verifyBtn" onclick="verifyTxn()">Verify Payment</button>
-    <div id="payStatus" class="muted" style="margin-top:8px"></div>
-  </div>
-
-  <!-- VERIFYING -->
-  <div id="verifyingCard" class="card hidden center" style="max-width:460px;">
-    <div class="verifying">Verifying payment — please wait...</div>
-  </div>
-
-  <!-- SUCCESS -->
-  <div id="successCard" class="hidden successWrap" style="text-align:center">
-    <div class="check" id="checkAnim">
-      <svg viewBox="0 0 24 24"><path d="M20.285 6.708a1 1 0 0 0-1.414-1.415l-9.192 9.193-3.192-3.192a1 1 0 0 0-1.414 1.414l3.899 3.899a1 1 0 0 0 1.414 0l10.899-10.899z"/></svg>
-    </div>
-    <h2 style="color:var(--gold);margin:6px 0 10px">Payment Successful</h2>
-    <p style="color:#ddd;margin:0 0 12px">Thank you — your payment has been recorded.</p>
-
-    <div style="max-width:680px;margin:0 auto;">
-      <strong style="color:var(--gold)">IMPORTANT NOTICE</strong>
-      <p style="color:#ddd;margin:8px 0 0">Message the owner on WhatsApp with your payment proof to book your slot.</p>
-      <div style="margin-top:12px">
-        <a id="waBtn" class="waBtn" href="#" target="_blank" rel="noopener">Message Owner on WhatsApp</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- RULES & REGULATIONS (SHOWN AFTER PAYMENT SUCCESS) -->
-  <div id="rulesBox" class="rules hidden">
-    <h2>Rules and Regulations</h2>
-
-    <h3>Instructions Before Joining:</h3>
-    <ol>
-      <li>Enter your FF MAX account name only.</li>
-      <li>Do not put UID/GAME-ID and try to use simple font in your GameName.</li>
-      <li>Match room ID and password will be sent 8–10 minutes before the match.</li>
-    </ol>
-
-    <h3>Eligibility Rules:</h3>
-    <ol>
-      <li>Only players with Level 40+ ID are allowed.</li>
-      <li>Headshot rate must be ≤ 70% in BR career.</li>
-      <li>Play only on Android, iOS, tablets, or phones (emulators are not allowed).</li>
-    </ol>
-
-    <h3>Prohibited Behavior:</h3>
-    <ul>
-      <li>❌Aimbot</li>
-      <li>❌No recoil</li>
-      <li>❌Hacking</li>
-      <li>❌Game modifying tools</li>
-      <li>❌Glitches</li>
-      <li>❌Teaming up with opponents</li>
-      <li>❌Inviting unregistered players</li>
-    </ul>
-
-    <h3>Some Important Tips:</h3>
-    <ol>
-      <li>If player Game-ID is blacklisted, then prizes will not proceed without recording proofs. Players can be asked for proofs, so recording the game is a must.</li>
-      <li>If slots are not full, then the winning prize may be changed as per the structure.</li>
-      <li>If you are killed by any hacker or team-up player, record evidence for a full refund.</li>
-      <li>Abusing any Player/Host will lead to an immediate ban.</li>
-    </ol>
-
-    <h3>Raise Your Query:</h3>
-    <p>✉️Raise issues with customer support within 2 hours of match end time.</p>
-
-    <p><strong>Note:</strong> ⚠️1 Lion eSports reserves the right to modify prizes and rules.</p>
-    <p style="text-align:center;color:var(--gold);font-weight:700;margin-top:10px">ALL THE BEST PLAYERS 👍</p>
-  </div>
-
-<script>
-/* ------------- CONFIG ------------- */
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwdIpQ6Z_lZUm99ei09GWwIWrpwrb6wDPAWZOa7x5VdjdXWugZrA-ZB5kCqkkHEQLxqBA/exec";
-const UPI_ID = "acharya107@fam";
-const AMOUNT = "30";
-const OWNER_WA = "916370027283"; // without plus
-/* ---------------------------------- */
-
-const regForm = document.getElementById('regForm');
-const paymentCard = document.getElementById('paymentCard');
-const formCard = document.querySelector('.card');
-const verifyingCard = document.getElementById('verifyingCard');
-const successCard = document.getElementById('successCard');
-const rulesBox = document.getElementById('rulesBox');
-const qrImg = document.getElementById('qrImg');
-const waBtn = document.getElementById('waBtn');
-
-function copyText(selector){
-  const el = document.querySelector(selector||'#upiText');
-  if(!el) return;
-  const txt = el.textContent || el.value || '';
-  navigator.clipboard?.writeText(txt).then(()=> alert('Copied to clipboard'));
-}
-function showQrForShare(){ window.open(qrImg.src, '_blank'); }
-
-function openUpiIntent(){
-  const upi = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent('1 Lion eSports')}&am=${encodeURIComponent(AMOUNT)}&cu=INR&tn=${encodeURIComponent('Tournament Registration Fee')}`;
-  window.location.href = upi;
-  setTimeout(()=>{ const a=document.createElement('a'); a.href=upi; a.style.display='none'; document.body.appendChild(a); a.click(); setTimeout(()=>a.remove(),800); }, 300);
-}
-
-regForm.addEventListener('submit', async function(e){
-  e.preventDefault();
-  const data = {
-    originalName: document.getElementById('origName').value.trim(),
-    inGameName: document.getElementById('inGame').value.trim(),
-    uid: document.getElementById('uid').value.trim(),
-    mobile: document.getElementById('mobile').value.trim()
-  };
-  if(!data.originalName||!data.inGameName||!data.uid||!data.mobile){
-    alert('Please fill all fields.');
-    return;
-  }
-
-  // disable button
-  const submitBtn = document.getElementById('submitBtn');
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Processing...';
-
-  try{
-    // POST as text/plain so Apps Script handles easily (no preflight)
-    await fetch(SCRIPT_URL, {
-      method: 'POST',
-      headers: {'Content-Type':'text/plain;charset=utf-8'},
-      body: JSON.stringify(data)
-    });
-  }catch(err){
-    console.error(err);
-    alert('Network error while saving registration. Try again or contact admin.');
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Register & Proceed to Payment ₹30';
-    return;
-  }
-
-  // show payment UI
-  document.getElementById('submitBtn').textContent = 'Proceed to Payment';
-  // hide form card (we already have the data in sheet)
-  document.querySelector('.card').classList.add('hidden');
-  paymentCard.classList.remove('hidden');
-
-  // set qr image + UPI id text
-  qrImg.src = "https://i.postimg.cc/bwL6FpcZ/Screenshot-2025-08-11-13-23-48-62-ba41e9a642e6e0e2b03656bfbbffd6e4.jpg";
-  document.getElementById('upiText').textContent = UPI_ID;
-
-  // auto open UPI app (mobile best-effort)
-  setTimeout(()=> openUpiIntent(), 700);
-});
-
-/* Verify transaction: simulate 5s checking then success */
-function verifyTxn(){
-  const txn = document.getElementById('txnInput').value.trim();
-  if(!txn){
-    alert('Please enter Transaction ID.');
-    return;
-  }
-
-  // hide payment, show verifying
-  paymentCard.classList.add('hidden');
-  verifyingCard.classList.remove('hidden');
-
-  setTimeout(()=>{
-    verifyingCard.classList.add('hidden');
-    successCard.classList.remove('hidden');
-
-    // configure wa button with message (including small details)
-    const name = document.getElementById('origName').value.trim();
-    const uid = document.getElementById('uid').value.trim();
-    const msg = `Hello Owner, I have completed the payment. Name: ${name}. UID: ${uid}. Txn ID: ${txn}. Here is my payment proof.`;
-    waBtn.href = `https://wa.me/${OWNER_WA}?text=${encodeURIComponent(msg)}`;
-
-    // show rules below success
-    rulesBox.classList.remove('hidden');
-
-    // scroll to success
-    successCard.scrollIntoView({behavior:'smooth'});
-  }, 5000);
-}
-</script>
+        document.getElementById("submitPayment").addEventListener("click", function() {
+            const tid = document.getElementById("transactionId").value;
+            if (tid.trim() === "") {
+                alert("Please enter your Transaction ID");
+                return;
+            }
+            paymentSection.style.display = "none";
+            setTimeout(() => {
+                successSection.style.display = "block";
+                rulesSection.style.display = "block";
+            }, 5000);
+        });
+    </script>
 </body>
 </html>
