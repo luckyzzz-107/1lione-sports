@@ -1,94 +1,127 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>1 Lion eSports Registration</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #000;
-      color: #fff;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-    img.logo {
-      width: 120px;
-      margin-top: 20px;
-    }
-    h1 {
-      color: gold;
-      font-size: 22px;
-      margin-top: 10px;
-    }
-    form {
-      max-width: 350px;
-      margin: 20px auto;
-      padding: 20px;
-      background: #111;
-      border-radius: 10px;
-    }
-    input {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border: none;
-      border-radius: 5px;
-      font-size: 14px;
-    }
-    button {
-      background: gold;
-      border: none;
-      color: #000;
-      padding: 12px;
-      width: 100%;
-      border-radius: 5px;
-      font-weight: bold;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .rules {
-      text-align: left;
-      background: #111;
-      margin: 20px auto;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 90%;
-    }
-    .rules h2 {
-      color: gold;
-    }
-    .rules p, .rules li {
-      font-size: 14px;
-      margin-bottom: 5px;
-    }
-    a.whatsapp-btn {
-      display: inline-block;
-      background: gold;
-      color: black;
-      padding: 12px 20px;
-      margin-top: 20px;
-      border-radius: 5px;
-      font-weight: bold;
-      text-decoration: none;
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>1 Lion eSports — Tournament Registration</title>
+<style>
+  :root{
+    --gold:#ffd166;
+    --bg:#07070a;
+    --card:#0f0f12;
+    --muted:#cfcfcf;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Inter, Arial, Helvetica, sans-serif;
+    background:linear-gradient(180deg,#000000,#0a0a0d);
+    color:var(--muted);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.4;
+    text-align:center;
+    padding:18px 12px 60px;
+  }
+
+  /* header / logo */
+  .header{
+    max-width:900px;margin:0 auto 12px;
+    padding:18px 12px;
+    display:flex;
+    gap:12px;
+    align-items:center;
+    justify-content:center;
+  }
+  img.logo{
+    width:88px;height:auto;border-radius:12px;
+    box-shadow:0 6px 30px rgba(255,209,77,0.08);
+    background:linear-gradient(45deg,#111,#0a0a0a);
+  }
+  h1{color:var(--gold);font-size:20px;margin:0 0 4px}
+
+  /* form card */
+  .card{
+    max-width:420px;margin:12px auto;padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:12px;border:1px solid rgba(255,209,77,0.08);
+    box-shadow:0 8px 30px rgba(0,0,0,0.6);
+  }
+  .field{width:100%;padding:12px;margin:8px 0;border-radius:8px;border:0;background:#0b0b0d;color:#fff;font-size:15px}
+  .btn{
+    display:inline-block;width:100%;padding:12px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--gold),#e6b800);
+    color:#000;font-weight:700;font-size:16px;cursor:pointer;margin-top:8px;
+  }
+  .btn:active{transform:translateY(1px)}
+  .muted{color:#bdbdbd;font-size:13px;margin-top:8px}
+
+  /* rules */
+  .rules{
+    max-width:900px;margin:22px auto 0;padding:18px;border-radius:12px;
+    background:linear-gradient(180deg, rgba(255,215,0,0.02), rgba(255,215,0,0.01));
+    border-top:3px solid rgba(255,215,0,0.12);
+    text-align:left;color:#eee;
+  }
+  .rules h2{color:var(--gold);margin:0 0 8px}
+  .rules h3{margin:10px 0 6px;color:var(--gold);font-size:15px}
+  .rules ul, .rules ol{margin:6px 0 12px 20px;color:#ddd}
+  .rules p{margin:6px 0;color:#ddd;font-size:14px}
+
+  /* small helpers */
+  .center{display:flex;align-items:center;justify-content:center;gap:10px}
+  .notice{
+    margin-top:18px;padding:14px;border-radius:10px;background:linear-gradient(90deg, rgba(255,215,0,0.04), rgba(255,215,0,0.02));
+    border:1px solid rgba(255,215,0,0.06);
+    color:#fff;font-size:15px;
+  }
+
+  /* responsive */
+  @media (max-width:420px){
+    .header{flex-direction:column;gap:8px}
+    img.logo{width:76px}
+    .card{padding:14px}
+    .rules{padding:14px}
+  }
+</style>
 </head>
 <body>
 
-  <img src="https://i.ibb.co/zf1CJyb/lion-logo.png" alt="Logo" class="logo">
-  <h1>1 Lion eSports Tournament Registration</h1>
+  <div class="header">
+    <!-- try user-provided link first, fallback to known image if it fails -->
+    <img class="logo" id="siteLogo"
+      src="https://postimg.cc/BjyGLGyn"
+      alt="1 Lion eSports Logo"
+      onerror="this.onerror=null;this.src='https://i.postimg.cc/23d0f0rK/logo.png'">
+    <div>
+      <h1>1 Lion eSports</h1>
+      <div class="muted">Tournament Registration — ₹30 Entry</div>
+    </div>
+  </div>
 
-  <form id="registrationForm">
-    <input type="text" id="playerName" placeholder="Enter Player Name" required>
-    <input type="text" id="gameId" placeholder="Enter Game ID" required>
-    <input type="tel" id="phoneNumber" placeholder="Enter Phone Number" required>
-    <button type="submit">Register</button>
-  </form>
+  <div class="card" id="formCard">
+    <form id="registrationForm" autocomplete="off">
+      <input class="field" id="name" name="name" placeholder="Enter your FF account name" required>
+      <input class="field" id="gameid" name="gameid" placeholder="Enter Game ID (UID)" required>
+      <input class="field" id="phone" name="phone" placeholder="Enter WhatsApp Number (with country code if outside India)" required>
+      <button class="btn" type="submit" id="registerBtn">Register & Pay ₹30</button>
+      <div id="status" class="muted" style="display:none"></div>
+    </form>
+    <div class="muted" style="margin-top:8px;font-size:13px">After registration you will be redirected to UPI payment. After payment, message the owner with payment proof.</div>
+  </div>
 
-  <div class="rules">
-    <h2>Rules & Regulations</h2>
+  <!-- Important Notice / WhatsApp after payment (hidden by default) -->
+  <div id="afterPayment" style="display:none;max-width:600px;margin:18px auto;text-align:center">
+    <div class="notice">
+      <strong style="color:var(--gold)">Payment completed — Next step</strong>
+      <p style="margin:8px 0 0">Message the owner on WhatsApp with your payment proof to book your slot.</p>
+      <div style="margin-top:12px">
+        <a id="waButton" class="btn" href="#" target="_blank" rel="noopener">Message Owner on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rules & Regulations (exact text, mobile-clean) -->
+  <div class="rules" id="rulesBox">
+    <h2>Rules and Regulations</h2>
 
     <h3>Instructions Before Joining:</h3>
     <ol>
@@ -106,13 +139,13 @@
 
     <h3>Prohibited Behavior:</h3>
     <ul>
-      <li>❌ Aimbot</li>
-      <li>❌ No recoil</li>
-      <li>❌ Hacking</li>
-      <li>❌ Game modifying tools</li>
-      <li>❌ Glitches</li>
-      <li>❌ Teaming up with opponents</li>
-      <li>❌ Inviting unregistered players</li>
+      <li>❌Aimbot</li>
+      <li>❌No recoil</li>
+      <li>❌Hacking</li>
+      <li>❌Game modifying tools</li>
+      <li>❌Glitches</li>
+      <li>❌Teaming up with opponents</li>
+      <li>❌Inviting unregistered players</li>
     </ul>
 
     <h3>Some Important Tips:</h3>
@@ -124,34 +157,118 @@
     </ol>
 
     <h3>Raise Your Query:</h3>
-    <p>Raise issues with customer support within 2 hours of match end time.</p>
+    <p>✉️Raise issues with customer support within 2 hours of match end time.</p>
 
-    <p><strong>Note:</strong> 1 Lion eSports reserves the right to modify prizes and rules.</p>
+    <p><strong>Note:</strong> ⚠️1 Lion eSports reserves the right to modify prizes and rules.</p>
+    <p style="text-align:center;color:var(--gold);font-weight:700;margin-top:10px">ALL THE BEST PLAYERS 👍</p>
   </div>
 
-  <script>
-    document.getElementById("registrationForm").addEventListener("submit", function(e){
-      e.preventDefault();
+<script>
+/* ---------------- CONFIG (If you change deployment URL, update here) ---------------- */
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwdIpQ6Z_lZUm99ei09GWwIWrpwrb6wDPAWZOa7x5VdjdXWugZrA-ZB5kCqkkHEQLxqBA/exec";
+const UPI_ID = "6370027283@fam";
+const UPI_AMOUNT = "30";
+const OWNER_WA = "916370027283"; // owner number with country code
+/* ------------------------------------------------------------------------------------ */
 
-      // Normally here you would send data to Google Sheets
-      // After sending, redirect to payment
-      let upiId = "6370027283@fam";
-      let name = document.getElementById("playerName").value;
-      let amount = 30;
-      
-      let upiLink = `upi://pay?pa=${upiId}&pn=1%20Lion%20eSports&am=${amount}&cu=INR&tn=Tournament%20Registration%20Fee`;
-      window.location.href = upiLink;
+const form = document.getElementById('registrationForm');
+const statusBox = document.getElementById('status');
+const afterPayment = document.getElementById('afterPayment');
+const waButton = document.getElementById('waButton');
+const registerBtn = document.getElementById('registerBtn');
 
-      // After payment, manually redirect to success page
-      setTimeout(function(){
-        document.body.innerHTML = `
-          <h1 style="color:gold;">Payment Successful</h1>
-          <p>Message the owner with your payment proof to book your slot.</p>
-          <a href="https://wa.me/916370027283" class="whatsapp-btn">Message Owner on WhatsApp</a>
-        `;
-      }, 5000); // 5 sec delay for payment
+function showStatus(text, color='') {
+  statusBox.style.display = 'block';
+  statusBox.style.color = color || '#bdbdbd';
+  statusBox.textContent = text;
+}
+
+function hideStatus() {
+  statusBox.style.display = 'none';
+  statusBox.textContent = '';
+}
+
+/* Build WhatsApp link (Owner message) */
+function waLinkWithMessage() {
+  const msg = encodeURIComponent("Hello Owner, I have completed the payment. Here is my payment proof.");
+  return `https://wa.me/${OWNER_WA}?text=${msg}`;
+}
+
+/* Try to open UPI app in best-effort way:
+   1) For Android Chrome / compatible: use universal UPI link (upi://pay)
+   2) If browser blocks, show fallback notice (user can long-press copy UPI or scan)
+*/
+function openUpi(upiUrl) {
+  // Try to open using window.location (works on mobile)
+  window.location.href = upiUrl;
+
+  // As a fallback, also create an invisible link and click (some browsers handle differently)
+  setTimeout(() => {
+    const a = document.createElement('a');
+    a.href = upiUrl;
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(()=>a.remove(), 1000);
+  }, 300);
+}
+
+form.addEventListener('submit', async function(e){
+  e.preventDefault();
+  hideStatus();
+  registerBtn.disabled = true;
+  registerBtn.textContent = 'Processing...';
+
+  const payload = {
+    name: document.getElementById('name').value.trim(),
+    gameID: document.getElementById('gameid').value.trim(),
+    phone: document.getElementById('phone').value.trim()
+  };
+
+  if (!payload.name || !payload.gameID || !payload.phone) {
+    alert('Please fill all fields.');
+    registerBtn.disabled = false;
+    registerBtn.textContent = 'Register & Pay ₹30';
+    return;
+  }
+
+  try {
+    // send as text/plain to avoid preflight in some cases
+    const res = await fetch(SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
     });
-  </script>
+
+    // try parse JSON response (Apps Script returns JSON)
+    let json = {};
+    try { json = await res.json(); } catch(e){ /* ignore parse error */ }
+
+    // show UPI payment
+    const upiLink = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent('1 Lion eSports')}&am=${encodeURIComponent(UPI_AMOUNT)}&cu=INR&tn=${encodeURIComponent('Tournament Registration Fee')}`;
+
+    // attempt to open UPI app
+    showStatus('Opening UPI app... please complete payment.');
+    openUpi(upiLink);
+
+    // After 10 seconds, show the WhatsApp notice (can't auto-verify payment)
+    setTimeout(() => {
+      showStatus('');
+      document.getElementById('formCard')?.remove?.(); // hide form
+      afterPayment.style.display = 'block';
+      waButton.href = waLinkWithMessage();
+      // scroll to afterPayment
+      afterPayment.scrollIntoView({behavior:'smooth'});
+    }, 10000);
+
+  } catch (err) {
+    console.error(err);
+    alert('Network error saving registration. Try again or contact admin.');
+    registerBtn.disabled = false;
+    registerBtn.textContent = 'Register & Pay ₹30';
+  }
+});
+</script>
 
 </body>
 </html>
