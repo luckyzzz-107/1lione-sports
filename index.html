@@ -5,7 +5,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>1 Lion eSports — Registration & Payment</title>
 <style>
-  :root { --gold:#ffd166; --bg:#000; --card:#0f0f12; --muted:#dcdcdc; --green:#25D366; }
+  :root{
+    --gold:#ffd166;
+    --bg:#07070a;
+    --card:#0f0f12;
+    --muted:#dcdcdc;
+    --green:#25D366;
+  }
   *{box-sizing:border-box}
   body{
     margin:0; font-family:Inter, Arial, Helvetica, sans-serif;
@@ -19,81 +25,127 @@
   h1{color:var(--gold);margin:0;font-size:20px}
 
   /* card */
-  .card{max-width:460px;margin:14px auto;padding:18px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:12px;border:1px solid rgba(255,209,77,0.06)}
+  .card{max-width:880px;margin:14px auto;padding:18px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:12px;border:1px solid rgba(255,209,77,0.06)}
+  .inner{max-width:520px;margin:0 auto}
   .field{width:100%;padding:12px;margin:8px 0;border-radius:8px;border:0;background:#0b0b0d;color:#fff;font-size:15px}
   .btn{width:100%;padding:12px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--gold),#e6b800);color:#000;font-weight:700;font-size:16px;cursor:pointer}
   .muted{color:#bfbfbf;font-size:13px;margin-top:8px}
 
+  /* terms (large) */
+  .terms{
+    margin-top:18px;text-align:left;padding:18px;border-radius:10px;background:rgba(255,215,0,0.02);border-left:4px solid rgba(255,215,0,0.06);
+    color:#eee;font-size:14px;line-height:1.5;
+  }
+  .terms h2{color:var(--gold);margin-top:0}
+  .terms p{margin:10px 0}
+
   /* payment section */
-  .payment{max-width:520px;margin:18px auto;padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,215,0,0.02), rgba(255,215,0,0.01)); border-top:3px solid rgba(255,215,0,0.06)}
-  .qr{width:220px;height:220px;object-fit:contain;border-radius:8px;background:#fff;padding:8px}
+  .payment{max-width:720px;margin:18px auto;padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,215,0,0.02), rgba(255,215,0,0.01)); border-top:3px solid rgba(255,215,0,0.06)}
+  .qr{width:260px;height:260px;object-fit:contain;border-radius:8px;background:#fff;padding:8px}
   .copyRow{display:flex;gap:8px;align-items:center;justify-content:center;margin-top:8px}
   .smallBtn{padding:8px 12px;border-radius:8px;border:0;background:rgba(0,0,0,0.7);color:white;cursor:pointer}
-  .tx{width:100%;padding:10px;margin-top:12px;border-radius:8px;border:0;background:#0b0b0d;color:#fff}
+  .tx{width:100%;padding:12px;margin-top:12px;border-radius:8px;border:0;background:#0b0b0d;color:#fff}
 
   /* verifying & success */
   .center{display:flex;align-items:center;justify-content:center;gap:12px}
   .hidden{display:none}
-  .verifying{font-size:16px;color:var(--muted)}
+  .verifying{font-size:16px;color:var(--muted);padding:18px}
   /* success animation */
-  .successWrap{max-width:640px;margin:20px auto;padding:18px;border-radius:12px;background:linear-gradient(90deg, rgba(0,0,0,0.6), rgba(0,0,0,0.4));border:1px solid rgba(0,0,0,0.2)}
+  .successWrap{max-width:720px;margin:20px auto;padding:18px;border-radius:12px;background:linear-gradient(90deg, rgba(0,0,0,0.6), rgba(0,0,0,0.4));border:1px solid rgba(0,0,0,0.2);color:#fff}
   .check {
     width:120px;height:120px;border-radius:60px;background:linear-gradient(180deg,#22c55e,#159e3b);
     display:flex;align-items:center;justify-content:center;margin:0 auto 12px;
     box-shadow:0 12px 30px rgba(21,158,59,0.18);
-    transform:scale(0);animation:pop 600ms cubic-bezier(.2,.9,.3,1) forwards;
+    transform:scale(0);animation:pop 700ms cubic-bezier(.2,.9,.3,1) forwards;
   }
   .check svg{width:64px;height:64px;fill:white}
   @keyframes pop{0%{transform:scale(0)}60%{transform:scale(1.12)}100%{transform:scale(1)}}
 
-  /* whatsapp button */
-  .waBtn{display:inline-block;background:var(--green);color:#fff;padding:12px 18px;border-radius:8px;text-decoration:none;font-weight:700;margin-top:12px}
+  .waBtn{display:inline-block;background:var(--green);color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none;font-weight:700;margin-top:12px}
 
-  /* rules */
+  /* rules (show only after payment success) */
   .rules{max-width:900px;margin:22px auto;padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,215,0,0.02), rgba(255,215,0,0.01));border-top:3px solid rgba(255,215,0,0.12);text-align:left;color:#eee}
   .rules h2{color:var(--gold);margin:0 0 8px}
   .rules h3{margin:10px 0 6px;color:var(--gold);font-size:15px}
   .rules ul,.rules ol{margin:6px 0 12px 20px;color:#ddd}
   .rules p{margin:6px 0;color:#ddd;font-size:14px}
-  @media (max-width:420px){ .card{padding:14px} img.logo{width:80px} .qr{width:180px;height:180px} }
+  @media (max-width:420px){
+    .field{font-size:14px;padding:10px}
+    img.logo{width:80px}
+    .qr{width:200px;height:200px}
+  }
 </style>
 </head>
 <body>
 
   <!-- HEADER -->
   <div class="header">
-    <!-- Primary: use uploaded logo file (logo.png). Fallback to hosted image if not found -->
-    <img class="logo" id="logo" src="logo.png" alt="1 Lion eSports Logo"
-         onerror="this.onerror=null; this.src='https://i.postimg.cc/23d0f0rK/logo.png'">
+    <img class="logo" id="siteLogo"
+         src="https://i.postimg.cc/PJZ36DTH/file-000000004e7c61f9a8329db0f8e13da4.png"
+         alt="1 Lion eSports Logo"
+         onerror="this.onerror=null;this.src='https://i.postimg.cc/23d0f0rK/logo.png'">
     <div>
       <h1>1 Lion eSports</h1>
       <div class="muted">Tournament Registration — ₹30 Entry</div>
     </div>
   </div>
 
-  <!-- REGISTRATION FORM -->
-  <div class="card" id="formCard">
-    <form id="regForm" autocomplete="off">
-      <input class="field" id="origName" name="origName" placeholder="Original Name" required>
-      <input class="field" id="inGame" name="inGame" placeholder="In-Game Name (FF MAX account name)" required>
-      <input class="field" id="uid" name="uid" placeholder="UID" required>
-      <input class="field" id="mobile" name="mobile" placeholder="Mobile Number (with country code if outside India)" required>
-      <button class="btn" id="submitBtn" type="submit">Register & Proceed to Payment ₹30</button>
-      <div id="formNote" class="muted">After registration you will be shown a QR to complete payment. Keep Txn ID handy.</div>
-    </form>
+  <!-- REGISTRATION FORM CARD -->
+  <div class="card">
+    <div class="inner">
+      <form id="regForm" autocomplete="off">
+        <input class="field" id="origName" name="origName" placeholder="Original Name" required>
+        <input class="field" id="inGame" name="inGame" placeholder="In-Game Name (FF MAX account name)" required>
+        <input class="field" id="uid" name="uid" placeholder="UID" required>
+        <input class="field" id="mobile" name="mobile" placeholder="Mobile Number (with country code if outside India)" required>
+        <button class="btn" id="submitBtn" type="submit">Register & Proceed to Payment ₹30</button>
+        <div class="muted" style="margin-top:8px">After registering you'll be shown a payment QR — keep your transaction ID ready.</div>
+      </form>
+
+      <!-- PROFESSIONAL TERMS & CONDITIONS (visible BEFORE payment) -->
+      <div class="terms" id="termsBox">
+        <h2>Terms & Conditions — 1 Lion eSports Tournament</h2>
+
+        <p><strong>1. Organizer & Affiliation</strong><br>
+        This tournament is organized by <strong>1 Lion eSports</strong>. It is not affiliated, endorsed, or sponsored by Garena Free Fire or its parent companies. The Free Fire name and logo are used strictly for identification and promotional purposes under fair use.</p>
+
+        <p><strong>2. Registration & Eligibility</strong><br>
+        Participants must register with their authentic Original Name, in-game name (FF MAX account name), UID, and an active mobile number. Only players with Level 40+ in BR career are eligible to participate. Emulators are strictly prohibited.</p>
+
+        <p><strong>3. Entry Fee & Refunds</strong><br>
+        Entry fee is non-refundable except in cases of verified technical failure or confirmed hacking with video evidence. Refund decisions are at the sole discretion of 1 Lion eSports and require supporting proof.</p>
+
+        <p><strong>4. Conduct & Fair Play</strong><br>
+        Any use of cheats, external tools, or teaming with opponents is strictly prohibited. Verified violations will lead to immediate disqualification and blacklisting.</p>
+
+        <p><strong>5. Prize Policy</strong><br>
+        Prize distribution and structure are subject to change depending on slot availability. 1 Lion eSports reserves the right to modify prizes and rules before the start of the tournament.</p>
+
+        <p><strong>6. Privacy & Data</strong><br>
+        By registering you agree that your submitted name, UID and phone number will be stored for tournament administration. Data will not be shared publicly beyond necessary match announcements.</p>
+
+        <p><strong>7. Disputes</strong><br>
+        All disputes will be handled by the tournament admin. Decisions made by 1 Lion eSports are final.</p>
+
+        <p style="margin-top:10px"><em>By clicking Register you confirm you have read, understood, and agree to the Terms & Conditions above.</em></p>
+      </div>
+    </div>
   </div>
 
-  <!-- PAYMENT STEP (shows after registration) -->
+  <!-- PAYMENT CARD (hidden until registration saved) -->
   <div id="paymentCard" class="payment hidden">
-    <h3>Scan QR or pay using UPI ID</h3>
-    <!-- Primary: use uploaded qr.png. Fallback: generate QR URL from api.qrserver -->
-    <img id="qrImg" class="qr" src="qr.png"
-         alt="Payment QR" onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?data=upi://pay?pa=acharya107@fam&am=30&cu=INR&size=300x300'">
-    <div style="margin-top:10px"><strong>UPI ID:</strong> <span id="upiText">acharya107@fam</span></div>
+    <h3>Complete Payment — ₹30</h3>
+    <p style="margin:6px 0 12px">Scan the QR below using your UPI app or copy the UPI ID.</p>
+
+    <img id="qrImg" class="qr"
+         src="https://i.postimg.cc/bwL6FpcZ/Screenshot-2025-08-11-13-23-48-62-ba41e9a642e6e0e2b03656bfbbffd6e4.jpg"
+         alt="Payment QR">
+
+    <div style="margin-top:12px"><strong>UPI ID:</strong> <span id="upiText">acharya107@fam</span></div>
 
     <div class="copyRow">
       <button class="smallBtn" onclick="copyText('#upiText')">Copy UPI ID</button>
-      <button class="smallBtn" onclick="showQrForShare()">Share QR</button>
+      <button class="smallBtn" onclick="showQrForShare()">Open QR (save/share)</button>
     </div>
 
     <input id="txnInput" class="tx" type="text" placeholder="Enter Transaction ID (from your UPI app)" />
@@ -102,28 +154,29 @@
   </div>
 
   <!-- VERIFYING -->
-  <div id="verifyingCard" class="hidden card center" style="max-width:360px">
-    <div class="verifying">Checking payment — please wait...</div>
+  <div id="verifyingCard" class="card hidden center" style="max-width:460px;">
+    <div class="verifying">Verifying payment — please wait...</div>
   </div>
 
   <!-- SUCCESS -->
   <div id="successCard" class="hidden successWrap" style="text-align:center">
     <div class="check" id="checkAnim">
-      <!-- tick -->
       <svg viewBox="0 0 24 24"><path d="M20.285 6.708a1 1 0 0 0-1.414-1.415l-9.192 9.193-3.192-3.192a1 1 0 0 0-1.414 1.414l3.899 3.899a1 1 0 0 0 1.414 0l10.899-10.899z"/></svg>
     </div>
     <h2 style="color:var(--gold);margin:6px 0 10px">Payment Successful</h2>
-    <p style="color:#ddd;margin:0 0 12px">Thank you — payment recorded.</p>
+    <p style="color:#ddd;margin:0 0 12px">Thank you — your payment has been recorded.</p>
 
-    <div class="notice" style="max-width:680px;margin:0 auto">
+    <div style="max-width:680px;margin:0 auto;">
       <strong style="color:var(--gold)">IMPORTANT NOTICE</strong>
       <p style="color:#ddd;margin:8px 0 0">Message the owner on WhatsApp with your payment proof to book your slot.</p>
-      <a id="waLink" class="waBtn" href="#" target="_blank" rel="noopener">Message Owner on WhatsApp</a>
+      <div style="margin-top:12px">
+        <a id="waBtn" class="waBtn" href="#" target="_blank" rel="noopener">Message Owner on WhatsApp</a>
+      </div>
     </div>
   </div>
 
-  <!-- RULES -->
-  <div class="rules" id="rulesBox">
+  <!-- RULES & REGULATIONS (SHOWN AFTER PAYMENT SUCCESS) -->
+  <div id="rulesBox" class="rules hidden">
     <h2>Rules and Regulations</h2>
 
     <h3>Instructions Before Joining:</h3>
@@ -167,49 +220,36 @@
   </div>
 
 <script>
-/* ---------------- CONFIG ---------------- */
+/* ------------- CONFIG ------------- */
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwdIpQ6Z_lZUm99ei09GWwIWrpwrb6wDPAWZOa7x5VdjdXWugZrA-ZB5kCqkkHEQLxqBA/exec";
 const UPI_ID = "acharya107@fam";
 const AMOUNT = "30";
 const OWNER_WA = "916370027283"; // without plus
-/* ---------------------------------------- */
+/* ---------------------------------- */
 
 const regForm = document.getElementById('regForm');
 const paymentCard = document.getElementById('paymentCard');
-const formCard = document.getElementById('formCard');
-const verifyBtn = document.getElementById('verifyBtn');
-const waLink = document.getElementById('waLink');
+const formCard = document.querySelector('.card');
+const verifyingCard = document.getElementById('verifyingCard');
+const successCard = document.getElementById('successCard');
+const rulesBox = document.getElementById('rulesBox');
 const qrImg = document.getElementById('qrImg');
+const waBtn = document.getElementById('waBtn');
 
 function copyText(selector){
   const el = document.querySelector(selector||'#upiText');
   if(!el) return;
-  const txt = (typeof el === 'string') ? el : el.textContent || el.value;
+  const txt = el.textContent || el.value || '';
   navigator.clipboard?.writeText(txt).then(()=> alert('Copied to clipboard'));
 }
+function showQrForShare(){ window.open(qrImg.src, '_blank'); }
 
-function showQrForShare(){
-  // fallback: open QR image in new tab so user can long-press save/share
-  const src = qrImg.src;
-  window.open(src, '_blank');
-}
-
-/* Build whatsapp message link */
-function buildWaLink(name,uid,txn){
-  const msg = `Hello Owner, I have completed the payment. Name: ${name}. UID: ${uid}. Txn ID: ${txn}. Here is my payment proof.`;
-  return `https://wa.me/${OWNER_WA}?text=${encodeURIComponent(msg)}`;
-}
-
-/* Attempt to open UPI app via link (works on mobile) */
-function openUpi(){
+function openUpiIntent(){
   const upi = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent('1 Lion eSports')}&am=${encodeURIComponent(AMOUNT)}&cu=INR&tn=${encodeURIComponent('Tournament Registration Fee')}`;
-  // Try direct navigation
   window.location.href = upi;
-  // Fallback click
   setTimeout(()=>{ const a=document.createElement('a'); a.href=upi; a.style.display='none'; document.body.appendChild(a); a.click(); setTimeout(()=>a.remove(),800); }, 300);
 }
 
-/* Submit registration -> save to Google Sheet and show QR area */
 regForm.addEventListener('submit', async function(e){
   e.preventDefault();
   const data = {
@@ -224,11 +264,12 @@ regForm.addEventListener('submit', async function(e){
   }
 
   // disable button
-  document.getElementById('submitBtn').disabled = true;
-  document.getElementById('submitBtn').textContent = 'Processing...';
+  const submitBtn = document.getElementById('submitBtn');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Processing...';
 
   try{
-    // POST as text/plain to reduce preflight (Apps Script will parse e.postData.contents)
+    // POST as text/plain so Apps Script handles easily (no preflight)
     await fetch(SCRIPT_URL, {
       method: 'POST',
       headers: {'Content-Type':'text/plain;charset=utf-8'},
@@ -237,25 +278,26 @@ regForm.addEventListener('submit', async function(e){
   }catch(err){
     console.error(err);
     alert('Network error while saving registration. Try again or contact admin.');
-    document.getElementById('submitBtn').disabled = false;
-    document.getElementById('submitBtn').textContent = 'Register & Proceed to Payment ₹30';
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Register & Proceed to Payment ₹30';
     return;
   }
 
   // show payment UI
-  formCard.classList.add('hidden');
+  document.getElementById('submitBtn').textContent = 'Proceed to Payment';
+  // hide form card (we already have the data in sheet)
+  document.querySelector('.card').classList.add('hidden');
   paymentCard.classList.remove('hidden');
 
-  // set qr image src (if qr.png exists it will show; otherwise fallback generated QR)
-  qrImg.src = 'qr.png';
-  // ensure upi id text shows
+  // set qr image + UPI id text
+  qrImg.src = "https://i.postimg.cc/bwL6FpcZ/Screenshot-2025-08-11-13-23-48-62-ba41e9a642e6e0e2b03656bfbbffd6e4.jpg";
   document.getElementById('upiText').textContent = UPI_ID;
 
-  // auto-open UPI app on mobile (best-effort)
-  setTimeout(()=> openUpi(), 700);
+  // auto open UPI app (mobile best-effort)
+  setTimeout(()=> openUpiIntent(), 700);
 });
 
-/* Verify transaction - fake 5s checking then show success + wa link */
+/* Verify transaction: simulate 5s checking then success */
 function verifyTxn(){
   const txn = document.getElementById('txnInput').value.trim();
   if(!txn){
@@ -263,23 +305,25 @@ function verifyTxn(){
     return;
   }
 
-  // show verifying UI
+  // hide payment, show verifying
   paymentCard.classList.add('hidden');
-  document.getElementById('verifyingCard').classList.remove('hidden');
+  verifyingCard.classList.remove('hidden');
 
-  // simulate 5 second check
   setTimeout(()=>{
-    document.getElementById('verifyingCard').classList.add('hidden');
-    document.getElementById('successCard').classList.remove('hidden');
+    verifyingCard.classList.add('hidden');
+    successCard.classList.remove('hidden');
 
-    // animate check (CSS handles)
-    // setup whatsapp link with details
+    // configure wa button with message (including small details)
     const name = document.getElementById('origName').value.trim();
-    const uid  = document.getElementById('uid').value.trim();
-    waLink.href = buildWaLink(name,uid,txn);
+    const uid = document.getElementById('uid').value.trim();
+    const msg = `Hello Owner, I have completed the payment. Name: ${name}. UID: ${uid}. Txn ID: ${txn}. Here is my payment proof.`;
+    waBtn.href = `https://wa.me/${OWNER_WA}?text=${encodeURIComponent(msg)}`;
 
-    // scroll to success area
-    document.getElementById('successCard').scrollIntoView({behavior:'smooth'});
+    // show rules below success
+    rulesBox.classList.remove('hidden');
+
+    // scroll to success
+    successCard.scrollIntoView({behavior:'smooth'});
   }, 5000);
 }
 </script>
