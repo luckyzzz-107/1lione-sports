@@ -57,6 +57,48 @@
       background:#25D366; color:#012; padding:10px 12px;
       border-radius:8px; text-decoration:none; font-weight:600;
     }
+    /* Rules Section */
+    .rules {
+      max-width: 800px;
+      margin: 40px auto;
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,215,0,0.12);
+      border-radius: 12px;
+      padding: 20px;
+      color: #fff;
+    }
+    .rules h2 {
+      text-align: center;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .rules h3 {
+      margin-top: 20px;
+      color: var(--gold);
+    }
+    .rules ol, .rules ul {
+      margin: 8px 0 0 18px;
+      padding: 0;
+    }
+    .rules li {
+      margin: 4px 0;
+    }
+    .rules .no-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    .rules-content {
+      max-height: 500px;
+      overflow-y: auto;
+      padding-right: 6px;
+    }
+    .rules-content::-webkit-scrollbar {
+      width: 6px;
+    }
+    .rules-content::-webkit-scrollbar-thumb {
+      background-color: var(--gold);
+      border-radius: 3px;
+    }
   </style>
 </head>
 <body>
@@ -76,8 +118,54 @@
     <a id="waLink" class="wa-link" target="_blank">Message Admin on WhatsApp</a>
   </div>
 
+  <section class="rules">
+    <h2>Rules &amp; Regulations</h2>
+    <div class="rules-content">
+      <h3>Instructions Before Joining</h3>
+      <ol>
+        <li>Enter your FF MAX account name only.</li>
+        <li>Do not put UID/GAME-ID and try to use simple font in your GameName.</li>
+        <li>Match room ID and password will be sent 8–10 minutes before the match.</li>
+      </ol>
+
+      <h3>Eligibility Rules</h3>
+      <ol>
+        <li>Only players with Level 40+ ID are allowed.</li>
+        <li>Headshot rate must be ≤ 70% in BR career.</li>
+        <li>Play only on Android, iOS, tablets, or phones (emulators are not allowed).</li>
+      </ol>
+
+      <h3>Prohibited Behavior</h3>
+      <ul class="no-list">
+        <li>❌ Aimbot</li>
+        <li>❌ No recoil</li>
+        <li>❌ Hacking</li>
+        <li>❌ Game modifying tools</li>
+        <li>❌ Glitches</li>
+        <li>❌ Teaming up with opponents</li>
+        <li>❌ Inviting unregistered players</li>
+      </ul>
+
+      <h3>Some Important Tips</h3>
+      <ol>
+        <li>If player Game-ID is blacklisted, then prizes will not proceed without recording proofs. Players can be asked for proofs, so recording the game is a must.</li>
+        <li>If slots are not full, then the winning prize may be changed as per the structure.</li>
+        <li>If you are killed by any hacker or team-up player, record evidence for a full refund.</li>
+        <li>Abusing any Player/Host will lead to an immediate ban.</li>
+      </ol>
+
+      <h3>Raise Your Query</h3>
+      <p>✉️ Raise issues with customer support within 2 hours of match end time.</p>
+
+      <h3>Note</h3>
+      <p>⚠️ 1 Lion eSports reserves the right to modify prizes and rules.</p>
+
+      <p style="text-align:center;margin-top:12px;font-weight:bold;color:var(--gold)">ALL THE BEST PLAYER'S 👍</p>
+    </div>
+  </section>
+
 <script>
-  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbykOAG-mwv8aQp1ZSvgvuqowm1a1Qwr4OhVdUP7a_QuZY-y8r-ddyuJr1LBZ0VyWznIYg/exec";
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxS9uD2xLac_Cjdt1-8sPMxZy3hZehUAN9BmJ7rR7J_V_LmwMBy579Iz2KPP3IgxdmhGA/exec";
   const UPI_ID = "6370027283@fam";
   const AMOUNT = "30";
   const ADMIN_WA = "916370027283";
@@ -95,28 +183,32 @@
     status.style.display = 'block';
     status.textContent = 'Saving registration...';
 
+    const form = new URLSearchParams();
+    form.append('name', name);
+    form.append('gameID', gameID);
+    form.append('phone', phone);
+    form.append('paymentStatus', 'Pending');
+
     try {
-      const res = await fetch(WEB_APP_URL, {
-        method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({ name, gameID, phone, paymentStatus: "Pending" })
-      });
-      if (!res.ok) throw new Error('Sheet error');
+      const res = await fetch(WEB_APP_URL, { method: 'POST', body: form });
+      const data = await res.json();
 
-      status.textContent = 'Saved. Opening UPI...';
-      waLink.style.display = 'inline-block';
-      waLink.href = `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent("Paid ₹"+AMOUNT+" for tournament. Name: "+name+" UID: "+gameID+". Please confirm.")}`;
-
-      const upi = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent('1 LION ESPORTS')}&am=${encodeURIComponent(AMOUNT)}&cu=INR`;
-      setTimeout(() => window.location.href = upi, 800);
-
-      setTimeout(() => status.textContent = 'UPI app should open. After paying, send screenshot.', 1500);
-    } catch(e) {
-      status.textContent = 'Error saving. Contact admin on WhatsApp.';
+      if (data.success) {
+        status.textContent = 'Saved. Opening UPI...';
+        waLink.style.display = 'inline-block';
+        waLink.href = `https://wa.me/${ADMIN_WA}?text=${encodeURIComponent("Paid ₹"+AMOUNT+" for tournament. Name: "+name+" UID: "+gameID+". Please confirm.")}`;
+        const upi = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent('1 LION ESPORTS')}&am=${encodeURIComponent(AMOUNT)}&cu=INR`;
+        setTimeout(() => window.location.href = upi, 800);
+      } else {
+        status.textContent = 'Error saving. Contact admin.';
+        waLink.style.display = 'inline-block';
+        waLink.href = `https://wa.me/${ADMIN_WA}`;
+      }
+    } catch (err) {
+      console.error(err);
+      status.textContent = 'Network error. Contact admin.';
       waLink.style.display = 'inline-block';
       waLink.href = `https://wa.me/${ADMIN_WA}`;
-      console.error(e);
-      alert('Error: ' + e.message);
     }
   });
 </script>
