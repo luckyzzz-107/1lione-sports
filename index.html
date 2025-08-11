@@ -3,26 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>1 Lion eSports Tournament Registration</title>
+<title>1 Lion eSports Registration</title>
 <style>
     body {
         font-family: Arial, sans-serif;
-        background-color: #111;
-        color: white;
+        background: radial-gradient(circle, #000000, #1a1a1a);
+        color: #ffd700;
         text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+    header {
         padding: 20px;
+        background: linear-gradient(90deg, #000000, #333333);
+    }
+    header img {
+        height: 60px;
     }
     h1 {
-        color: gold;
+        color: #ffd700;
+        margin-top: 10px;
     }
     form {
         max-width: 400px;
         margin: auto;
-        background: #222;
+        background: rgba(255, 255, 255, 0.05);
         padding: 20px;
         border-radius: 10px;
     }
-    input, button {
+    input, select, button {
         width: 100%;
         padding: 10px;
         margin: 8px 0;
@@ -30,90 +39,120 @@
         border: none;
         font-size: 16px;
     }
-    input {
-        background: #333;
-        color: white;
+    input, select {
+        background: #fff;
+        color: #000;
     }
     button {
-        background: gold;
-        color: black;
-        cursor: pointer;
+        background: #ffd700;
+        color: #000;
         font-weight: bold;
+        cursor: pointer;
     }
     button:hover {
-        background: orange;
+        background: #e6c200;
     }
     .rules {
-        background: #1c1c1c;
-        padding: 10px;
-        margin-top: 20px;
+        max-width: 800px;
+        margin: 30px auto;
         text-align: left;
-        border-radius: 5px;
-        height: 200px;
-        overflow-y: scroll;
+        background: rgba(255,255,255,0.05);
+        padding: 20px;
+        border-radius: 10px;
         font-size: 14px;
+    }
+    .rules h2 {
+        color: #ffd700;
     }
 </style>
 </head>
 <body>
 
-<h1>1 Lion eSports Tournament Registration</h1>
+<header>
+    <img src="https://i.postimg.cc/23d0f0rK/lion-logo.png" alt="1 Lion eSports Logo">
+    <h1>1 Lion eSports Tournament Registration</h1>
+</header>
 
 <form id="registrationForm">
-    <input type="text" name="name" placeholder="In Game Name" required>
-    <input type="text" name="gameID" placeholder="FF UID" required>
-    <input type="text" name="phone" placeholder="Phone Number" required>
+    <input type="text" name="name" placeholder="Enter Player Name" required>
+    <input type="text" name="gameid" placeholder="Enter Game ID" required>
+    <input type="text" name="phone" placeholder="Enter Phone Number" required>
+    <select name="payment" required>
+        <option value="">Payment Status</option>
+        <option value="Paid">Paid</option>
+        <option value="Pending">Pending</option>
+    </select>
     <button type="submit">Register</button>
 </form>
 
 <div class="rules">
-    <h3>Rules & Regulations</h3>
-    <p><strong>Instructions Before Joining:</strong></p>
-    <p>1. Enter your FF MAX account name only.<br>
-    2. Do not put UID/GAME-ID and try to use simple font in your GameName.<br>
-    3. Match room ID and password will be sent 8–10 minutes before the match.</p>
+<h2>Rules & Regulations</h2>
+<p><strong>Instructions Before Joining:</strong></p>
+<ol>
+    <li>Enter your FF MAX account name only.</li>
+    <li>Do not put UID/GAME-ID and try to use simple font in your GameName.</li>
+    <li>Match room ID and password will be sent 8–10 minutes before the match.</li>
+</ol>
 
-    <p><strong>Eligibility Rules:</strong></p>
-    <p>1. Only players with Level 40+ ID are allowed.<br>
-    2. Headshot rate must be ≤ 70% in BR career.<br>
-    3. Play only on Android, iOS, tablets, or phones (emulators are not allowed).</p>
+<p><strong>Eligibility Rules:</strong></p>
+<ol>
+    <li>Only players with Level 40+ ID are allowed.</li>
+    <li>Headshot rate must be ≤ 70% in BR career.</li>
+    <li>Play only on Android, iOS, tablets, or phones (emulators are not allowed).</li>
+</ol>
 
-    <p><strong>Prohibited Behavior:</strong><br>
-    ❌Aimbot ❌No recoil ❌Hacking ❌Game modifying tools ❌Glitches ❌Teaming ❌Unregistered players</p>
+<p><strong>Prohibited Behavior:</strong></p>
+<ul>
+    <li>❌ Aimbot</li>
+    <li>❌ No recoil</li>
+    <li>❌ Hacking</li>
+    <li>❌ Game modifying tools</li>
+    <li>❌ Glitches</li>
+    <li>❌ Teaming up with opponents</li>
+    <li>❌ Inviting unregistered players</li>
+</ul>
 
-    <p><strong>Some Important Tips:</strong><br>
-    1️⃣ Blacklisted ID will not get prizes without proof.<br>
-    2️⃣ If slots not full, prize may change.<br>
-    3️⃣ Record proof if hacker kills you.<br>
-    4️⃣ Abusing Player/Host = Ban.</p>
+<p><strong>Some Important Tips:</strong></p>
+<ol>
+    <li>If player Game-ID is blacklisted, prizes will not proceed without proofs. Recording the game is a must.</li>
+    <li>If slots are not full, the winning prize may change as per the structure.</li>
+    <li>If you are killed by a hacker or team-up player, record evidence for a refund.</li>
+    <li>Abusing any Player/Host will lead to an immediate ban.</li>
+</ol>
 
-    <p><strong>Raise Your Query:</strong><br>
-    ✉️ Contact support within 2 hours of match end.</p>
+<p><strong>Raise Your Query:</strong><br>
+✉️ Contact support within 2 hours after match end.</p>
 
-    <p><strong>Note:</strong><br>
-    ⚠️ 1 Lion eSports can modify prizes/rules anytime.</p>
+<p><strong>Note:</strong><br>
+⚠️ 1 Lion eSports reserves the right to modify prizes and rules.<br>
+<strong>ALL THE BEST PLAYERS 👍</strong></p>
 </div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbzfO121rE2iX2kQpMqp3X_bDVij968UdtrJMF1PtzngtiqqJ7o0GmpF_DveOpzn-1SqxQ/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbwdIpQ6Z_lZUm99ei09GWwIWrpwrb6wDPAWZOa7x5VdjdXWugZrA-ZB5kCqkkHEQLxqBA/exec";
 
-document.getElementById('registrationForm').addEventListener('submit', e => {
+document.getElementById("registrationForm").addEventListener("submit", function(e) {
     e.preventDefault();
-
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
+    const formData = new FormData(this);
+    const data = {};
+    formData.forEach((value, key) => data[key] = value);
 
     fetch(scriptURL, {
-        method: 'POST',
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify(data)
     })
     .then(res => res.json())
-    .then(response => {
-        alert(response.message || "Registration successful!");
-        e.target.reset();
+    .then(res => {
+        if (res.success) {
+            alert("✅ Registration Successful!");
+            document.getElementById("registrationForm").reset();
+        } else {
+            alert("❌ Error: " + res.error);
+        }
     })
     .catch(err => {
-        alert("Error: " + err.message);
+        alert("⚠️ Network Error. Contact Admin.");
     });
 });
 </script>
