@@ -31,7 +31,7 @@
         padding: 20px;
         border-radius: 10px;
     }
-    input, select, button {
+    input, button {
         width: 100%;
         padding: 10px;
         margin: 8px 0;
@@ -39,7 +39,7 @@
         border: none;
         font-size: 16px;
     }
-    input, select {
+    input {
         background: #fff;
         color: #000;
     }
@@ -73,87 +73,49 @@
     <h1>1 Lion eSports Tournament Registration</h1>
 </header>
 
+<div id="form-section">
 <form id="registrationForm">
     <input type="text" name="name" placeholder="Enter Player Name" required>
     <input type="text" name="gameid" placeholder="Enter Game ID" required>
     <input type="text" name="phone" placeholder="Enter Phone Number" required>
-    <select name="payment" required>
-        <option value="">Payment Status</option>
-        <option value="Paid">Paid</option>
-        <option value="Pending">Pending</option>
-    </select>
     <button type="submit">Register</button>
 </form>
+</div>
 
 <div class="rules">
-<h2>Rules & Regulations</h2>
-<p><strong>Instructions Before Joining:</strong></p>
-<ol>
-    <li>Enter your FF MAX account name only.</li>
-    <li>Do not put UID/GAME-ID and try to use simple font in your GameName.</li>
-    <li>Match room ID and password will be sent 8–10 minutes before the match.</li>
-</ol>
-
-<p><strong>Eligibility Rules:</strong></p>
-<ol>
-    <li>Only players with Level 40+ ID are allowed.</li>
-    <li>Headshot rate must be ≤ 70% in BR career.</li>
-    <li>Play only on Android, iOS, tablets, or phones (emulators are not allowed).</li>
-</ol>
-
-<p><strong>Prohibited Behavior:</strong></p>
-<ul>
-    <li>❌ Aimbot</li>
-    <li>❌ No recoil</li>
-    <li>❌ Hacking</li>
-    <li>❌ Game modifying tools</li>
-    <li>❌ Glitches</li>
-    <li>❌ Teaming up with opponents</li>
-    <li>❌ Inviting unregistered players</li>
-</ul>
-
-<p><strong>Some Important Tips:</strong></p>
-<ol>
-    <li>If player Game-ID is blacklisted, prizes will not proceed without proofs. Recording the game is a must.</li>
-    <li>If slots are not full, the winning prize may change as per the structure.</li>
-    <li>If you are killed by a hacker or team-up player, record evidence for a refund.</li>
-    <li>Abusing any Player/Host will lead to an immediate ban.</li>
-</ol>
-
-<p><strong>Raise Your Query:</strong><br>
-✉️ Contact support within 2 hours after match end.</p>
-
-<p><strong>Note:</strong><br>
-⚠️ 1 Lion eSports reserves the right to modify prizes and rules.<br>
-<strong>ALL THE BEST PLAYERS 👍</strong></p>
+    <h2>Rules & Regulations</h2>
+    <p>Message the owner with your payment proof to book your slot.</p>
 </div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbwdIpQ6Z_lZUm99ei09GWwIWrpwrb6wDPAWZOa7x5VdjdXWugZrA-ZB5kCqkkHEQLxqBA/exec";
-
 document.getElementById("registrationForm").addEventListener("submit", function(e) {
     e.preventDefault();
-    const formData = new FormData(this);
-    const data = {};
-    formData.forEach((value, key) => data[key] = value);
 
-    fetch(scriptURL, {
+    const formData = {
+        name: e.target.name.value,
+        gameid: e.target.gameid.value,
+        phone: e.target.phone.value
+    };
+
+    fetch("https://script.google.com/macros/s/AKfycbwdIpQ6Z_lZUm99ei09GWwIWrpwrb6wDPAWZOa7x5VdjdXWugZrA-ZB5kCqkkHEQLxqBA/exec", {
         method: "POST",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify(data)
+        body: JSON.stringify(formData)
     })
     .then(res => res.json())
-    .then(res => {
-        if (res.success) {
-            alert("✅ Registration Successful!");
-            document.getElementById("registrationForm").reset();
+    .then(data => {
+        if (data.success) {
+            // UPI Payment Link
+            window.location.href = "upi://pay?pa=6370027283@fam&pn=1Lion%20eSports&am=30&cu=INR";
+            
+            // After payment, WhatsApp support
+            setTimeout(() => {
+                window.location.href = "https://wa.me/916370027283?text=Hello%20Owner%2C%20I%20have%20completed%20the%20payment.%20Here%20is%20my%20payment%20proof.";
+            }, 5000);
         } else {
-            alert("❌ Error: " + res.error);
+            alert("Error saving data. Please try again.");
         }
     })
-    .catch(err => {
-        alert("⚠️ Network Error. Contact Admin.");
-    });
+    .catch(err => alert("Error: " + err));
 });
 </script>
 
