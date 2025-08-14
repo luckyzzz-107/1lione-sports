@@ -1,292 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>1 Lion eSports — Custom Match Registration</title>
-<style>
-  :root{
-    --gold:#F4C542; --bg:#0b0b0f; --card:#13131a; --text:#e9e9ee; --dim:#b9bac6; --accent:#ffcc4d;
-    --green:#14a44d; --red:#ef4444;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;background:radial-gradient(1200px 800px at 50% -10%,rgba(255,215,0,.12),transparent),#0a0a0d;color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
-  header{display:flex;align-items:center;gap:14px;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.06);background:linear-gradient(180deg,rgba(255,215,0,.07),transparent)}
-  header img{height:56px;width:auto;object-fit:contain}
-  header h1{font-size:1.15rem;margin:0;font-weight:700;letter-spacing:.3px;color:var(--gold)}
-  main{max-width:960px;margin:22px auto;padding:0 14px}
-  .card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:16px;margin-bottom:16px;box-shadow:0 10px 24px rgba(0,0,0,.25)}
-  .title{margin:0 0 12px;font-size:1.05rem;color:var(--gold)}
-  label{display:block;margin:.5rem 0 .35rem;font-size:.92rem;color:var(--dim)}
-  input,select,button{width:100%;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:#0f0f14;color:var(--text);font-size:1rem;outline:none}
-  input:focus,select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(244,197,66,.18)}
-  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-  .option{padding:12px;border-radius:14px;border:1px solid rgba(255,255,255,.08);text-align:center;background:#0e0e13;cursor:pointer;user-select:none}
-  .option.active{border-color:var(--gold);box-shadow:0 0 0 3px rgba(244,197,66,.15)}
-  .hide{display:none}
-  .muted{color:var(--dim);font-size:.9rem}
-  .btn{background:linear-gradient(180deg,#2b2b33,#181820);border:1px solid rgba(255,255,255,.1);cursor:pointer}
-  .btn-primary{background:linear-gradient(180deg,#ffe08a,#f4c542);color:#191919;border:none;font-weight:700}
-  .btn-green{background:var(--green);color:#fff;border:none;font-weight:700}
-  .center{text-align:center}
-  .qr{max-width:240px;width:100%;border-radius:14px;border:1px solid rgba(255,255,255,.08)}
-  .sep{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:14px 0}
-  .loader{width:52px;height:52px;border:5px solid rgba(255,255,255,.12);border-top-color:var(--gold);border-radius:50%;margin:10px auto;animation:spin 1s linear infinite}
-  @keyframes spin{to{transform:rotate(360deg)}}
-  .success-burst{width:84px;height:84px;border-radius:50%;margin:0 auto 10px;background:radial-gradient(circle at 50% 50%,rgba(20,164,77,.9),rgba(20,164,77,.45) 55%,transparent 56%)}
-  .note{font-size:.92rem;color:#d9f7e5;background:rgba(20,164,77,.08);border:1px solid rgba(20,164,77,.2);padding:10px;border-radius:12px}
-  .danger{color:#ffd1d1;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.25)}
-  .whats-btn{display:inline-block;padding:12px 16px;border-radius:12px;background:#25D366;color:#062c0e;text-decoration:none;font-weight:800}
-  footer{opacity:.85;text-align:center;font-size:.85rem;padding:20px;color:#a9a9b2}
-  @media (max-width:720px){ .row{grid-template-columns:1fr} .grid-4{grid-template-columns:repeat(2,1fr)} .grid-3{grid-template-columns:repeat(3,1fr)} header img{height:48px} }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1 Lion eSports Registration</title>
 </head>
 <body>
+    <header>
+        <img src="https://i.postimg.cc/PJZ36DTH/file-000000004e7c61f9a8329db0f8e13da4.png" alt="Logo" style="max-height: 80px;">
+        <h1>1 Lion eSports Tournament Registration</h1>
+    </header>
 
-<header>
-  <img src="https://i.postimg.cc/PJZ36DTH/file-000000004e7c61f9a8329db0f8e13da4.png" alt="1 Lion eSports Logo">
-  <h1>1 Lion eSports — Custom Match Registration</h1>
-</header>
+    <main>
+        <section id="registration-form">
+            <h2>Register Now</h2>
+            <form id="esportsForm">
+                <label for="origName">Your Real Name:</label>
+                <input type="text" id="origName" name="origName" required>
 
-<main>
-  <!-- STEP 1: Player details -->
-  <section id="step1" class="card">
-    <h2 class="title">Step 1 — Player Details</h2>
-    <div class="row">
-      <div>
-        <label for="origName">Original Name (required)</label>
-        <input id="origName" type="text" placeholder="Your real name" required>
-      </div>
-      <div>
-        <label for="mobile1">Primary Mobile (required)</label>
-        <input id="mobile1" type="tel" inputmode="numeric" placeholder="e.g. 98765 43210" required>
-      </div>
-    </div>
-    <div style="margin-top:10px">
-      <label for="mobile2">Secondary Mobile (optional)</label>
-      <input id="mobile2" type="tel" inputmode="numeric" placeholder="Optional number">
-    </div>
-    <div style="margin-top:14px">
-      <button id="toStep2" class="btn btn-primary">Continue</button>
-    </div>
-  </section>
+                <label for="inGame">In-Game Name:</label>
+                <input type="text" id="inGame" name="inGame" required>
 
-  <!-- STEP 2: Mode select -->
-  <section id="step2" class="card hide">
-    <h2 class="title">Step 2 — Choose Match Type</h2>
-    <div class="grid-4" id="modes">
-      <div class="option" data-mode="1v1">1 v 1</div>
-      <div class="option" data-mode="2v2">2 v 2</div>
-      <div class="option" data-mode="3v3">3 v 3</div>
-      <div class="option" data-mode="4v4">4 v 4</div>
-    </div>
-    <div style="margin-top:14px">
-      <button id="toStep3" class="btn" disabled>Next</button>
-    </div>
-  </section>
+                <label for="uid">UID:</label>
+                <input type="text" id="uid" name="uid" required>
 
-  <!-- STEP 3: Entry fee -->
-  <section id="step3" class="card hide">
-    <h2 class="title">Step 3 — Choose Entry Fee</h2>
-    <div class="grid-3" id="fees">
-      <div class="option" data-fee="50">₹50</div>
-      <div class="option" data-fee="80">₹80</div>
-      <div class="option" data-fee="100">₹100</div>
-    </div>
-    <div style="margin-top:14px">
-      <button id="toPayment" class="btn" disabled>Go to Payment</button>
-    </div>
-  </section>
+                <label for="mobile">Mobile Number:</label>
+                <input type="tel" id="mobile" name="mobile" required>
 
-  <!-- STEP 4: Payment -->
-  <section id="payment" class="card hide">
-    <h2 class="title">Step 4 — Pay Entry Fee</h2>
-    <p class="muted">Scan the QR or tap the button below to pay via UPI app.</p>
-    <div class="center">
-      <img id="qrImg" class="qr" src="https://i.postimg.cc/TPMSz27s/IMG-20250814-015435.jpg" alt="UPI QR">
-      <div class="sep"></div>
-      <div id="amountShow" style="font-weight:800;font-size:1.05rem;color:var(--accent)">Amount: ₹—</div>
-      <div style="margin-top:10px;color:var(--dim)">UPI ID: <b style="color:var(--text)">acharya107@fam</b></div>
-      <div style="margin-top:12px">
-        <a id="upiBtn" class="btn btn-primary" href="#" onclick="openUPI(event)">Pay via UPI App</a>
-      </div>
-    </div>
+                <button type="submit">Register</button>
+            </form>
+        </section>
 
-    <div class="sep"></div>
-    <label for="txid">Enter Transaction ID</label>
-    <input id="txid" type="text" placeholder="Example: 12345ABCDE67890" />
+        <section id="payment-section" style="display:none;">
+            <h2>Complete Your Payment</h2>
+            <p>Scan the QR Code below to pay ₹30</p>
+            <img src="https://i.postimg.cc/TPMSz27s/IMG-20250814-015435.jpg" alt="QR Code" style="max-width:250px;">
+            <p>OR Pay via UPI ID: <strong>acharya107@fam</strong></p>
 
-    <div style="margin-top:12px">
-      <button id="submitPayment" class="btn btn-green">Submit Payment</button>
-    </div>
+            <label for="transactionId">Enter Transaction ID:</label>
+            <input type="text" id="transactionId" name="transactionId" required>
+            <button id="submitPayment">Submit Payment</button>
+        </section>
 
-    <div id="checking" class="center hide" style="margin-top:14px">
-      <div class="loader"></div>
-      <div class="muted">Checking payment… (5–7 sec)</div>
-    </div>
-  </section>
+        <section id="success-section" style="display:none; text-align:center;">
+            <div class="payment-success">
+                <div class="lion-container">
+                    <img src="https://i.postimg.cc/tJ2MyhFL/LION-SUCCESSFUL.png" class="lion" alt="Lion Logo">
+                    <div class="tick">✔</div>
+                </div>
+                <h2>Payment Successful 🎉</h2>
+            </div>
+            <p>IMPORTANT NOTICE:</p>
+            <p>Contact the owner on WhatsApp with your payment proof to confirm your slot.</p>
+            <a href="https://wa.me/918888888888" target="_blank" style="background-color:green;color:white;padding:10px 20px;border-radius:5px;text-decoration:none;">Message on WhatsApp</a>
+        </section>
 
-  <!-- STEP 5: Success -->
-  <section id="success" class="card hide center">
-    <div class="success-burst"></div>
-    <h2 class="title" style="color:var(--green)">Payment Successful 🎉</h2>
-    <div class="note" id="succNote"></div>
-    <div style="margin-top:10px">
-      <a id="waBtn" class="whats-btn" target="_blank" rel="noopener">Message on WhatsApp</a>
-    </div>
-    <div class="muted" id="autoHint" style="margin-top:8px">Auto opening WhatsApp in <b id="count">15</b>s…</div>
-  </section>
+        <section id="rules-section" style="display:none;">
+            <h2 style="color:gold;">Rules and Regulations</h2>
+            <div style="color:white; background:black; padding:15px; border-radius:10px; text-align:left;">
+                <p>Admin ko message karo rules pata lagane ke liye. Thank you.</p>
+            </div>
+        </section>
+    </main>
 
-  <!-- STEP 6: Simple Rules -->
-  <section id="rules" class="card hide">
-    <h2 class="title">Rules / Info</h2>
-    <p>Admin ko message karo rules pata lagane ke liye. Thank you!</p>
-  </section>
-</main>
+    <style>
+        .payment-success {
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .lion-container {
+            position: relative;
+            display: inline-block;
+        }
+        .lion {
+            width: 200px;
+            animation: lionGlow 2s infinite alternate, lionBlink 4s infinite;
+        }
+        .tick {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 60px;
+            color: green;
+            font-weight: bold;
+            animation: tickGlow 1.5s infinite alternate;
+        }
+        @keyframes lionGlow {
+            from { filter: drop-shadow(0 0 10px yellow); }
+            to { filter: drop-shadow(0 0 25px yellow); }
+        }
+        @keyframes lionBlink {
+            0%, 90%, 100% { opacity: 1; }
+            95% { opacity: 0.4; }
+        }
+        @keyframes tickGlow {
+            from { text-shadow: 0 0 10px green; }
+            to { text-shadow: 0 0 25px limegreen; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
 
-<footer>© 1 Lion eSports</footer>
+    <script>
+        const form = document.getElementById("esportsForm");
+        const paymentSection = document.getElementById("payment-section");
+        const successSection = document.getElementById("success-section");
+        const rulesSection = document.getElementById("rules-section");
 
-<script>
-  // ====== CONFIG ======
-  const UPI_ID   = "acharya107@fam";
-  const UPI_NAME = "1 Lion eSports";
-  const OWNER_WHATS  = "916370027283"; // India number with country code
-  // ====================
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+            form.style.display = "none";
+            paymentSection.style.display = "block";
+        });
 
-  const q = (sel)=>document.querySelector(sel);
-  const qa = (sel)=>Array.from(document.querySelectorAll(sel));
-
-  const step1 = q('#step1'), step2=q('#step2'), step3=q('#step3'), payment=q('#payment'), success=q('#success'), rules=q('#rules');
-
-  const state = {
-    name: "", mobile1: "", mobile2: "",
-    mode: "", fee: 0, txid: ""
-  };
-
-  // Step 1
-  q('#toStep2').addEventListener('click', ()=>{
-    const name = q('#origName').value.trim();
-    const m1   = q('#mobile1').value.trim();
-    const m2   = q('#mobile2').value.trim();
-
-    if(!name){ alert("Please enter your real name."); return; }
-    if(!m1){ alert("Please enter primary mobile number."); return; }
-
-    state.name = name; state.mobile1 = m1; state.mobile2 = m2;
-
-    step1.classList.add('hide');
-    step2.classList.remove('hide');
-    window.scrollTo({top:0, behavior:'smooth'});
-  });
-
-  // Step 2 — choose mode
-  const modes = q('#modes');
-  modes.addEventListener('click',(e)=>{
-    const opt = e.target.closest('.option'); if(!opt) return;
-    qa('#modes .option').forEach(o=>o.classList.remove('active'));
-    opt.classList.add('active');
-    state.mode = opt.dataset.mode;
-    q('#toStep3').disabled = false;
-  });
-  q('#toStep3').addEventListener('click', ()=>{
-    if(!state.mode){ alert("Select a match type."); return; }
-    step2.classList.add('hide');
-    step3.classList.remove('hide');
-    window.scrollTo({top:0, behavior:'smooth'});
-  });
-
-  // Step 3 — choose fee
-  const fees = q('#fees');
-  fees.addEventListener('click',(e)=>{
-    const opt = e.target.closest('.option'); if(!opt) return;
-    qa('#fees .option').forEach(o=>o.classList.remove('active'));
-    opt.classList.add('active');
-    state.fee = Number(opt.dataset.fee);
-    q('#toPayment').disabled = false;
-  });
-  q('#toPayment').addEventListener('click', ()=>{
-    if(!state.fee){ alert("Select entry fee."); return; }
-    step3.classList.add('hide');
-    payment.classList.remove('hide');
-    updatePaymentUI();
-    window.scrollTo({top:0, behavior:'smooth'});
-  });
-
-  function updatePaymentUI(){
-    q('#amountShow').textContent = `Amount: ₹${state.fee}`;
-    // Prepare UPI link with pre-filled amount
-    const tn = encodeURIComponent(`Entry fee for ${state.mode} — ${state.name}`);
-    const upi = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent(UPI_NAME)}&am=${encodeURIComponent(state.fee)}&cu=INR&tn=${tn}`;
-    q('#upiBtn').href = upi;
-  }
-
-  function openUPI(ev){
-    // anchor default works; keep as fallback
-    // We keep function for any future custom logic
-  }
-
-  // Step 4 — submit payment (fake check 5–7s)
-  q('#submitPayment').addEventListener('click', ()=>{
-    const tx = q('#txid').value.trim();
-    if(!tx){ alert("Please enter your Transaction ID."); return; }
-    state.txid = tx;
-
-    q('#checking').classList.remove('hide');
-
-    // 5–7s random delay
-    const delay = 5000 + Math.floor(Math.random()*2000);
-    setTimeout(()=>{
-      payment.classList.add('hide');
-      showSuccess();
-      q('#checking').classList.add('hide');
-      window.scrollTo({top:0, behavior:'smooth'});
-    }, delay);
-  });
-
-  // Step 5 — success + auto WhatsApp after 15s
-  function buildWAmessage(){
-    return [
-      `Hello Owner, I have paid for ${state.mode}`,
-      `Transaction ID: ${state.txid}`,
-      `Amount Paid: ₹${state.fee}`,
-      `Please tell me my game time.`
-    ].join('%0A'); // newline URL-encoded
-  }
-
-  function showSuccess(){
-    const msgText = decodeURIComponent(buildWAmessage().replace(/%0A/g, '\n'));
-    q('#succNote').innerHTML = `
-      <div><b>Name:</b> ${escapeHTML(state.name)}</div>
-      <div><b>Mobile:</b> ${escapeHTML(state.mobile1)}${state.mobile2? ' / '+escapeHTML(state.mobile2):''}</div>
-      <div><b>Match Type:</b> ${escapeHTML(state.mode)}</div>
-      <div><b>Amount:</b> ₹${escapeHTML(String(state.fee))}</div>
-      <div><b>Transaction ID:</b> ${escapeHTML(state.txid)}</div>
-    `;
-
-    const waURL = `https://wa.me/${OWNER_WHATS}?text=${buildWAmessage()}`;
-    const waBtn = q('#waBtn');
-    waBtn.href = waURL;
-
-    success.classList.remove('hide');
-    rules.classList.remove('hide');
-
-    // Auto open after 15s
-    let secs = 15;
-    const countEl = q('#count');
-    countEl.textContent = secs;
-    const t = setInterval(()=>{
-      secs--;
-      countEl.textContent = secs;
-      if(secs<=0){
-        clearInterval(t);
-        window.location.href = waURL;
-      }
-    },1000);
-  }
-
-  function escapeHTML(s){return s.replace(/[&<>"']/g, m=>({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[m]))}
-</script>
+        document.getElementById("submitPayment").addEventListener("click", function() {
+            const tid = document.getElementById("transactionId").value;
+            if (tid.trim() === "") {
+                alert("Please enter your Transaction ID");
+                return;
+            }
+            paymentSection.style.display = "none";
+            setTimeout(() => {
+                successSection.style.display = "block";
+                rulesSection.style.display = "block";
+            }, 5000);
+        });
+    </script>
 </body>
 </html>
