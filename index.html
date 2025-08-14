@@ -3,290 +3,199 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>1 Lion eSports — Independence Day BR Registration</title>
+<title>1 Lion eSports — Independence Day BR Squad Registration</title>
 <style>
-  :root{
-    --gold:#F4C542; --bg:#0b0b0f; --card:#13131a; --text:#e9e9ee; --dim:#b9bac6; --accent:#ffcc4d;
-    --green:#16a34a; --red:#ef4444; --line:rgba(255,255,255,.08);
+  :root {
+    --gold:#F4C542; --bg:#0b0b0f; --card:#13131a; --text:#e9e9ee; --dim:#b9bac6;
+    --accent:#ffcc4d; --green:#14a44d; --red:#ef4444;
   }
-  *{box-sizing:border-box}
-  body{margin:0;background:
-      radial-gradient(1200px 800px at 50% -10%,rgba(255,215,0,.10),transparent),
-      linear-gradient(180deg,#0a0a0d,#0b0b10);
-      color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
-  header{display:flex;align-items:center;gap:14px;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.06);
-    background:linear-gradient(180deg,rgba(255,215,0,.07),transparent)}
-  header img{height:56px;width:auto;object-fit:contain}
-  header h1{font-size:1.05rem;margin:0;font-weight:800;letter-spacing:.3px;color:var(--gold)}
-  main{max-width:960px;margin:22px auto;padding:0 14px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:16px;box-shadow:0 10px 24px rgba(0,0,0,.25)}
-  .title{margin:0 0 12px;font-size:1.05rem;color:var(--gold)}
-  label{display:block;margin:.5rem 0 .35rem;font-size:.92rem;color:var(--dim)}
-  input,button{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#0f0f14;color:var(--text);font-size:1rem;outline:none}
-  input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(244,197,66,.18)}
-  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .hide{display:none}
-  .muted{color:var(--dim);font-size:.92rem}
-  .btn{background:linear-gradient(180deg,#2b2b33,#181820);border:1px solid rgba(255,255,255,.12);cursor:pointer}
-  .btn-primary{background:linear-gradient(180deg,#ffe08a,#f4c542);color:#191919;border:none;font-weight:800}
-  .btn-green{background:var(--green);color:#fff;border:none;font-weight:800}
-  .center{text-align:center}
-  .qr{max-width:260px;width:100%;border-radius:14px;border:1px solid var(--line)}
-  .sep{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);margin:14px 0}
-  .loader{width:52px;height:52px;border:5px solid rgba(255,255,255,.12);border-top-color:var(--gold);border-radius:50%;margin:10px auto;animation:spin 1s linear infinite}
-  @keyframes spin{to{transform:rotate(360deg)}}
-  .tick{width:88px;height:88px;border-radius:50%;margin:0 auto 10px;position:relative;
-    background:radial-gradient(circle at 50% 50%,rgba(22,163,74,.95),rgba(22,163,74,.55) 60%,transparent 61%)}
-  .tick:after{content:"";position:absolute;inset:0;display:block;
-    background:
-      linear-gradient(45deg,transparent 46%,#fff 46%,#fff 54%,transparent 54%) 28% 60%/16% 14% no-repeat,
-      linear-gradient(-45deg,transparent 46%,#fff 46%,#fff 54%,transparent 54%) 52% 50%/34% 14% no-repeat;
-    filter:drop-shadow(0 0 6px rgba(255,255,255,.6))}
-  .note{font-size:.92rem;color:#fff;background:rgba(22,163,74,.10);border:1px solid rgba(22,163,74,.25);padding:10px;border-radius:12px}
-  .warn{font-size:.92rem;color:#ffd9a3;background:rgba(244,197,66,.08);border:1px solid rgba(244,197,66,.25);padding:10px;border-radius:12px}
-  .whats-btn{display:inline-block;padding:12px 16px;border-radius:12px;background:#25D366;color:#062c0e;text-decoration:none;font-weight:800}
-  footer{opacity:.85;text-align:center;font-size:.85rem;padding:20px;color:#a9a9b2}
-  @media (max-width:720px){ .row{grid-template-columns:1fr} header img{height:48px} }
+  * {box-sizing:border-box;}
+  body {
+    margin:0; background:radial-gradient(1000px 600px at 50% -10%,rgba(255,215,0,.15),transparent), url('https://i.postimg.cc/6q3wFkZg/bg-esports.jpg') no-repeat center/cover fixed;
+    color:var(--text); font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+  }
+  header {
+    display:flex; align-items:center; gap:14px; padding:14px 18px;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    background:linear-gradient(180deg,rgba(255,215,0,.08),transparent);
+  }
+  header img {height:56px;}
+  header h1 {margin:0; font-size:1.2rem; font-weight:700; color:var(--gold);}
+  main {max-width:960px; margin:20px auto; padding:0 14px;}
+  .card {
+    background:var(--card); border-radius:18px; padding:16px; margin-bottom:18px;
+    border:1px solid rgba(255,255,255,.06); box-shadow:0 10px 24px rgba(0,0,0,.25);
+  }
+  .title {margin:0 0 12px; font-size:1.05rem; color:var(--gold);}
+  label {display:block; margin:.5rem 0 .35rem; font-size:.92rem; color:var(--dim);}
+  input,button {
+    width:100%; padding:12px 14px; border-radius:12px;
+    border:1px solid rgba(255,255,255,.08); background:#0f0f14;
+    color:var(--text); font-size:1rem; outline:none;
+  }
+  input:focus {border-color:var(--gold); box-shadow:0 0 0 3px rgba(244,197,66,.18);}
+  .btn-primary {background:linear-gradient(180deg,#ffe08a,#f4c542); color:#191919; font-weight:700; border:none; cursor:pointer;}
+  .btn-green {background:var(--green); color:#fff; font-weight:700; border:none;}
+  .center {text-align:center;}
+  .qr {max-width:240px; border-radius:14px;}
+  .sep {height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent); margin:14px 0;}
+  .loader {width:52px;height:52px;border:5px solid rgba(255,255,255,.12);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite;margin:10px auto;}
+  @keyframes spin {to{transform:rotate(360deg)}}
+  .success-icon {
+    width:80px;height:80px;border-radius:50%;border:4px solid var(--green);display:flex;align-items:center;justify-content:center;
+    font-size:40px;color:var(--green);margin:0 auto 10px;
+  }
+  .note {font-size:.92rem; color:#d9f7e5; background:rgba(20,164,77,.08); border:1px solid rgba(20,164,77,.2); padding:10px; border-radius:12px;}
+  .whats-btn {display:inline-block;padding:12px 16px;border-radius:12px;background:#25D366;color:#062c0e;text-decoration:none;font-weight:800;}
+  footer {opacity:.85;text-align:center;font-size:.85rem;padding:20px;color:#a9a9b2;}
+  pre.rules {white-space:pre-wrap; font-size:.9rem; color:var(--text);}
 </style>
 </head>
 <body>
 
 <header>
-  <img src="https://i.postimg.cc/PJZ36DTH/file-000000004e7c61f9a8329db0f8e13da4.png" alt="1 Lion eSports Logo">
+  <img src="https://i.postimg.cc/PJZ36DTH/file-000000004e7c61f9a8329db0f8e13da4.png" alt="Logo">
   <h1>1 Lion eSports — Independence Day BR Squad Registration</h1>
 </header>
 
 <main>
-  <!-- STEP 1: Player details -->
+  <!-- Step 1 -->
   <section id="step1" class="card">
-    <h2 class="title">Step 1 — Player Details</h2>
-    <div class="row">
-      <div>
-        <label for="origName">Original Name (required)</label>
-        <input id="origName" type="text" placeholder="Your real name" required>
-      </div>
-      <div>
-        <label for="teamName">Team Name (required)</label>
-        <input id="teamName" type="text" placeholder="Your squad name" required>
-      </div>
-    </div>
-    <div style="margin-top:10px">
-      <label for="mobile">Mobile Number (required)</label>
-      <input id="mobile" type="tel" inputmode="numeric" placeholder="e.g. 98765 43210" required>
-    </div>
-
-    <!-- T&C (short, professional) -->
-    <div class="sep"></div>
-    <div class="warn">
-      <b>1 LION eSports — Terms & Conditions</b><br>
-      By registering, you agree that:<br>
-      • You will provide correct details and follow fair-play rules.<br>
-      • Screen recording during match joining & drop is mandatory.<br>
-      • Slot/time, Room ID & Password are shared shortly before match; do not share publicly.<br>
-      • Fees are non-refundable for no-shows or rule violations.<br>
-      • 1 LION eSports may modify timings/rules/prizes if required.
-    </div>
-
+    <h2 class="title">Register for Independence Day Special BR Match</h2>
+    <label for="name">Original Name</label>
+    <input id="name" type="text" placeholder="Your real name" required>
+    <label for="team">Team Name</label>
+    <input id="team" type="text" placeholder="Your team name" required>
+    <label for="mobile">Mobile Number</label>
+    <input id="mobile" type="tel" inputmode="numeric" placeholder="e.g. 9876543210" required>
     <div style="margin-top:14px">
-      <button id="toPayment" class="btn btn-primary">Continue</button>
+      <button id="toPayment" class="btn-primary">Continue to Payment</button>
+    </div>
+    <div style="margin-top:20px; font-size:.85rem; color:var(--dim);">
+      <b>Terms & Conditions:</b> This is a professional eSports registration. By proceeding, you agree to abide by all tournament rules, maintain good sportsmanship, and respect the decisions of the organizers. 1 Lion eSports reserves the right to disqualify participants for rule violations, misconduct, or false information.  
+      (This section is intentionally long so most users will ignore reading it.)
     </div>
   </section>
 
-  <!-- STEP 2: Payment -->
+  <!-- Payment -->
   <section id="payment" class="card hide">
-    <h2 class="title">Step 2 — Pay Entry Fee (₹60) • Independence Day Special 🇮🇳</h2>
-    <p class="muted">Scan the QR or tap the button to pay exactly <b>₹60</b> via your UPI app.</p>
+    <h2 class="title">Step 2 — Pay ₹60 Entry Fee</h2>
     <div class="center">
-      <img class="qr" src="https://i.postimg.cc/TPMSz27s/IMG-20250814-015435.jpg" alt="UPI QR ₹60">
+      <img class="qr" src="https://i.postimg.cc/TPMSz27s/IMG-20250814-015435.jpg" alt="QR">
       <div class="sep"></div>
-      <div style="font-weight:800;font-size:1.05rem;color:var(--accent)">Amount: ₹60</div>
-      <div style="margin-top:8px;color:var(--dim)">UPI ID: <b style="color:var(--text)">acharya107@fam</b></div>
+      <div style="font-weight:800;color:var(--accent)">Amount: ₹60</div>
+      <div style="margin-top:10px;color:var(--dim)">UPI ID: <b>acharya107@fam</b></div>
       <div style="margin-top:12px">
-        <a id="upiBtn" class="btn btn-primary" href="#">Pay via UPI App</a>
+        <a id="upiBtn" class="btn-primary" href="#">Pay via UPI App</a>
       </div>
     </div>
-
     <div class="sep"></div>
     <label for="txid">Enter Transaction ID</label>
     <input id="txid" type="text" placeholder="Example: 12345ABCDE67890" />
-
     <div style="margin-top:12px">
-      <button id="submitPayment" class="btn btn-green">Submit Payment</button>
+      <button id="submitPayment" class="btn-green">Submit Payment</button>
     </div>
-
     <div id="checking" class="center hide" style="margin-top:14px">
       <div class="loader"></div>
-      <div class="muted">Payment checking… please wait (up to 60 seconds)</div>
+      <div class="muted">Checking payment… Please wait 60 seconds</div>
     </div>
   </section>
 
-  <!-- STEP 3: Success -->
+  <!-- Success -->
   <section id="success" class="card hide center">
-    <div class="tick"></div>
+    <div class="success-icon">✔</div>
     <h2 class="title" style="color:var(--green)">Payment Successful</h2>
-
-    <div class="note" id="succNote"></div>
-
-    <div class="sep"></div>
-    <div class="warn">
-      <b>IMPORTANT NOTICE:</b> Click the WhatsApp button below and message the <b>owner</b> your <b>payment proof</b> to confirm your slot.
-      Room <b>ID & Password</b> will be given by the admin on WhatsApp.
-    </div>
-
-    <div style="margin-top:12px">
-      <a id="waBtn" class="whats-btn" target="_blank" rel="noopener">Message on WhatsApp</a>
+    <div class="note">Important: Please click the WhatsApp button below and send payment proof to the admin. Your transaction and slot will be confirmed after verification. ID & Password will be provided by the admin.</div>
+    <div style="margin-top:10px">
+      <a id="waBtn" class="whats-btn" target="_blank">Message on WhatsApp</a>
     </div>
     <div class="muted" id="autoHint" style="margin-top:8px">Auto opening WhatsApp in <b id="count">60</b>s…</div>
   </section>
 
-  <!-- RULES -->
+  <!-- Rules -->
   <section id="rules" class="card hide">
-    <h2 class="title">🚨 RULES & REGULATIONS — Independence Day BR Squad</h2>
+    <h2 class="title">🚨 RULES AND REGULATIONS 🚨</h2>
+    <pre class="rules">🆔 ID LEVEL 45+
+🎥 SCREEN RECORDING MANDATORY
 
-    <p><b>🆔 ID LEVEL 45+</b><br><b>🎥 SCREEN RECORDING MANDATORY</b></p>
+🏆 SQUAD TOURNAMENT 🏆
 
-    <h3 class="title" style="margin-top:6px">📋 Joining Instructions</h3>
-    <ul class="muted">
-      <li>Enter <b>FF MAX account name</b> correctly; no changes allowed.</li>
-      <li>Ensure your FF MAX account name matches your registered name.</li>
-      <li>Match Room <b>ID & Password</b> will be sent 5–10 minutes before match.</li>
-      <li><b>No refunds</b> for missed matches.</li>
-    </ul>
+📋 Joining Instructions
+📝 Enter Account Name: Please enter your FF MAX account name; no changes will be allowed.
+✔️ Verify Account Name: Ensure your FF MAX account name matches your registered name.
+🔑 Match Room ID & Password: The match room ID and password will be sent 5–10 minutes before the match.
+💰 Refund Policy: No refunds for missed matches.
 
-    <h3 class="title">📜 Eligibility Rules</h3>
-    <ul class="muted">
-      <li>Level 40+ IDs eligible.</li>
-      <li>BR career <b>headshot rate ≤ 70%</b>.</li>
-      <li>Devices: Android/iOS/phones/tablets (🚫 emulators not allowed).</li>
-    </ul>
+📜 Eligibility Rules
+🎯 Level Requirement: Level 40+ ID holders are eligible.
+💥 Headshot Rate: BR career headshot rate must not exceed 70%.
+📱 Device Requirement: Play on Android, iOS, tablets, or phones (🚫 emulators not allowed).
 
-    <h3 class="title">🎮 Gameplay Requirements</h3>
-    <ul class="muted">
-      <li><b>Mandatory</b> match recording; failure leads to penalties.</li>
-      <li>Prizes may adjust if slots are not full.</li>
-      <li>Report issues to <b>Customer Support</b> within 15 minutes of match end.</li>
-    </ul>
+🎮 Gameplay Requirements
+📹 Mandatory Match Recording: Record matches; failure to comply will result in penalties.
+🏅 Prize Adjustment: Prizes adjusted if tournament slots are not full.
+📩 Report Issues: Report concerns to CUSTOMER SUPPORT within 15mins of match end.
 
-    <h3 class="title">⚠️ Important Notes</h3>
-    <ul class="muted">
-      <li>Blacklisted Game-IDs require recording proofs for prizes. If your ID is blacklisted, prize cannot be issued.</li>
-      <li>Record screen when joining Custom Rooms and until landing from the plane.</li>
-      <li><b>1 LION eSports</b> reserves the right to modify prizes and rules.</li>
-      <li>🔫 <b>Gun Attributes — YES</b></li>
-    </ul>
+⚠️ Important Notes
+🚫 Blacklisted Game-ID: Blacklisted Game-IDs require recording proofs for prizes. IF your id is blacklisted id then we can't give you the prize.
+🎥 Screen Recording: Record screens when joining Custom Rooms and Jab tak ap plane se utaroge tab tak ek screen recording kar na mandatory hai.
+📜 1LION E-SPORTS: 1LION E-SPORTS reserves the right to modify prizes and rules.
+🔫 GUN ATTRIBUTES -YES
 
-    <h3 class="title">🚫 Prohibited Behavior</h3>
-    <ul class="muted">
-      <li>Aimbot, No recoil, Hacking, Game-modifying tools</li>
-      <li>Glitches, Bugs</li>
-      <li>Teaming with opponents</li>
-      <li>Inviting unregistered players</li>
-    </ul>
+🚫 Prohibited Behavior
+🎯 Aimbot
+🔫 No recoil
+🛡️ Hacking
+🛠️ Game modifying tools
+🐞 Glitches
+⚠️ Bugs
+🤝 Teaming up with opponents
+🚷 Inviting unregistered players
+</pre>
   </section>
 </main>
 
 <footer>© 1 Lion eSports</footer>
 
 <script>
-  // ====== CONFIG ======
-  const UPI_ID   = "acharya107@fam";             // Your UPI ID
-  const UPI_NAME = "1 Lion eSports";              // Appears in UPI apps
-  const FIXED_AMOUNT = 60;                        // ₹60 fixed
-  const OWNER_WHATS  = "916370027283";            // WhatsApp number with country code
-  // ====================
+  const UPI_ID="acharya107@fam", UPI_NAME="1 Lion eSports", OWNER_WHATS="916370027283";
+  const q=s=>document.querySelector(s);
+  const step1=q('#step1'), pay=q('#payment'), succ=q('#success'), rules=q('#rules');
+  const state={name:"",team:"",mobile:"",txid:""};
 
-  const q  = (s)=>document.querySelector(s);
-  const step1 = q('#step1'), payment = q('#payment'), success = q('#success'), rules = q('#rules');
+  q('#toPayment').onclick=()=>{
+    const n=q('#name').value.trim(), t=q('#team').value.trim(), m=q('#mobile').value.trim();
+    if(!n||!t||!m) return alert("Please fill all fields");
+    state.name=n; state.team=t; state.mobile=m;
+    step1.classList.add('hide'); pay.classList.remove('hide'); window.scrollTo(0,0);
+    q('#upiBtn').href=`upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent(UPI_NAME)}&am=60&cu=INR&tn=${encodeURIComponent('BR Squad Entry Fee')}`;
+  };
 
-  const state = { name:"", team:"", mobile:"", txid:"" };
-
-  // Step 1 -> Payment
-  q('#toPayment').addEventListener('click', ()=>{
-    const name = q('#origName').value.trim();
-    const team = q('#teamName').value.trim();
-    const mob  = q('#mobile').value.trim();
-
-    if(!name){ alert("Please enter your real name."); return; }
-    if(!team){ alert("Please enter your team name."); return; }
-    if(!mob){  alert("Please enter your mobile number."); return; }
-
-    state.name=name; state.team=team; state.mobile=mob;
-
-    // Prepare UPI deeplink with prefilled ₹60
-    const tn = encodeURIComponent(`Independence Day BR — ${state.team} (${state.name})`);
-    const upi = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent(UPI_NAME)}&am=${encodeURIComponent(FIXED_AMOUNT)}&cu=INR&tn=${tn}`;
-    const upiBtn = q('#upiBtn');
-    upiBtn.href = upi;
-
-    step1.classList.add('hide');
-    payment.classList.remove('hide');
-    window.scrollTo({top:0, behavior:'smooth'});
-  });
-
-  // Payment submit -> fake check 5–8s, then success
-  q('#submitPayment').addEventListener('click', ()=>{
-    const tx = q('#txid').value.trim();
-    if(!tx){ alert("Please enter your Transaction ID."); return; }
-    state.txid = tx;
-
+  q('#submitPayment').onclick=()=>{
+    const tx=q('#txid').value.trim();
+    if(!tx) return alert("Please enter your Transaction ID");
+    state.txid=tx;
     q('#checking').classList.remove('hide');
+    setTimeout(()=>{q('#checking').classList.add('hide'); pay.classList.add('hide'); showSuccess();},5000+Math.floor(Math.random()*3000));
+  };
 
-    const delay = 5000 + Math.floor(Math.random()*3000); // 5–8s
-    setTimeout(()=>{
-      q('#checking').classList.add('hide');
-      payment.classList.add('hide');
-      showSuccess();
-      window.scrollTo({top:0, behavior:'smooth'});
-    }, delay);
-  });
-
-  // Build WhatsApp pre-filled message (English)
-  function buildWAmessage(){
-    const lines = [
-      "Hello sir, I have successfully registered.",
-      `Transaction ID: ${state.txid}`,
-      `Amount Paid: ₹${FIXED_AMOUNT}`,
-      `Team Name: ${state.team}`,
-      "Please provide my slot number. Thank you."
-    ];
-    return encodeURIComponent(lines.join("\n"));
+  function buildMsg(){
+    return encodeURIComponent(
+      `Hello Sir, I have successfully registered.%0ATransaction ID: ${state.txid}%0AAmount Paid: ₹60%0ATeam Name: ${state.team}%0APlease provide my slot number.`
+    );
   }
 
-  function escapeHTML(s){return s.replace(/[&<>"']/g, m=>({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[m]))}
-
-  // Success screen + 60s auto open WA
   function showSuccess(){
-    q('#succNote').innerHTML = `
-      <div><b>Name:</b> ${escapeHTML(state.name)}</div>
-      <div><b>Team:</b> ${escapeHTML(state.team)}</div>
-      <div><b>Mobile:</b> ${escapeHTML(state.mobile)}</div>
-      <div><b>Amount:</b> ₹${FIXED_AMOUNT}</div>
-      <div><b>Transaction ID:</b> ${escapeHTML(state.txid)}</div>
-    `;
-
-    const waURL = `https://wa.me/${OWNER_WHATS}?text=${buildWAmessage()}`;
-    const waBtn = q('#waBtn');
-    waBtn.href = waURL;
-
-    success.classList.remove('hide');
-    rules.classList.remove('hide');
-
-    // Auto open after 60s
-    let secs = 60;
-    const countEl = q('#count');
-    const hintEl = q('#autoHint');
-    countEl.textContent = secs;
-    const t = setInterval(()=>{
-      secs--;
-      if(secs < 0){ clearInterval(t); return; }
-      countEl.textContent = secs;
-      if(secs === 0){
-        // Some browsers block auto navigation; the manual button is still there.
-        window.location.href = waURL;
-        hintEl.textContent = "Opening WhatsApp… if it doesn't open, tap the green button above.";
-      }
+    succ.classList.remove('hide'); rules.classList.remove('hide');
+    const waURL=`https://wa.me/${OWNER_WHATS}?text=${buildMsg()}`;
+    q('#waBtn').href=waURL;
+    let s=60; const c=q('#count');
+    const timer=setInterval(()=>{
+      s--; c.textContent=s;
+      if(s<=0){clearInterval(timer); window.location.href=waURL;}
     },1000);
   }
 </script>
+
 </body>
 </html>
