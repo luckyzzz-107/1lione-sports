@@ -1,201 +1,341 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>1 Lion eSports — Independence Day BR Squad Registration</title>
 <style>
-  :root {
-    --gold:#F4C542; --bg:#0b0b0f; --card:#13131a; --text:#e9e9ee; --dim:#b9bac6;
-    --accent:#ffcc4d; --green:#14a44d; --red:#ef4444;
+  :root{
+    --gold:#F4C542; --gold2:#FFD773; --bg:#0b0b0f; --card:#141217; --ink:#ececf1; --muted:#bdbfc7;
+    --green:#15b36e; --red:#ef4444; --shadow:rgba(0,0,0,.35);
   }
-  * {box-sizing:border-box;}
-  body {
-    margin:0; background:radial-gradient(1000px 600px at 50% -10%,rgba(255,215,0,.15),transparent), url('https://i.postimg.cc/6q3wFkZg/bg-esports.jpg') no-repeat center/cover fixed;
-    color:var(--text); font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+  *{box-sizing:border-box}
+  body{
+    margin:0; color:var(--ink); font-family:system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif;
+    background:
+      radial-gradient(1200px 700px at 50% -10%, rgba(255,215,0,.18), transparent),
+      radial-gradient(900px 500px at 90% 10%, rgba(255,215,0,.10), transparent),
+      #0a0a0d;
   }
-  header {
+  header{
     display:flex; align-items:center; gap:14px; padding:14px 18px;
+    background:linear-gradient(180deg, rgba(255,215,0,.10), rgba(0,0,0,0));
     border-bottom:1px solid rgba(255,255,255,.06);
-    background:linear-gradient(180deg,rgba(255,215,0,.08),transparent);
   }
-  header img {height:56px;}
-  header h1 {margin:0; font-size:1.2rem; font-weight:700; color:var(--gold);}
-  main {max-width:960px; margin:20px auto; padding:0 14px;}
-  .card {
-    background:var(--card); border-radius:18px; padding:16px; margin-bottom:18px;
-    border:1px solid rgba(255,255,255,.06); box-shadow:0 10px 24px rgba(0,0,0,.25);
+  header img{height:56px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 8px var(--shadow))}
+  header h1{margin:0;font-size:1.05rem;letter-spacing:.3px;color:var(--gold)}
+  main{max-width:920px;margin:22px auto;padding:0 14px}
+  .card{
+    background:linear-gradient(180deg,rgba(255,215,0,.06),rgba(255,215,0,.03) 30%,rgba(0,0,0,.0)),
+               var(--card);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px; padding:16px; margin-bottom:16px;
+    box-shadow:0 16px 36px var(--shadow);
   }
-  .title {margin:0 0 12px; font-size:1.05rem; color:var(--gold);}
-  label {display:block; margin:.5rem 0 .35rem; font-size:.92rem; color:var(--dim);}
-  input,button {
-    width:100%; padding:12px 14px; border-radius:12px;
-    border:1px solid rgba(255,255,255,.08); background:#0f0f14;
-    color:var(--text); font-size:1rem; outline:none;
+  .title{margin:0 0 10px; color:var(--gold2); font-size:1.05rem}
+  label{display:block; margin:.55rem 0 .35rem; color:var(--muted); font-size:.95rem}
+  input{width:100%; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.10);
+        background:#0f0d10; color:var(--ink); font-size:1rem; outline:none}
+  input:focus{border-color:var(--gold); box-shadow:0 0 0 3px rgba(244,197,66,.18)}
+  .row{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+  .btn{
+    width:100%; padding:12px 14px; border-radius:12px; cursor:pointer;
+    border:1px solid rgba(255,255,255,.12);
+    background:linear-gradient(180deg,#2b2b33,#191923); color:var(--ink); font-weight:700;
   }
-  input:focus {border-color:var(--gold); box-shadow:0 0 0 3px rgba(244,197,66,.18);}
-  .btn-primary {background:linear-gradient(180deg,#ffe08a,#f4c542); color:#191919; font-weight:700; border:none; cursor:pointer;}
-  .btn-green {background:var(--green); color:#fff; font-weight:700; border:none;}
-  .center {text-align:center;}
-  .qr {max-width:240px; border-radius:14px;}
-  .sep {height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent); margin:14px 0;}
-  .loader {width:52px;height:52px;border:5px solid rgba(255,255,255,.12);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite;margin:10px auto;}
-  @keyframes spin {to{transform:rotate(360deg)}}
-  .success-icon {
-    width:80px;height:80px;border-radius:50%;border:4px solid var(--green);display:flex;align-items:center;justify-content:center;
-    font-size:40px;color:var(--green);margin:0 auto 10px;
+  .btn-primary{background:linear-gradient(180deg,#ffe08a,#f4c542); color:#191919; border:none}
+  .btn-green{background:var(--green); border:none; color:#fff}
+  .center{text-align:center}
+  .hide{display:none}
+  .muted{color:var(--muted); font-size:.92rem}
+  .emph{color:var(--gold)}
+  .qr{max-width:260px;width:100%;border-radius:14px;border:1px solid rgba(255,255,255,.10)}
+  .sep{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);margin:14px 0}
+  .loader{width:56px;height:56px;border:5px solid rgba(255,255,255,.14);border-top-color:var(--gold);
+          border-radius:50%;margin:10px auto;animation:spin 1s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .tick{
+    width:90px;height:90px;border-radius:50%;margin:10px auto 6px;
+    background:radial-gradient(circle at 50% 50%, rgba(21,179,110,.95), rgba(21,179,110,.45) 58%, transparent 60%);
+    position:relative
   }
-  .note {font-size:.92rem; color:#d9f7e5; background:rgba(20,164,77,.08); border:1px solid rgba(20,164,77,.2); padding:10px; border-radius:12px;}
-  .whats-btn {display:inline-block;padding:12px 16px;border-radius:12px;background:#25D366;color:#062c0e;text-decoration:none;font-weight:800;}
-  footer {opacity:.85;text-align:center;font-size:.85rem;padding:20px;color:#a9a9b2;}
-  pre.rules {white-space:pre-wrap; font-size:.9rem; color:var(--text);}
+  .tick::after{
+    content:""; position:absolute; left:26px; top:28px; width:14px; height:32px; border-right:6px solid #083e26; border-bottom:6px solid #083e26; transform:rotate(45deg)
+  }
+  .notice{
+    border:1px dashed rgba(255,215,0,.55); background:rgba(255,215,0,.10);
+    padding:12px; border-radius:12px; color:#fff
+  }
+  .wa{display:inline-block;padding:12px 16px;border-radius:12px;background:#25D366;color:#062c0e;
+      text-decoration:none;font-weight:800}
+  .gold-badge{display:inline-block;padding:6px 10px;border-radius:999px;background:linear-gradient(180deg,#ffe6a6,#f4c542);color:#23201a;font-weight:800}
+  /* Modal (for big Terms at registration page) */
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;place-items:center;padding:18px;z-index:50}
+  .modal.show{display:grid}
+  .modal .sheet{max-width:920px;max-height:86vh;overflow:auto;background:#0f0d10;border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:16px}
+  .modal h3{margin:0 0 8px; color:var(--gold)}
+  .x{float:right;background:#1c1a1f;border:1px solid rgba(255,255,255,.12);color:#eee;border-radius:10px;padding:6px 10px;cursor:pointer}
+  footer{opacity:.85;text-align:center;font-size:.85rem;padding:20px;color:#a9a9b2}
+  @media (max-width:720px){ .row{grid-template-columns:1fr} header img{height:50px} }
 </style>
 </head>
 <body>
 
 <header>
-  <img src="https://i.postimg.cc/PJZ36DTH/file-000000004e7c61f9a8329db0f8e13da4.png" alt="Logo">
+  <img src="https://i.postimg.cc/PJZ36DTH/file-000000004e7c61f9a8329db0f8e13da4.png" alt="1 Lion eSports Logo">
   <h1>1 Lion eSports — Independence Day BR Squad Registration</h1>
 </header>
 
 <main>
-  <!-- Step 1 -->
+  <!-- STEP 1: Registration (single screen) -->
   <section id="step1" class="card">
-    <h2 class="title">Register for Independence Day Special BR Match</h2>
-    <label for="name">Original Name</label>
-    <input id="name" type="text" placeholder="Your real name" required>
-    <label for="team">Team Name</label>
-    <input id="team" type="text" placeholder="Your team name" required>
-    <label for="mobile">Mobile Number</label>
-    <input id="mobile" type="tel" inputmode="numeric" placeholder="e.g. 9876543210" required>
-    <div style="margin-top:14px">
-      <button id="toPayment" class="btn-primary">Continue to Payment</button>
-    </div>
-    <div style="margin-top:20px; font-size:.85rem; color:var(--dim);">
-      <b>Terms & Conditions:</b> This is a professional eSports registration. By proceeding, you agree to abide by all tournament rules, maintain good sportsmanship, and respect the decisions of the organizers. 1 Lion eSports reserves the right to disqualify participants for rule violations, misconduct, or false information.  
-      (This section is intentionally long so most users will ignore reading it.)
-    </div>
-  </section>
-
-  <!-- Payment -->
-  <section id="payment" class="card hide">
-    <h2 class="title">Step 2 — Pay ₹60 Entry Fee</h2>
-    <div class="center">
-      <img class="qr" src="https://i.postimg.cc/TPMSz27s/IMG-20250814-015435.jpg" alt="QR">
-      <div class="sep"></div>
-      <div style="font-weight:800;color:var(--accent)">Amount: ₹60</div>
-      <div style="margin-top:10px;color:var(--dim)">UPI ID: <b>acharya107@fam</b></div>
-      <div style="margin-top:12px">
-        <a id="upiBtn" class="btn-primary" href="#">Pay via UPI App</a>
+    <div class="gold-badge">Happy Independence Day — Special BR</div>
+    <h2 class="title">Step 1 — Player / Team Details</h2>
+    <div class="row">
+      <div>
+        <label for="origName">Original Name (required)</label>
+        <input id="origName" type="text" placeholder="Your real name" required>
+      </div>
+      <div>
+        <label for="teamName">Team Name (required)</label>
+        <input id="teamName" type="text" placeholder="Your squad/team name" required>
       </div>
     </div>
+    <div style="margin-top:10px">
+      <label for="mobile1">Mobile Number (required)</label>
+      <input id="mobile1" type="tel" inputmode="numeric" placeholder="e.g. 98765 43210" required>
+    </div>
+
+    <div class="sep"></div>
+
+    <div class="notice">
+      <b>1 Lion eSports — Terms & Conditions (Tournament)</b><br>
+      This is an eSports community event. By registering, you confirm that you will follow fair-play rules, respect admins/players, and understand that slots, prizes and match timing are at the organizers’ discretion. Any hacking/teaming/glitches lead to instant disqualification. Room ID & Password are shared close to match time. No refunds for late or no-shows. Screenshots/recordings may be asked for dispute resolution. <u>Organizer decision is final.</u>
+      &nbsp; <a href="#" id="openTerms" class="emph">View detailed Terms</a>
+    </div>
+
+    <div style="margin-top:14px">
+      <button id="toPayment" class="btn btn-primary">Continue to Payment</button>
+    </div>
+  </section>
+
+  <!-- STEP 2: Payment (₹60 fixed) -->
+  <section id="step2" class="card hide">
+    <h2 class="title">Step 2 — Pay Entry Fee (₹60)</h2>
+    <p class="muted">Scan the QR or tap the UPI button to pay in your UPI app.</p>
+    <div class="center">
+      <img class="qr" src="https://i.postimg.cc/TPMSz27s/IMG-20250814-015435.jpg" alt="UPI QR">
+      <div class="sep"></div>
+      <div style="font-weight:800;font-size:1.05rem;color:var(--gold2)">Amount: ₹60</div>
+      <div style="margin-top:8px;color:var(--muted)">UPI ID: <b style="color:#fff">acharya107@fam</b></div>
+      <div style="margin-top:12px">
+        <a id="upiBtn" class="btn btn-primary" href="#">Pay via UPI App</a>
+      </div>
+    </div>
+
     <div class="sep"></div>
     <label for="txid">Enter Transaction ID</label>
-    <input id="txid" type="text" placeholder="Example: 12345ABCDE67890" />
+    <input id="txid" type="text" placeholder="Example: 12345ABCDE67890">
+
     <div style="margin-top:12px">
-      <button id="submitPayment" class="btn-green">Submit Payment</button>
+      <button id="submitPayment" class="btn btn-green">Submit Payment</button>
     </div>
+
     <div id="checking" class="center hide" style="margin-top:14px">
       <div class="loader"></div>
-      <div class="muted">Checking payment… Please wait 60 seconds</div>
+      <div class="muted">Payment checking… please wait up to <b>60 seconds</b>.</div>
     </div>
   </section>
 
-  <!-- Success -->
-  <section id="success" class="card hide center">
-    <div class="success-icon">✔</div>
+  <!-- STEP 3: Success + Important Notice + Rules -->
+  <section id="step3" class="card hide center">
+    <div class="tick"></div>
     <h2 class="title" style="color:var(--green)">Payment Successful</h2>
-    <div class="note">Important: Please click the WhatsApp button below and send payment proof to the admin. Your transaction and slot will be confirmed after verification. ID & Password will be provided by the admin.</div>
+
+    <div class="notice" style="text-align:left">
+      <b>IMPORTANT NOTICE</b><br>
+      Please click the WhatsApp button below and message the <b>Owner</b> with your <b>payment proof</b>.
+      Your <b>transaction</b> and <b>slot</b> will be confirmed by the admin. <br>
+      <u>ID & Password will be given by the admin</u> — so kindly message on WhatsApp after payment.
+    </div>
+
+    <div id="summary" class="muted" style="margin:10px 0 2px"></div>
+
     <div style="margin-top:10px">
-      <a id="waBtn" class="whats-btn" target="_blank">Message on WhatsApp</a>
+      <a id="waBtn" class="wa" target="_blank" rel="noopener">Message on WhatsApp</a>
     </div>
     <div class="muted" id="autoHint" style="margin-top:8px">Auto opening WhatsApp in <b id="count">60</b>s…</div>
-  </section>
 
-  <!-- Rules -->
-  <section id="rules" class="card hide">
-    <h2 class="title">🚨 RULES AND REGULATIONS 🚨</h2>
-    <pre class="rules">🆔 ID LEVEL 45+
-🎥 SCREEN RECORDING MANDATORY
+    <div class="sep"></div>
 
-🏆 SQUAD TOURNAMENT 🏆
+    <!-- Your full emoji Rules block -->
+    <section id="rules" style="text-align:left">
+      <h3 class="title">🚨RULES AND REGULATIONS 🚨</h3>
 
-📋 Joining Instructions
-📝 Enter Account Name: Please enter your FF MAX account name; no changes will be allowed.
-✔️ Verify Account Name: Ensure your FF MAX account name matches your registered name.
-🔑 Match Room ID & Password: The match room ID and password will be sent 5–10 minutes before the match.
-💰 Refund Policy: No refunds for missed matches.
+      <p>🆔 <b>ID LEVEL 45+</b><br>
+      🎥 <b>SCREEN RECORDING MANDATORY</b></p>
 
-📜 Eligibility Rules
-🎯 Level Requirement: Level 40+ ID holders are eligible.
-💥 Headshot Rate: BR career headshot rate must not exceed 70%.
-📱 Device Requirement: Play on Android, iOS, tablets, or phones (🚫 emulators not allowed).
+      <p>🏆 <b>SQUAD TOURNAMENT</b> 🏆</p>
+      <hr style="border-color:rgba(255,255,255,.12)">
 
-🎮 Gameplay Requirements
-📹 Mandatory Match Recording: Record matches; failure to comply will result in penalties.
-🏅 Prize Adjustment: Prizes adjusted if tournament slots are not full.
-📩 Report Issues: Report concerns to CUSTOMER SUPPORT within 15mins of match end.
+      <h4 class="emph">📋 Joining Instructions</h4>
+      <ul>
+        <li>📝 <b>Enter Account Name:</b> Please enter your FF MAX account name; no changes will be allowed.</li>
+        <li>✔️ <b>Verify Account Name:</b> Ensure your FF MAX account name matches your registered name.</li>
+        <li>🔑 <b>Match Room ID & Password:</b> The match room ID and password will be sent 5–10 minutes before the match.</li>
+        <li>💰 <b>Refund Policy:</b> No refunds for missed matches.</li>
+      </ul>
 
-⚠️ Important Notes
-🚫 Blacklisted Game-ID: Blacklisted Game-IDs require recording proofs for prizes. IF your id is blacklisted id then we can't give you the prize.
-🎥 Screen Recording: Record screens when joining Custom Rooms and Jab tak ap plane se utaroge tab tak ek screen recording kar na mandatory hai.
-📜 1LION E-SPORTS: 1LION E-SPORTS reserves the right to modify prizes and rules.
-🔫 GUN ATTRIBUTES -YES
+      <h4 class="emph">📜 Eligibility Rules</h4>
+      <ul>
+        <li>🎯 <b>Level Requirement:</b> Level 40+ ID holders are eligible.</li>
+        <li>💥 <b>Headshot Rate:</b> BR career headshot rate must not exceed 70%.</li>
+        <li>📱 <b>Device Requirement:</b> Play on Android, iOS, tablets, or phones (🚫 emulators not allowed).</li>
+      </ul>
 
-🚫 Prohibited Behavior
-🎯 Aimbot
-🔫 No recoil
-🛡️ Hacking
-🛠️ Game modifying tools
-🐞 Glitches
-⚠️ Bugs
-🤝 Teaming up with opponents
-🚷 Inviting unregistered players
-</pre>
+      <h4 class="emph">🎮 Gameplay Requirements</h4>
+      <ul>
+        <li>📹 <b>Mandatory Match Recording:</b> Record matches; failure to comply will result in penalties.</li>
+        <li>🏅 <b>Prize Adjustment:</b> Prizes adjusted if tournament slots are not full.</li>
+        <li>📩 <b>Report Issues:</b> Report concerns to CUSTOMER SUPPORT within 15mins of match end.</li>
+      </ul>
+
+      <h4 class="emph">⚠️ Important Notes</h4>
+      <ul>
+        <li>🚫 <b>Blacklisted Game-ID:</b> Blacklisted Game-IDs require recording proofs for prizes. IF your id is blacklisted id then we can't give you the prize.</li>
+        <li>🎥 <b>Screen Recording:</b> Record screens when joining Custom Rooms and <i>jab tak aap plane se utaroge tab tak</i> screen recording mandatory hai.</li>
+        <li>📜 <b>1LION E-SPORTS:</b> 1LION E-SPORTS reserves the right to modify prizes and rules.</li>
+        <li>🔫 <b>GUN ATTRIBUTES - YES</b></li>
+      </ul>
+
+      <h4 class="emph">🚫 Prohibited Behavior</h4>
+      <ul>
+        <li>🎯 Aimbot</li>
+        <li>🔫 No recoil</li>
+        <li>🛡️ Hacking</li>
+        <li>🛠️ Game modifying tools</li>
+        <li>🐞 Glitches</li>
+        <li>⚠️ Bugs</li>
+        <li>🤝 Teaming up with opponents</li>
+        <li>🚷 Inviting unregistered players</li>
+      </ul>
+    </section>
   </section>
 </main>
 
 <footer>© 1 Lion eSports</footer>
 
+<!-- Big Terms Modal (from Step 1 link) -->
+<div id="termsModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="termsTitle">
+  <div class="sheet">
+    <button class="x" id="closeTerms">Close</button>
+    <h3 id="termsTitle">1 Lion eSports — Detailed Terms & Conditions</h3>
+    <p>
+      By registering, you agree to: fair-play, no cheating, no abusive behavior, and to follow admin instructions.
+      Organizer may change timing/slots/prizes as required. Match ID/Password are confidential; do not share.
+      No refunds for no-shows/late entries. Disputes may require your screen recording as proof. Organizer decision is final.
+    </p>
+    <p>
+      You also acknowledge that this is a community tournament and not affiliated with the game publisher.
+      Any attempt to manipulate results, impersonate players, or exploit bugs will lead to disqualification.
+      Respect fellow players and staff; toxicity can result in bans from future events.
+    </p>
+  </div>
+</div>
+
 <script>
-  const UPI_ID="acharya107@fam", UPI_NAME="1 Lion eSports", OWNER_WHATS="916370027283";
-  const q=s=>document.querySelector(s);
-  const step1=q('#step1'), pay=q('#payment'), succ=q('#success'), rules=q('#rules');
-  const state={name:"",team:"",mobile:"",txid:""};
+  // ===== CONFIG =====
+  const UPI_ID   = "acharya107@fam";
+  const UPI_NAME = "1 Lion eSports";
+  const AMOUNT   = 60; // BR special fee
+  const OWNER_WHATS = "916370027283"; // with country code
+  // ==================
 
-  q('#toPayment').onclick=()=>{
-    const n=q('#name').value.trim(), t=q('#team').value.trim(), m=q('#mobile').value.trim();
-    if(!n||!t||!m) return alert("Please fill all fields");
-    state.name=n; state.team=t; state.mobile=m;
-    step1.classList.add('hide'); pay.classList.remove('hide'); window.scrollTo(0,0);
-    q('#upiBtn').href=`upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent(UPI_NAME)}&am=60&cu=INR&tn=${encodeURIComponent('BR Squad Entry Fee')}`;
-  };
+  const q = sel => document.querySelector(sel);
 
-  q('#submitPayment').onclick=()=>{
-    const tx=q('#txid').value.trim();
-    if(!tx) return alert("Please enter your Transaction ID");
-    state.txid=tx;
+  const step1 = q('#step1');
+  const step2 = q('#step2');
+  const step3 = q('#step3');
+
+  const state = { name:"", team:"", mobile:"", txid:"" };
+
+  // Step 1 -> Step 2
+  q('#toPayment').addEventListener('click', ()=>{
+    const name = q('#origName').value.trim();
+    const team = q('#teamName').value.trim();
+    const mob  = q('#mobile1').value.trim();
+    if(!name){ alert("Please enter your Original Name."); return; }
+    if(!team){ alert("Please enter your Team Name."); return; }
+    if(!mob){  alert("Please enter your Mobile Number."); return; }
+
+    state.name = name; state.team = team; state.mobile = mob;
+
+    // Build UPI deeplink with prefilled ₹60
+    const tn = encodeURIComponent(`Independence Day BR — ${state.team}`);
+    const upi = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent(UPI_NAME)}&am=${encodeURIComponent(AMOUNT)}&cu=INR&tn=${tn}`;
+    const upiBtn = q('#upiBtn'); upiBtn.href = upi;
+
+    step1.classList.add('hide');
+    step2.classList.remove('hide');
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+
+  // Step 2 -> fake check -> Step 3
+  q('#submitPayment').addEventListener('click', ()=>{
+    const tx = q('#txid').value.trim();
+    if(!tx){ alert("Please enter your Transaction ID."); return; }
+    state.txid = tx;
+
     q('#checking').classList.remove('hide');
-    setTimeout(()=>{q('#checking').classList.add('hide'); pay.classList.add('hide'); showSuccess();},5000+Math.floor(Math.random()*3000));
-  };
 
-  function buildMsg(){
-    return encodeURIComponent(
-      `Hello Sir, I have successfully registered.%0ATransaction ID: ${state.txid}%0AAmount Paid: ₹60%0ATeam Name: ${state.team}%0APlease provide my slot number.`
-    );
-  }
+    // Fake 5–8 sec delay (but text says up to 60s)
+    const delay = 5000 + Math.floor(Math.random()*3000);
+    setTimeout(()=>{
+      q('#checking').classList.add('hide');
+      step2.classList.add('hide');
+      showSuccess();
+      window.scrollTo({top:0, behavior:'smooth'});
+    }, delay);
+  });
 
   function showSuccess(){
-    succ.classList.remove('hide'); rules.classList.remove('hide');
-    const waURL=`https://wa.me/${OWNER_WHATS}?text=${buildMsg()}`;
-    q('#waBtn').href=waURL;
-    let s=60; const c=q('#count');
-    const timer=setInterval(()=>{
-      s--; c.textContent=s;
-      if(s<=0){clearInterval(timer); window.location.href=waURL;}
-    },1000);
-  }
-</script>
+    // Compose WA message (English)
+    const waMsg =
+      `Hello Owner, I have successfully registered for Independence Day BR (Squad).%0A`+
+      `Transaction ID: ${encodeURIComponent(state.txid)}%0A`+
+      `Amount Paid: ₹${AMOUNT}%0A`+
+      `Team Name: ${encodeURIComponent(state.team)}%0A`+
+      `Please provide my slot number.`;
 
+    const waURL = `https://wa.me/${OWNER_WHATS}?text=${waMsg}`;
+    const waBtn = q('#waBtn'); waBtn.href = waURL;
+
+    q('#summary').innerHTML =
+      `<div><b>Name:</b> ${escapeHTML(state.name)}</div>`+
+      `<div><b>Team:</b> ${escapeHTML(state.team)}</div>`+
+      `<div><b>Mobile:</b> ${escapeHTML(state.mobile)}</div>`+
+      `<div><b>Amount:</b> ₹${AMOUNT}</div>`+
+      `<div><b>Transaction ID:</b> ${escapeHTML(state.txid)}</div>`;
+
+    step3.classList.remove('hide');
+
+    // Auto open WA after 60s
+    let secs = 60;
+    const countEl = q('#count');
+    countEl.textContent = secs;
+    const timer = setInterval(()=>{
+      secs--; countEl.textContent = secs;
+      if(secs<=0){ clearInterval(timer); window.location.href = waURL; }
+    }, 1000);
+  }
+
+  function escapeHTML(s){return s.replace(/[&<>"']/g, m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]))}
+
+  // Terms Modal
+  const modal = q('#termsModal'), openBtn = q('#openTerms'), closeBtn = q('#closeTerms');
+  openBtn.addEventListener('click', e=>{ e.preventDefault(); modal.classList.add('show'); });
+  closeBtn.addEventListener('click', ()=> modal.classList.remove('show'));
+  modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('show'); });
+</script>
 </body>
 </html>
