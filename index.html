@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>JES FF Showdown — Independence Day BR Squad Registration</title>
+<title>JES FF Showdown — BR Squad Registration</title>
 <style>
   :root{
     --gold:#F4C542; --gold2:#FFD773; --bg:#0b0b0f; --card:#141217; --ink:#ececf1; --muted:#bdbfc7;
@@ -22,7 +22,8 @@
     background:linear-gradient(180deg, rgba(255,215,0,.10), rgba(0,0,0,0));
     border-bottom:1px solid rgba(255,255,255,.06);
   }
-  header img{height:56px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 8px var(--shadow))}
+  /* Logo styling update */
+  header img{height:60px;width:60px;object-fit:cover;border-radius:50%;filter:drop-shadow(0 2px 8px var(--shadow));border:2px solid var(--gold)}
   header h1{margin:0;font-size:1.05rem;letter-spacing:.3px;color:var(--gold)}
   main{max-width:920px;margin:22px auto;padding:0 14px}
   .card{
@@ -76,19 +77,19 @@
   .modal h3{margin:0 0 8px; color:var(--gold)}
   .x{float:right;background:#1c1a1f;border:1px solid rgba(255,255,255,.12);color:#eee;border-radius:10px;padding:6px 10px;cursor:pointer}
   footer{opacity:.85;text-align:center;font-size:.85rem;padding:20px;color:#a9a9b2}
-  @media (max-width:720px){ .row{grid-template-columns:1fr} header img{height:50px} }
+  @media (max-width:720px){ .row{grid-template-columns:1fr} header img{height:50px;width:50px} }
 </style>
 </head>
 <body>
 
 <header>
-  <img src="image_0.png" alt="JES FF Showdown Logo">
-  <h1>JES FF Showdown — Independence Day BR Squad Registration</h1>
+  <img src="https://i.ibb.co/99YnW2Gt/59804.jpg" onerror="this.src='https://via.placeholder.com/60/F4C542/000?text=JES'" alt="JES Logo">
+  <h1>JES FF Showdown — BR Squad Registration</h1>
 </header>
 
 <main>
   <section id="step1" class="card">
-    <div class="gold-badge">Happy Independence Day — Special BR</div>
+    <div class="gold-badge">Special BR Squad Tournament</div>
     <h2 class="title">Step 1 — Player / Team Details</h2>
     <div class="row">
       <div>
@@ -261,7 +262,7 @@
     const mob  = q('#mobile1').value.trim();
     if(!name){ alert("Please enter your Original Name."); return; }
     if(!team){ alert("Please enter your Team Name."); return; }
-    if(!mob){  alert("Please enter your Mobile Number."); return; }
+    if(mob.length !== 10 || isNaN(mob)){ alert("Please enter a valid 10-digit Mobile Number."); return; }
 
     state.name = name; state.team = team; state.mobile = mob;
 
@@ -278,7 +279,7 @@
   // Step 2 -> fake check -> Step 3
   q('#submitPayment').addEventListener('click', ()=>{
     const tx = q('#txid').value.trim();
-    if(!tx){ alert("Please enter your Transaction ID."); return; }
+    if(tx.length < 5){ alert("Please enter a valid Transaction ID."); return; }
     state.txid = tx;
 
     q('#checking').classList.remove('hide');
