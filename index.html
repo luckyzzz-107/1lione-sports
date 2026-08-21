@@ -17,6 +17,7 @@
     align-items: center;
     overflow: hidden;
     position: relative;
+    transition: all 0.5s ease;
   }
 
   /* Matrix background effect */
@@ -45,6 +46,7 @@
     filter: blur(80px);
     z-index: -1;
     animation: float 6s ease-in-out infinite;
+    transition: all 0.5s ease;
   }
 
   .orb1 {
@@ -242,7 +244,6 @@
     box-shadow: 0 10px 30px rgba(0, 255, 136, 0.4);
   }
 
-  /* Radio buttons for gender and hostel */
   .radio-group {
     display: flex;
     gap: 15px;
@@ -275,13 +276,11 @@
     font-size: 18px;
   }
 
-  /* Other sport input */
   #otherSportInput {
     display: none;
     margin-top: 10px;
   }
 
-  /* Typing effect */
   .typing {
     color: #00ff88;
     font-family: monospace;
@@ -310,9 +309,9 @@
 </head>
 <body>
 
-<div class="orb orb1"></div>
-<div class="orb orb2"></div>
-<div class="orb orb3"></div>
+<div class="orb orb1" id="orb1"></div>
+<div class="orb orb2" id="orb2"></div>
+<div class="orb orb3" id="orb3"></div>
 
 <div class="container">
   <div class="progress-bar">
@@ -390,7 +389,7 @@
         <option>Athletics 🏃</option>
         <option value="other">Other ➕</option>
       </select>
-      <input type="text" name="otherSport" id="otherSportInput" placeholder="✍️ Type your sport" style="display:none;">
+      <input type="text" name="otherSport" id="otherSportInput" placeholder="✍️ Type your sport">
       <div class="btn-group">
         <button type="button" class="btn-back" onclick="prevPage(3)">⬅ BACK</button>
         <button type="button" class="btn-next" onclick="nextPage(5)">NEXT ➜</button>
@@ -407,7 +406,7 @@
       </div>
       <div class="btn-group">
         <button type="button" class="btn-back" onclick="prevPage(4)">⬅ BACK</button>
-        <button type="submit" class="btn-submit">🚀 SUBMIT</button>
+        <button type="submit" class="btn-submit" id="submitBtn">🚀 SUBMIT</button>
       </div>
     </div>
 
@@ -424,13 +423,28 @@
 let currentPage = 1;
 const totalPages = 5;
 
+// Different backgrounds for each page
+const backgrounds = {
+  1: { bg: '#0a0a0a', orb1: '#ff6b35', orb2: '#667eea', orb3: '#00ff88' },
+  2: { bg: '#1a0a2e', orb1: '#ff3366', orb2: '#ff9933', orb3: '#33ccff' },
+  3: { bg: '#0a1a0a', orb1: '#00ff88', orb2: '#ffcc00', orb3: '#ff6600' },
+  4: { bg: '#1a0a0a', orb1: '#ff0000', orb2: '#ff6600', orb3: '#ffff00' },
+  5: { bg: '#0a0a1a', orb1: '#00ccff', orb2: '#6633ff', orb3: '#ff33cc' }
+};
+
+function changeBackground(page) {
+  const bg = backgrounds[page];
+  document.body.style.background = bg.bg;
+  document.getElementById('orb1').style.background = bg.orb1;
+  document.getElementById('orb2').style.background = bg.orb2;
+  document.getElementById('orb3').style.background = bg.orb3;
+}
+
 function nextPage(page) {
-  // Validate gender selected
   if (page === 3 && !document.querySelector('input[name="gender"]:checked')) {
     alert('Please select gender!');
     return;
   }
-  // Validate hostel selected
   if (page === 4 && !document.querySelector('input[name="hostel"]:checked')) {
     alert('Please select living type!');
     return;
@@ -444,6 +458,7 @@ function nextPage(page) {
   document.getElementById('step' + page).classList.add('active');
   
   currentPage = page;
+  changeBackground(page);
 }
 
 function prevPage(page) {
@@ -455,6 +470,7 @@ function prevPage(page) {
   document.getElementById('step' + page).classList.add('active');
   
   currentPage = page;
+  changeBackground(page);
 }
 
 function selectRadio(element) {
@@ -477,20 +493,41 @@ function checkOther() {
   }
 }
 
+// Submit handler - FIXED
 document.getElementById('multiForm').addEventListener('submit', function(e) {
   e.preventDefault();
-  document.getElementById('multiForm').style.display = 'none';
-  document.getElementById('successMsg').classList.add('show');
+  
+  // Show loading state
+  const submitBtn = document.getElementById('submitBtn');
+  submitBtn.textContent = '⏳ SUBMITTING...';
+  submitBtn.disabled = true;
   
   const formData = new FormData(this);
+  
   fetch(this.action, {
     method: 'POST',
     body: formData,
     headers: { 'Accept': 'application/json' }
-  }).then(response => {
-    setTimeout(() => {
-      window.location.reload();
-    }, 3000);
+  })
+  .then(response => {
+    if (response.ok) {
+      // Success
+      document.getElementById('multiForm').style.display = 'none';
+      document.getElementById('successMsg').classList.add('show');
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
+    } else {
+      // Error
+      alert('Submit failed! Please try again.');
+      submitBtn.textContent = '🚀 SUBMIT';
+      submitBtn.disabled = false;
+    }
+  })
+  .catch(error => {
+    // Network error - try normal submit
+    alert('Network issue! Trying alternative method...');
+    this.submit();
   });
 });
 </script>
