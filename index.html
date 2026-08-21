@@ -6,11 +6,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Courier New', monospace;
   }
 
   body {
-    background: #0a0a0a;
+    background: #0a0e14;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -20,7 +20,7 @@
     overflow: hidden;
   }
 
-  /* Geometric pattern background */
+  /* Grid lines */
   body::before {
     content: '';
     position: fixed;
@@ -29,89 +29,170 @@
     width: 100%;
     height: 100%;
     background: 
-      linear-gradient(135deg, rgba(255, 107, 53, 0.3) 0%, transparent 50%),
-      linear-gradient(45deg, rgba(102, 126, 234, 0.3) 0%, transparent 50%),
-      linear-gradient(225deg, rgba(0, 255, 136, 0.2) 0%, transparent 50%),
-      linear-gradient(315deg, rgba(255, 0, 102, 0.2) 0%, transparent 50%);
+      linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
     z-index: -2;
   }
 
-  /* Geometric shapes */
-  .shape {
+  /* Programming laser lines */
+  .laser {
     position: fixed;
+    height: 2px;
     z-index: -1;
-    opacity: 0.3;
-    filter: blur(60px);
+    animation: laserScan 4s infinite linear;
+    box-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
   }
 
-  .shape1 {
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, #ff6b35, transparent);
-    top: -100px;
-    left: -100px;
-    border-radius: 50%;
+  .laser1 {
+    width: 100%;
+    background: #00ff88;
+    color: #00ff88;
+    top: 10%;
+    animation-delay: 0s;
   }
 
-  .shape2 {
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, #667eea, transparent);
-    bottom: -150px;
-    right: -150px;
-    border-radius: 50%;
+  .laser2 {
+    width: 100%;
+    background: #00ccff;
+    color: #00ccff;
+    top: 30%;
+    animation-delay: 0.5s;
   }
 
-  .shape3 {
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, #00ff88, transparent);
+  .laser3 {
+    width: 100%;
+    background: #ff6600;
+    color: #ff6600;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
+    animation-delay: 1s;
   }
 
-  .shape4 {
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(circle, #ff0066, transparent);
+  .laser4 {
+    width: 100%;
+    background: #ff00ff;
+    color: #ff00ff;
+    top: 70%;
+    animation-delay: 1.5s;
+  }
+
+  .laser5 {
+    width: 100%;
+    background: #ffff00;
+    color: #ffff00;
+    top: 90%;
+    animation-delay: 2s;
+  }
+
+  .laser6 {
+    width: 100%;
+    background: #ff0000;
+    color: #ff0000;
     top: 20%;
-    right: 20%;
-    border-radius: 0;
-    transform: rotate(45deg);
+    animation-delay: 2.5s;
+  }
+
+  .laser7 {
+    width: 100%;
+    background: #00ff00;
+    color: #00ff00;
+    top: 40%;
+    animation-delay: 3s;
+  }
+
+  .laser8 {
+    width: 100%;
+    background: #0066ff;
+    color: #0066ff;
+    top: 60%;
+    animation-delay: 3.5s;
+  }
+
+  @keyframes laserScan {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+
+  /* Code snippets floating */
+  .code-text {
+    position: fixed;
+    color: rgba(0, 255, 136, 0.1);
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    z-index: -1;
+    animation: floatCode 10s infinite linear;
+  }
+
+  .code1 { top: 5%; left: 20%; animation-delay: 0s; }
+  .code2 { top: 15%; left: 60%; animation-delay: 2s; }
+  .code3 { top: 25%; left: 40%; animation-delay: 4s; }
+  .code4 { top: 35%; left: 80%; animation-delay: 6s; }
+  .code5 { top: 45%; left: 10%; animation-delay: 8s; }
+  .code6 { top: 55%; left: 70%; animation-delay: 3s; }
+  .code7 { top: 65%; left: 30%; animation-delay: 5s; }
+  .code8 { top: 75%; left: 50%; animation-delay: 7s; }
+  .code9 { top: 85%; left: 90%; animation-delay: 1s; }
+  .code10 { top: 95%; left: 15%; animation-delay: 9s; }
+
+  @keyframes floatCode {
+    0% {
+      transform: translateY(100vh);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.1;
+    }
+    90% {
+      opacity: 0.1;
+    }
+    100% {
+      transform: translateY(-100vh);
+      opacity: 0;
+    }
   }
 
   .container {
-    background: rgba(15, 15, 25, 0.95);
+    background: rgba(10, 14, 20, 0.95);
     padding: 40px;
     border-radius: 25px;
     width: 600px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+    border: 1px solid #00ff88;
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.2), 0 0 60px rgba(0, 204, 255, 0.1);
   }
 
   .college-header {
     text-align: center;
     margin-bottom: 30px;
     padding-bottom: 20px;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 2px solid #00ff88;
   }
 
   .college-name {
-    color: #ff6b35;
+    color: #00ff88;
     font-size: 32px;
     font-weight: bold;
     letter-spacing: 2px;
     margin-bottom: 8px;
-    text-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+    text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
   }
 
   .dept-name {
-    color: #667eea;
+    color: #00ccff;
     font-size: 24px;
     letter-spacing: 3px;
-    text-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+    text-shadow: 0 0 20px rgba(0, 204, 255, 0.5);
   }
 
   .progress-bar {
@@ -124,29 +205,29 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: #0d1117;
-    border: 2px solid #30363d;
+    background: #0a0e14;
+    border: 2px solid #00ff88;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #666;
+    color: #00ff88;
     font-weight: bold;
     font-size: 20px;
     transition: all 0.3s;
   }
 
   .progress-step.active {
-    background: #667eea;
-    border-color: #667eea;
-    color: white;
-    box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+    background: #00ff88;
+    border-color: #00ff88;
+    color: #0a0e14;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
   }
 
   .progress-step.done {
-    background: #00ff88;
-    border-color: #00ff88;
-    color: #0d1117;
-    box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+    background: #00ccff;
+    border-color: #00ccff;
+    color: #0a0e14;
+    box-shadow: 0 0 20px rgba(0, 204, 255, 0.5);
   }
 
   .page {
@@ -158,37 +239,39 @@
   }
 
   h2 {
-    color: white;
+    color: #00ff88;
     text-align: center;
     margin-bottom: 30px;
     font-size: 28px;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
   }
 
   input, select {
     width: 100%;
     padding: 20px;
     margin: 12px 0;
-    background: rgba(0, 0, 0, 0.5);
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: #0a0e14;
+    border: 2px solid #00ff88;
     border-radius: 12px;
-    color: white;
+    color: #00ff88;
     font-size: 20px;
+    font-family: 'Courier New', monospace;
   }
 
   input:focus, select:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 15px rgba(102, 126, 234, 0.3);
+    border-color: #00ccff;
+    box-shadow: 0 0 15px rgba(0, 204, 255, 0.3);
   }
 
   input::placeholder {
-    color: #888;
+    color: #006633;
     font-size: 18px;
   }
 
   select option {
-    background: #0d1117;
-    color: white;
+    background: #0a0e14;
+    color: #00ff88;
     font-size: 18px;
   }
 
@@ -207,36 +290,38 @@
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s;
+    font-family: 'Courier New', monospace;
   }
 
   .btn-next {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
+    background: #00ff88;
+    color: #0a0e14;
   }
 
   .btn-next:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    background: #00ccff;
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
   }
 
   .btn-back {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
+    background: #1a1a1a;
+    color: #00ff88;
+    border: 2px solid #00ff88;
   }
 
   .btn-back:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: #2a2a2a;
   }
 
   .btn-submit {
-    background: linear-gradient(135deg, #00ff88, #00cc6a);
-    color: #0a0a0a;
+    background: #00ccff;
+    color: #0a0e14;
     font-size: 22px;
   }
 
   .btn-submit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.4);
+    background: #00ff88;
+    box-shadow: 0 0 30px rgba(0, 204, 255, 0.5);
   }
 
   .radio-group {
@@ -248,8 +333,8 @@
   .radio-card {
     flex: 1;
     padding: 30px;
-    background: rgba(0, 0, 0, 0.5);
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: #0a0e14;
+    border: 2px solid #00ff88;
     border-radius: 15px;
     text-align: center;
     cursor: pointer;
@@ -257,9 +342,9 @@
   }
 
   .radio-card:hover, .radio-card.selected {
-    border-color: #667eea;
-    background: rgba(102, 126, 234, 0.2);
-    box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+    border-color: #00ccff;
+    background: rgba(0, 255, 136, 0.1);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
   }
 
   .radio-card input {
@@ -267,7 +352,7 @@
   }
 
   .radio-card span {
-    color: white;
+    color: #00ff88;
     font-size: 24px;
   }
 
@@ -286,10 +371,27 @@
 </head>
 <body>
 
-<div class="shape shape1"></div>
-<div class="shape shape2"></div>
-<div class="shape shape3"></div>
-<div class="shape shape4"></div>
+<!-- Laser lines -->
+<div class="laser laser1"></div>
+<div class="laser laser2"></div>
+<div class="laser laser3"></div>
+<div class="laser laser4"></div>
+<div class="laser laser5"></div>
+<div class="laser laser6"></div>
+<div class="laser laser7"></div>
+<div class="laser laser8"></div>
+
+<!-- Floating code -->
+<div class="code-text code1">&lt;?php echo "Hello World"; ?&gt;</div>
+<div class="code-text code2">function register() { return true; }</div>
+<div class="code-text code3">const sport = "Cricket";</div>
+<div class="code-text code4">if (user.valid) { submit(); }</div>
+<div class="code-text code5">python -m pip install django</div>
+<div class="code-text code6">SELECT * FROM students;</div>
+<div class="code-text code7">npm install react</div>
+<div class="code-text code8">git commit -m "sports"</div>
+<div class="code-text code9">while (true) { code(); }</div>
+<div class="code-text code10">console.log("Register");</div>
 
 <div class="container">
   <div class="college-header">
@@ -309,16 +411,16 @@
     
     <!-- PAGE 1: Basic Info -->
     <div class="page active" id="page1">
-      <h2>Student Details</h2>
-      <input type="text" name="name" placeholder="Full Name" required>
-      <input type="tel" name="number" placeholder="Mobile Number" pattern="[0-9]{10}" required>
-      <input type="text" name="regd" placeholder="Registration Number" required>
+      <h2>&gt; Student_Details_</h2>
+      <input type="text" name="name" placeholder="Full_Name" required>
+      <input type="tel" name="number" placeholder="Mobile_Number" pattern="[0-9]{10}" required>
+      <input type="text" name="regd" placeholder="Registration_Number" required>
       <button type="button" class="btn-next" onclick="nextPage(2)">NEXT ➜</button>
     </div>
 
     <!-- PAGE 2: Gender -->
     <div class="page" id="page2">
-      <h2>Choose Gender</h2>
+      <h2>&gt; Select_Gender_</h2>
       <div class="radio-group">
         <div class="radio-card" onclick="selectRadio(this)">
           <input type="radio" name="gender" value="Male" required>
@@ -337,7 +439,7 @@
 
     <!-- PAGE 3: Hostel -->
     <div class="page" id="page3">
-      <h2>Living Type</h2>
+      <h2>&gt; Living_Type_</h2>
       <div class="radio-group">
         <div class="radio-card" onclick="selectRadio(this)">
           <input type="radio" name="hostel" value="Hosteller" required>
@@ -356,18 +458,18 @@
 
     <!-- PAGE 4: Sports -->
     <div class="page" id="page4">
-      <h2>Choose Sport</h2>
+      <h2>&gt; Select_Sport_</h2>
       <select name="sport" id="sportSelect" onchange="checkOther()" required>
-        <option value="">Select Sport</option>
+        <option value="">Select_Sport_</option>
         <option>Cricket 🏏</option>
         <option>Football ⚽</option>
         <option>Volleyball 🏐</option>
         <option>Badminton 🏸</option>
-        <option>Kho Kho 🏃</option>
+        <option>Kho_Kho 🏃</option>
         <option>Kabaddi 🤼</option>
         <option value="other">Other ➕</option>
       </select>
-      <input type="text" name="otherSport" id="otherSportInput" placeholder="Type your sport" style="display:none;">
+      <input type="text" name="otherSport" id="otherSportInput" placeholder="Type_Your_Sport" style="display:none;">
       <div class="btn-group">
         <button type="button" class="btn-back" onclick="prevPage(3)">⬅ BACK</button>
         <button type="button" class="btn-next" onclick="nextPage(5)">NEXT ➜</button>
@@ -376,8 +478,8 @@
 
     <!-- PAGE 5: Submit -->
     <div class="page" id="page5">
-      <h2>Confirm & Submit</h2>
-      <div style="color: #888; text-align: center; padding: 20px; font-size: 18px;">
+      <h2>&gt; Confirm_&_Submit_</h2>
+      <div style="color: #00ff88; text-align: center; padding: 20px; font-size: 18px;">
         <p style="margin: 10px 0;">✅ All details filled correctly?</p>
         <p style="margin: 10px 0;">Click submit to complete registration</p>
       </div>
