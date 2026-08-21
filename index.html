@@ -2,92 +2,498 @@
 <html>
 <head>
 <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+  }
+
   body {
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: #0a0a0a;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    font-family: Arial;
+    overflow: hidden;
+    position: relative;
   }
-  
-  .box {
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    width: 350px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+
+  /* Matrix background effect */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #0a0a0a 25%, #111 25%, #111 50%, #0a0a0a 50%, #0a0a0a 75%, #111 75%, #111);
+    background-size: 4px 4px;
+    animation: bgMove 1s linear infinite;
+    z-index: -2;
   }
-  
+
+  @keyframes bgMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 4px 4px; }
+  }
+
+  /* Animated glowing orbs */
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .orb1 {
+    width: 300px;
+    height: 300px;
+    background: #ff6b35;
+    top: -100px;
+    left: -100px;
+  }
+
+  .orb2 {
+    width: 400px;
+    height: 400px;
+    background: #667eea;
+    bottom: -150px;
+    right: -150px;
+    animation-delay: 2s;
+  }
+
+  .orb3 {
+    width: 200px;
+    height: 200px;
+    background: #00ff88;
+    top: 50%;
+    left: 50%;
+    animation-delay: 4s;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(30px, -30px) scale(1.2); }
+  }
+
+  .container {
+    background: rgba(20, 20, 30, 0.85);
+    backdrop-filter: blur(20px);
+    padding: 40px;
+    border-radius: 25px;
+    width: 400px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 50px rgba(102, 126, 234, 0.3), 0 0 100px rgba(255, 107, 53, 0.1);
+    position: relative;
+    animation: slideIn 0.5s ease;
+  }
+
+  @keyframes slideIn {
+    from { transform: translateX(100px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+
+  .progress-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    position: relative;
+  }
+
+  .progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #333;
+    z-index: 0;
+  }
+
+  .progress-step {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #1a1a2e;
+    border: 2px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-weight: bold;
+    z-index: 1;
+    transition: all 0.5s;
+  }
+
+  .progress-step.active {
+    background: #667eea;
+    border-color: #667eea;
+    color: white;
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+  }
+
+  .progress-step.done {
+    background: #00ff88;
+    border-color: #00ff88;
+    color: #0a0a0a;
+  }
+
+  .page {
+    display: none;
+    animation: fadeIn 0.4s ease;
+  }
+
+  .page.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
   h2 {
+    color: white;
     text-align: center;
-    color: #333;
+    margin-bottom: 25px;
+    font-size: 24px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
   }
-  
+
+  h2 span {
+    color: #667eea;
+  }
+
   input, select {
     width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    font-size: 16px;
-  }
-  
-  button {
-    width: 100%;
     padding: 14px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    margin: 8px 0;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
     color: white;
+    font-size: 16px;
+    transition: all 0.3s;
+  }
+
+  input:focus, select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 15px rgba(102, 126, 234, 0.3);
+  }
+
+  input::placeholder {
+    color: #888;
+  }
+
+  select option {
+    background: #1a1a2e;
+    color: white;
+  }
+
+  .btn-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  button {
+    flex: 1;
+    padding: 14px;
     border: none;
-    border-radius: 10px;
-    font-size: 18px;
+    border-radius: 12px;
+    font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    margin-top: 15px;
+    transition: all 0.3s;
+    letter-spacing: 1px;
   }
-  
-  button:hover {
-    transform: scale(1.05);
+
+  .btn-next {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+  }
+
+  .btn-next:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+  }
+
+  .btn-back {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+  }
+
+  .btn-back:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .btn-submit {
+    background: linear-gradient(135deg, #00ff88, #00cc6a);
+    color: #0a0a0a;
+  }
+
+  .btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.4);
+  }
+
+  /* Radio buttons for gender and hostel */
+  .radio-group {
+    display: flex;
+    gap: 15px;
+    margin: 15px 0;
+  }
+
+  .radio-card {
+    flex: 1;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .radio-card:hover, .radio-card.selected {
+    border-color: #667eea;
+    background: rgba(102, 126, 234, 0.2);
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+  }
+
+  .radio-card input {
+    display: none;
+  }
+
+  .radio-card span {
+    color: white;
+    font-size: 18px;
+  }
+
+  /* Other sport input */
+  #otherSportInput {
+    display: none;
+    margin-top: 10px;
+  }
+
+  /* Typing effect */
+  .typing {
+    color: #00ff88;
+    font-family: monospace;
+    text-align: center;
+    margin-bottom: 20px;
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0.5; }
+  }
+
+  .success-message {
+    display: none;
+    text-align: center;
+    color: #00ff88;
+    font-size: 20px;
+    padding: 40px 0;
+  }
+
+  .success-message.show {
+    display: block;
+    animation: fadeIn 0.5s ease;
   }
 </style>
 </head>
 <body>
 
-<div class="box">
-  <h2>🏆 Sports Registration</h2>
-  
-  <form action="https://formspree.io/f/xnparqpq" method="POST">
-    <input type="text" name="name" placeholder="👤 Full Name" required>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<div class="container">
+  <div class="progress-bar">
+    <div class="progress-step active" id="step1">1</div>
+    <div class="progress-step" id="step2">2</div>
+    <div class="progress-step" id="step3">3</div>
+    <div class="progress-step" id="step4">4</div>
+    <div class="progress-step" id="step5">5</div>
+  </div>
+
+  <form id="multiForm" action="https://formspree.io/f/xnparqpq" method="POST">
     
-    <input type="tel" name="number" placeholder="📱 Phone Number" required>
-    
-    <select name="gender" required>
-      <option value="">👥 Gender</option>
-      <option>Male</option>
-      <option>Female</option>
-      <option>Other</option>
-    </select>
-    
-    <select name="hostel" required>
-      <option value="">🏠 Hosteller/Dayscholar</option>
-      <option>Hosteller</option>
-      <option>Dayscholar</option>
-    </select>
-    
-    <select name="sport" required>
-      <option value="">🎯 Sports Choose Karo</option>
-      <option>Cricket 🏏</option>
-      <option>Football ⚽</option>
-      <option>Basketball 🏀</option>
-      <option>Volleyball 🏐</option>
-      <option>Badminton 🏸</option>
-      <option>Athletics 🏃</option>
-    </select>
-    
-    <button type="submit">🚀 Register Karo!</button>
+    <!-- PAGE 1: Basic Info -->
+    <div class="page active" id="page1">
+      <p class="typing">&gt; STEP_1: BASIC_INFO_</p>
+      <h2><span>&lt;</span> Student Details <span>/&gt;</span></h2>
+      <input type="text" name="name" placeholder="👤 Full Name" required>
+      <input type="tel" name="number" placeholder="📱 Mobile Number" pattern="[0-9]{10}" required>
+      <input type="text" name="regd" placeholder="🎓 Registration Number" required>
+      <input type="text" name="branch" placeholder="🔧 Branch (CSE, IT, ECE...)" required>
+      <button type="button" class="btn-next" onclick="nextPage(2)">NEXT ➜</button>
+    </div>
+
+    <!-- PAGE 2: Gender -->
+    <div class="page" id="page2">
+      <p class="typing">&gt; STEP_2: GENDER_SELECT_</p>
+      <h2><span>&lt;</span> Choose Gender <span>/&gt;</span></h2>
+      <div class="radio-group">
+        <div class="radio-card" onclick="selectRadio(this)">
+          <input type="radio" name="gender" value="Male" required>
+          <span>👨 Male</span>
+        </div>
+        <div class="radio-card" onclick="selectRadio(this)">
+          <input type="radio" name="gender" value="Female">
+          <span>👩 Female</span>
+        </div>
+      </div>
+      <div class="btn-group">
+        <button type="button" class="btn-back" onclick="prevPage(1)">⬅ BACK</button>
+        <button type="button" class="btn-next" onclick="nextPage(3)">NEXT ➜</button>
+      </div>
+    </div>
+
+    <!-- PAGE 3: Hostel -->
+    <div class="page" id="page3">
+      <p class="typing">&gt; STEP_3: ACCOMMODATION_</p>
+      <h2><span>&lt;</span> Living Type <span>/&gt;</span></h2>
+      <div class="radio-group">
+        <div class="radio-card" onclick="selectRadio(this)">
+          <input type="radio" name="hostel" value="Hosteller" required>
+          <span>🏠 Hosteller</span>
+        </div>
+        <div class="radio-card" onclick="selectRadio(this)">
+          <input type="radio" name="hostel" value="Dayscholar">
+          <span>🏡 Dayscholar</span>
+        </div>
+      </div>
+      <div class="btn-group">
+        <button type="button" class="btn-back" onclick="prevPage(2)">⬅ BACK</button>
+        <button type="button" class="btn-next" onclick="nextPage(4)">NEXT ➜</button>
+      </div>
+    </div>
+
+    <!-- PAGE 4: Sports -->
+    <div class="page" id="page4">
+      <p class="typing">&gt; STEP_4: SPORTS_SELECT_</p>
+      <h2><span>&lt;</span> Choose Sport <span>/&gt;</span></h2>
+      <select name="sport" id="sportSelect" onchange="checkOther()" required>
+        <option value="">🎯 Select Sport</option>
+        <option>Cricket 🏏</option>
+        <option>Football ⚽</option>
+        <option>Basketball 🏀</option>
+        <option>Volleyball 🏐</option>
+        <option>Badminton 🏸</option>
+        <option>Athletics 🏃</option>
+        <option value="other">Other ➕</option>
+      </select>
+      <input type="text" name="otherSport" id="otherSportInput" placeholder="✍️ Type your sport" style="display:none;">
+      <div class="btn-group">
+        <button type="button" class="btn-back" onclick="prevPage(3)">⬅ BACK</button>
+        <button type="button" class="btn-next" onclick="nextPage(5)">NEXT ➜</button>
+      </div>
+    </div>
+
+    <!-- PAGE 5: Submit -->
+    <div class="page" id="page5">
+      <p class="typing">&gt; FINAL_STEP: SUBMIT_</p>
+      <h2><span>&lt;</span> Confirm & Submit <span>/&gt;</span></h2>
+      <div style="color: #888; text-align: center; padding: 20px;">
+        <p style="margin: 10px 0;">✅ All details filled correctly?</p>
+        <p style="margin: 10px 0;">Click submit to complete registration</p>
+      </div>
+      <div class="btn-group">
+        <button type="button" class="btn-back" onclick="prevPage(4)">⬅ BACK</button>
+        <button type="submit" class="btn-submit">🚀 SUBMIT</button>
+      </div>
+    </div>
+
   </form>
+
+  <div class="success-message" id="successMsg">
+    <p style="font-size: 40px; margin-bottom: 20px;">✅</p>
+    <p>Registration Successful!</p>
+    <p style="font-size: 14px; color: #888; margin-top: 10px;">Redirecting...</p>
+  </div>
 </div>
+
+<script>
+let currentPage = 1;
+const totalPages = 5;
+
+function nextPage(page) {
+  // Validate gender selected
+  if (page === 3 && !document.querySelector('input[name="gender"]:checked')) {
+    alert('Please select gender!');
+    return;
+  }
+  // Validate hostel selected
+  if (page === 4 && !document.querySelector('input[name="hostel"]:checked')) {
+    alert('Please select living type!');
+    return;
+  }
+  
+  document.getElementById('page' + currentPage).classList.remove('active');
+  document.getElementById('page' + page).classList.add('active');
+  
+  document.getElementById('step' + currentPage).classList.remove('active');
+  document.getElementById('step' + currentPage).classList.add('done');
+  document.getElementById('step' + page).classList.add('active');
+  
+  currentPage = page;
+}
+
+function prevPage(page) {
+  document.getElementById('page' + currentPage).classList.remove('active');
+  document.getElementById('page' + page).classList.add('active');
+  
+  document.getElementById('step' + currentPage).classList.remove('active');
+  document.getElementById('step' + page).classList.remove('done');
+  document.getElementById('step' + page).classList.add('active');
+  
+  currentPage = page;
+}
+
+function selectRadio(element) {
+  element.parentElement.querySelectorAll('.radio-card').forEach(card => {
+    card.classList.remove('selected');
+  });
+  element.classList.add('selected');
+  element.querySelector('input').checked = true;
+}
+
+function checkOther() {
+  const select = document.getElementById('sportSelect');
+  const otherInput = document.getElementById('otherSportInput');
+  if (select.value === 'other') {
+    otherInput.style.display = 'block';
+    otherInput.required = true;
+  } else {
+    otherInput.style.display = 'none';
+    otherInput.required = false;
+  }
+}
+
+document.getElementById('multiForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  document.getElementById('multiForm').style.display = 'none';
+  document.getElementById('successMsg').classList.add('show');
+  
+  const formData = new FormData(this);
+  fetch(this.action, {
+    method: 'POST',
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  }).then(response => {
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
+  });
+});
+</script>
 
 </body>
 </html>
