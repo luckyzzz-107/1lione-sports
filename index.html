@@ -165,10 +165,11 @@
 
   .container {
     background: rgba(10, 14, 20, 0.95);
-    padding: 40px;
+    padding: 50px;
     border-radius: 25px;
-    width: 600px;
-    border: 1px solid #00ff88;
+    width: 700px;
+    max-width: 100%;
+    border: 2px solid #00ff88;
     box-shadow: 0 0 30px rgba(0, 255, 136, 0.2), 0 0 60px rgba(0, 204, 255, 0.1);
   }
 
@@ -202,8 +203,8 @@
   }
 
   .progress-step {
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     background: #0a0e14;
     border: 2px solid #00ff88;
@@ -212,7 +213,7 @@
     justify-content: center;
     color: #00ff88;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 22px;
     transition: all 0.3s;
   }
 
@@ -246,47 +247,58 @@
     text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
   }
 
+  /* ===== FIX: Bigger & Brighter Inputs ===== */
   input, select {
     width: 100%;
-    padding: 20px;
-    margin: 12px 0;
-    background: #0a0e14;
+    padding: 22px 25px;
+    margin: 15px 0;
+    background: #111820;
     border: 2px solid #00ff88;
     border-radius: 12px;
-    color: #00ff88;
-    font-size: 20px;
+    color: #b3ffd9;
+    font-size: 22px;
     font-family: 'Courier New', monospace;
+    transition: all 0.3s;
   }
 
   input:focus, select:focus {
     outline: none;
     border-color: #00ccff;
-    box-shadow: 0 0 15px rgba(0, 204, 255, 0.3);
+    box-shadow: 0 0 25px rgba(0, 204, 255, 0.3);
+    background: #0d1520;
   }
 
+  /* ===== FIX: Brighter Placeholder Text ===== */
   input::placeholder {
-    color: #006633;
-    font-size: 18px;
+    color: #44cc88;
+    font-size: 20px;
+    opacity: 0.8;
+  }
+
+  select {
+    color: #b3ffd9;
+    cursor: pointer;
   }
 
   select option {
     background: #0a0e14;
-    color: #00ff88;
+    color: #b3ffd9;
     font-size: 18px;
+    padding: 10px;
   }
 
   .btn-group {
     display: flex;
     gap: 15px;
-    margin-top: 25px;
+    margin-top: 30px;
   }
 
   button {
     flex: 1;
-    padding: 20px;
+    padding: 22px;
     border: none;
     border-radius: 12px;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s;
@@ -301,6 +313,7 @@
   .btn-next:hover {
     background: #00ccff;
     box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+    transform: scale(1.02);
   }
 
   .btn-back {
@@ -311,28 +324,30 @@
 
   .btn-back:hover {
     background: #2a2a2a;
+    transform: scale(1.02);
   }
 
   .btn-submit {
     background: #00ccff;
     color: #0a0e14;
-    font-size: 22px;
+    font-size: 24px;
   }
 
   .btn-submit:hover {
     background: #00ff88;
     box-shadow: 0 0 30px rgba(0, 204, 255, 0.5);
+    transform: scale(1.02);
   }
 
   .radio-group {
     display: flex;
     gap: 20px;
-    margin: 20px 0;
+    margin: 25px 0;
   }
 
   .radio-card {
     flex: 1;
-    padding: 30px;
+    padding: 35px 20px;
     background: #0a0e14;
     border: 2px solid #00ff88;
     border-radius: 15px;
@@ -341,10 +356,16 @@
     transition: all 0.3s;
   }
 
-  .radio-card:hover, .radio-card.selected {
+  .radio-card:hover {
     border-color: #00ccff;
-    background: rgba(0, 255, 136, 0.1);
-    box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+    background: rgba(0, 255, 136, 0.08);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.15);
+  }
+
+  .radio-card.selected {
+    border-color: #00ccff;
+    background: rgba(0, 255, 136, 0.15);
+    box-shadow: 0 0 25px rgba(0, 255, 136, 0.3);
   }
 
   .radio-card input {
@@ -352,8 +373,9 @@
   }
 
   .radio-card span {
-    color: #00ff88;
-    font-size: 24px;
+    color: #b3ffd9;
+    font-size: 26px;
+    font-weight: bold;
   }
 
   .success-message {
@@ -366,6 +388,35 @@
 
   .success-message.show {
     display: block;
+  }
+
+  /* ===== FIX: Better visibility for confirmation text ===== */
+  #page5 p {
+    color: #b3ffd9 !important;
+    font-size: 22px !important;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .container {
+      padding: 25px;
+    }
+    input, select {
+      padding: 18px 20px;
+      font-size: 18px;
+    }
+    input::placeholder {
+      font-size: 16px;
+    }
+    .radio-card span {
+      font-size: 20px;
+    }
+    .college-name {
+      font-size: 24px;
+    }
+    .dept-name {
+      font-size: 18px;
+    }
   }
 </style>
 </head>
@@ -479,7 +530,7 @@
     <!-- PAGE 5: Submit -->
     <div class="page" id="page5">
       <h2>&gt; Confirm_&_Submit_</h2>
-      <div style="color: #00ff88; text-align: center; padding: 20px; font-size: 18px;">
+      <div style="color: #b3ffd9; text-align: center; padding: 20px; font-size: 22px;">
         <p style="margin: 10px 0;">✅ All details filled correctly?</p>
         <p style="margin: 10px 0;">Click submit to complete registration</p>
       </div>
