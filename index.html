@@ -6,195 +6,123 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: Arial, sans-serif;
   }
 
   body {
-    background: #0a0a0a;
+    background: #0d1117;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    position: relative;
-    transition: all 0.5s ease;
-  }
-
-  /* Matrix background effect */
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, #0a0a0a 25%, #111 25%, #111 50%, #0a0a0a 50%, #0a0a0a 75%, #111 75%, #111);
-    background-size: 4px 4px;
-    animation: bgMove 1s linear infinite;
-    z-index: -2;
-  }
-
-  @keyframes bgMove {
-    0% { background-position: 0 0; }
-    100% { background-position: 4px 4px; }
-  }
-
-  /* Animated glowing orbs */
-  .orb {
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(80px);
-    z-index: -1;
-    animation: float 6s ease-in-out infinite;
-    transition: all 0.5s ease;
-  }
-
-  .orb1 {
-    width: 300px;
-    height: 300px;
-    background: #ff6b35;
-    top: -100px;
-    left: -100px;
-  }
-
-  .orb2 {
-    width: 400px;
-    height: 400px;
-    background: #667eea;
-    bottom: -150px;
-    right: -150px;
-    animation-delay: 2s;
-  }
-
-  .orb3 {
-    width: 200px;
-    height: 200px;
-    background: #00ff88;
-    top: 50%;
-    left: 50%;
-    animation-delay: 4s;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(30px, -30px) scale(1.2); }
+    padding: 20px;
+    background-image: 
+      radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
   }
 
   .container {
-    background: rgba(20, 20, 30, 0.85);
-    backdrop-filter: blur(20px);
+    background: #161b22;
     padding: 40px;
-    border-radius: 25px;
-    width: 400px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 50px rgba(102, 126, 234, 0.3), 0 0 100px rgba(255, 107, 53, 0.1);
-    position: relative;
-    animation: slideIn 0.5s ease;
+    border-radius: 20px;
+    width: 500px;
+    border: 1px solid #30363d;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
   }
 
-  @keyframes slideIn {
-    from { transform: translateX(100px); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
+  .college-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #30363d;
+  }
+
+  .college-name {
+    color: #ff6b35;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+  }
+
+  .dept-name {
+    color: #667eea;
+    font-size: 20px;
+    letter-spacing: 3px;
   }
 
   .progress-bar {
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;
-    position: relative;
-  }
-
-  .progress-bar::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: #333;
-    z-index: 0;
   }
 
   .progress-step {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background: #1a1a2e;
-    border: 2px solid #333;
+    background: #0d1117;
+    border: 2px solid #30363d;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #666;
     font-weight: bold;
-    z-index: 1;
-    transition: all 0.5s;
+    font-size: 16px;
+    transition: all 0.3s;
   }
 
   .progress-step.active {
     background: #667eea;
     border-color: #667eea;
     color: white;
-    box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
   }
 
   .progress-step.done {
     background: #00ff88;
     border-color: #00ff88;
-    color: #0a0a0a;
+    color: #0d1117;
   }
 
   .page {
     display: none;
-    animation: fadeIn 0.4s ease;
   }
 
   .page.active {
     display: block;
   }
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
   h2 {
     color: white;
     text-align: center;
     margin-bottom: 25px;
-    font-size: 24px;
-    letter-spacing: 1px;
-    text-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
-  }
-
-  h2 span {
-    color: #667eea;
+    font-size: 22px;
   }
 
   input, select {
     width: 100%;
-    padding: 14px;
-    margin: 8px 0;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
+    padding: 16px;
+    margin: 10px 0;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 10px;
     color: white;
-    font-size: 16px;
-    transition: all 0.3s;
+    font-size: 18px;
   }
 
   input:focus, select:focus {
     outline: none;
     border-color: #667eea;
-    box-shadow: 0 0 15px rgba(102, 126, 234, 0.3);
   }
 
   input::placeholder {
-    color: #888;
+    color: #666;
   }
 
   select option {
-    background: #1a1a2e;
+    background: #0d1117;
     color: white;
+    font-size: 16px;
   }
 
   .btn-group {
@@ -205,43 +133,41 @@
 
   button {
     flex: 1;
-    padding: 14px;
+    padding: 16px;
     border: none;
-    border-radius: 12px;
-    font-size: 16px;
+    border-radius: 10px;
+    font-size: 18px;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s;
-    letter-spacing: 1px;
   }
 
   .btn-next {
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: #667eea;
     color: white;
   }
 
   .btn-next:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    background: #5a6fd8;
   }
 
   .btn-back {
-    background: rgba(255, 255, 255, 0.1);
+    background: #30363d;
     color: white;
   }
 
   .btn-back:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: #3d444d;
   }
 
   .btn-submit {
-    background: linear-gradient(135deg, #00ff88, #00cc6a);
-    color: #0a0a0a;
+    background: #00cc6a;
+    color: white;
+    font-size: 20px;
   }
 
   .btn-submit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.4);
+    background: #00b85f;
   }
 
   .radio-group {
@@ -252,9 +178,9 @@
 
   .radio-card {
     flex: 1;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 25px;
+    background: #0d1117;
+    border: 2px solid #30363d;
     border-radius: 15px;
     text-align: center;
     cursor: pointer;
@@ -263,8 +189,7 @@
 
   .radio-card:hover, .radio-card.selected {
     border-color: #667eea;
-    background: rgba(102, 126, 234, 0.2);
-    box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+    background: #1a2233;
   }
 
   .radio-card input {
@@ -273,47 +198,30 @@
 
   .radio-card span {
     color: white;
-    font-size: 18px;
-  }
-
-  #otherSportInput {
-    display: none;
-    margin-top: 10px;
-  }
-
-  .typing {
-    color: #00ff88;
-    font-family: monospace;
-    text-align: center;
-    margin-bottom: 20px;
-    animation: blink 1s infinite;
-  }
-
-  @keyframes blink {
-    50% { opacity: 0.5; }
+    font-size: 20px;
   }
 
   .success-message {
     display: none;
     text-align: center;
     color: #00ff88;
-    font-size: 20px;
+    font-size: 22px;
     padding: 40px 0;
   }
 
   .success-message.show {
     display: block;
-    animation: fadeIn 0.5s ease;
   }
 </style>
 </head>
 <body>
 
-<div class="orb orb1" id="orb1"></div>
-<div class="orb orb2" id="orb2"></div>
-<div class="orb orb3" id="orb3"></div>
-
 <div class="container">
+  <div class="college-header">
+    <div class="college-name">JHARSUGUDA ENGINEERING SCHOOL</div>
+    <div class="dept-name">IT DEPARTMENT</div>
+  </div>
+
   <div class="progress-bar">
     <div class="progress-step active" id="step1">1</div>
     <div class="progress-step" id="step2">2</div>
@@ -326,19 +234,17 @@
     
     <!-- PAGE 1: Basic Info -->
     <div class="page active" id="page1">
-      <p class="typing">&gt; STEP_1: BASIC_INFO_</p>
-      <h2><span>&lt;</span> Student Details <span>/&gt;</span></h2>
-      <input type="text" name="name" placeholder="👤 Full Name" required>
-      <input type="tel" name="number" placeholder="📱 Mobile Number" pattern="[0-9]{10}" required>
-      <input type="text" name="regd" placeholder="🎓 Registration Number" required>
-      <input type="text" name="branch" placeholder="🔧 Branch (CSE, IT, ECE...)" required>
+      <h2>Student Details</h2>
+      <input type="text" name="name" placeholder="Full Name" required>
+      <input type="tel" name="number" placeholder="Mobile Number" pattern="[0-9]{10}" required>
+      <input type="text" name="regd" placeholder="Registration Number" required>
+      <input type="text" name="branch" placeholder="Branch (CSE, IT, ECE...)" required>
       <button type="button" class="btn-next" onclick="nextPage(2)">NEXT ➜</button>
     </div>
 
     <!-- PAGE 2: Gender -->
     <div class="page" id="page2">
-      <p class="typing">&gt; STEP_2: GENDER_SELECT_</p>
-      <h2><span>&lt;</span> Choose Gender <span>/&gt;</span></h2>
+      <h2>Choose Gender</h2>
       <div class="radio-group">
         <div class="radio-card" onclick="selectRadio(this)">
           <input type="radio" name="gender" value="Male" required>
@@ -357,8 +263,7 @@
 
     <!-- PAGE 3: Hostel -->
     <div class="page" id="page3">
-      <p class="typing">&gt; STEP_3: ACCOMMODATION_</p>
-      <h2><span>&lt;</span> Living Type <span>/&gt;</span></h2>
+      <h2>Living Type</h2>
       <div class="radio-group">
         <div class="radio-card" onclick="selectRadio(this)">
           <input type="radio" name="hostel" value="Hosteller" required>
@@ -377,19 +282,18 @@
 
     <!-- PAGE 4: Sports -->
     <div class="page" id="page4">
-      <p class="typing">&gt; STEP_4: SPORTS_SELECT_</p>
-      <h2><span>&lt;</span> Choose Sport <span>/&gt;</span></h2>
+      <h2>Choose Sport</h2>
       <select name="sport" id="sportSelect" onchange="checkOther()" required>
-        <option value="">🎯 Select Sport</option>
+        <option value="">Select Sport</option>
         <option>Cricket 🏏</option>
         <option>Football ⚽</option>
-        <option>Basketball 🏀</option>
         <option>Volleyball 🏐</option>
         <option>Badminton 🏸</option>
-        <option>Athletics 🏃</option>
+        <option>Kho Kho 🏃</option>
+        <option>Kabaddi 🤼</option>
         <option value="other">Other ➕</option>
       </select>
-      <input type="text" name="otherSport" id="otherSportInput" placeholder="✍️ Type your sport">
+      <input type="text" name="otherSport" id="otherSportInput" placeholder="Type your sport" style="display:none;">
       <div class="btn-group">
         <button type="button" class="btn-back" onclick="prevPage(3)">⬅ BACK</button>
         <button type="button" class="btn-next" onclick="nextPage(5)">NEXT ➜</button>
@@ -398,9 +302,8 @@
 
     <!-- PAGE 5: Submit -->
     <div class="page" id="page5">
-      <p class="typing">&gt; FINAL_STEP: SUBMIT_</p>
-      <h2><span>&lt;</span> Confirm & Submit <span>/&gt;</span></h2>
-      <div style="color: #888; text-align: center; padding: 20px;">
+      <h2>Confirm & Submit</h2>
+      <div style="color: #888; text-align: center; padding: 20px; font-size: 18px;">
         <p style="margin: 10px 0;">✅ All details filled correctly?</p>
         <p style="margin: 10px 0;">Click submit to complete registration</p>
       </div>
@@ -415,7 +318,6 @@
   <div class="success-message" id="successMsg">
     <p style="font-size: 40px; margin-bottom: 20px;">✅</p>
     <p>Registration Successful!</p>
-    <p style="font-size: 14px; color: #888; margin-top: 10px;">Redirecting...</p>
   </div>
 </div>
 
@@ -423,31 +325,39 @@
 let currentPage = 1;
 const totalPages = 5;
 
-// Different backgrounds for each page
-const backgrounds = {
-  1: { bg: '#0a0a0a', orb1: '#ff6b35', orb2: '#667eea', orb3: '#00ff88' },
-  2: { bg: '#1a0a2e', orb1: '#ff3366', orb2: '#ff9933', orb3: '#33ccff' },
-  3: { bg: '#0a1a0a', orb1: '#00ff88', orb2: '#ffcc00', orb3: '#ff6600' },
-  4: { bg: '#1a0a0a', orb1: '#ff0000', orb2: '#ff6600', orb3: '#ffff00' },
-  5: { bg: '#0a0a1a', orb1: '#00ccff', orb2: '#6633ff', orb3: '#ff33cc' }
-};
-
-function changeBackground(page) {
-  const bg = backgrounds[page];
-  document.body.style.background = bg.bg;
-  document.getElementById('orb1').style.background = bg.orb1;
-  document.getElementById('orb2').style.background = bg.orb2;
-  document.getElementById('orb3').style.background = bg.orb3;
-}
-
 function nextPage(page) {
+  if (page === 2) {
+    const name = document.querySelector('input[name="name"]').value;
+    const number = document.querySelector('input[name="number"]').value;
+    const regd = document.querySelector('input[name="regd"]').value;
+    const branch = document.querySelector('input[name="branch"]').value;
+    
+    if (!name || !number || !regd || !branch) {
+      alert('Please fill all fields!');
+      return;
+    }
+    if (number.length !== 10) {
+      alert('Please enter valid 10-digit mobile number!');
+      return;
+    }
+  }
+  
   if (page === 3 && !document.querySelector('input[name="gender"]:checked')) {
     alert('Please select gender!');
     return;
   }
+  
   if (page === 4 && !document.querySelector('input[name="hostel"]:checked')) {
     alert('Please select living type!');
     return;
+  }
+  
+  if (page === 5) {
+    const sport = document.getElementById('sportSelect').value;
+    if (!sport) {
+      alert('Please select sport!');
+      return;
+    }
   }
   
   document.getElementById('page' + currentPage).classList.remove('active');
@@ -458,7 +368,6 @@ function nextPage(page) {
   document.getElementById('step' + page).classList.add('active');
   
   currentPage = page;
-  changeBackground(page);
 }
 
 function prevPage(page) {
@@ -470,7 +379,6 @@ function prevPage(page) {
   document.getElementById('step' + page).classList.add('active');
   
   currentPage = page;
-  changeBackground(page);
 }
 
 function selectRadio(element) {
@@ -493,42 +401,10 @@ function checkOther() {
   }
 }
 
-// Submit handler - FIXED
+// SIMPLE SUBMIT - DIRECT SUBMIT TO FORMSPREE
 document.getElementById('multiForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  // Show loading state
-  const submitBtn = document.getElementById('submitBtn');
-  submitBtn.textContent = '⏳ SUBMITTING...';
-  submitBtn.disabled = true;
-  
-  const formData = new FormData(this);
-  
-  fetch(this.action, {
-    method: 'POST',
-    body: formData,
-    headers: { 'Accept': 'application/json' }
-  })
-  .then(response => {
-    if (response.ok) {
-      // Success
-      document.getElementById('multiForm').style.display = 'none';
-      document.getElementById('successMsg').classList.add('show');
-      setTimeout(() => {
-        window.location.reload();
-      }, 3000);
-    } else {
-      // Error
-      alert('Submit failed! Please try again.');
-      submitBtn.textContent = '🚀 SUBMIT';
-      submitBtn.disabled = false;
-    }
-  })
-  .catch(error => {
-    // Network error - try normal submit
-    alert('Network issue! Trying alternative method...');
-    this.submit();
-  });
+  // Form will submit directly to Formspree
+  // No preventDefault - direct submission
 });
 </script>
 
