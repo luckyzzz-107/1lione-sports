@@ -1,517 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>I Love You ❤️ Punyaprabha Acharya</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);
-            font-family: 'Arial', 'Georgia', serif;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Animated Background Hearts */
-        .bg-hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .heart-float {
-            position: absolute;
-            font-size: 30px;
-            animation: floatHeart 15s infinite linear;
-            opacity: 0.3;
-            color: #ff0040;
-        }
-
-        @keyframes floatHeart {
-            0% {
-                transform: translateY(100vh) rotate(0deg) scale(0.5);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.3;
-            }
-            90% {
-                opacity: 0.3;
-            }
-            100% {
-                transform: translateY(-10vh) rotate(720deg) scale(1.5);
-                opacity: 0;
-            }
-        }
-
-        /* Main Container */
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            width: 90%;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            border-radius: 50px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 
-                0 30px 80px rgba(0, 0, 0, 0.4),
-                inset 0 0 80px rgba(255, 255, 255, 0.1);
-            animation: containerPulse 3s ease-in-out infinite;
-            text-align: center;
-        }
-
-        @keyframes containerPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.01); }
-        }
-
-        /* Main Romantic Text */
-        .main-text {
-            font-size: 4.5rem;
-            font-weight: 900;
-            background: linear-gradient(45deg, #fff, #ffe6e6, #fff, #ffd4d4);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: gradientText 3s ease-in-out infinite;
-            text-shadow: 
-                0 0 30px rgba(255, 0, 100, 0.5),
-                0 0 60px rgba(255, 0, 100, 0.3),
-                0 0 90px rgba(255, 0, 100, 0.2);
-            line-height: 1.2;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-
-        @keyframes gradientText {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        /* Sub Text */
-        .sub-text {
-            font-size: 2rem;
-            color: #fff;
-            font-weight: 300;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-            margin-bottom: 30px;
-            opacity: 0.9;
-            letter-spacing: 3px;
-        }
-
-        /* Big Heart Animation */
-        .big-heart {
-            display: inline-block;
-            font-size: 100px;
-            animation: heartBeat 1.2s ease-in-out infinite;
-            filter: drop-shadow(0 0 40px rgba(255, 0, 100, 0.6));
-            margin: 20px 0;
-        }
-
-        @keyframes heartBeat {
-            0%, 100% { transform: scale(1); }
-            14% { transform: scale(1.3); }
-            28% { transform: scale(1); }
-            42% { transform: scale(1.2); }
-            70% { transform: scale(1); }
-        }
-
-        /* Name with special glow */
-        .name-glow {
-            font-size: 5rem;
-            font-weight: 900;
-            color: #fff;
-            text-shadow: 
-                0 0 20px rgba(255, 0, 100, 0.8),
-                0 0 40px rgba(255, 0, 100, 0.6),
-                0 0 80px rgba(255, 0, 100, 0.4),
-                0 0 120px rgba(255, 0, 100, 0.2);
-            animation: nameGlow 2s ease-in-out infinite alternate;
-            letter-spacing: 4px;
-            background: linear-gradient(180deg, #fff, #ffd4d4);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        @keyframes nameGlow {
-            0% { text-shadow: 0 0 20px rgba(255, 0, 100, 0.8), 0 0 40px rgba(255, 0, 100, 0.6); }
-            100% { text-shadow: 0 0 30px rgba(255, 0, 100, 1), 0 0 60px rgba(255, 0, 100, 0.8), 0 0 100px rgba(255, 0, 100, 0.6); }
-        }
-
-        /* Romantic Messages */
-        .messages {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin: 30px 0;
-        }
-
-        .msg-card {
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 15px 25px;
-            color: #fff;
-            font-size: 1.2rem;
-            backdrop-filter: blur(5px);
-            animation: msgFloat 4s ease-in-out infinite;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-
-        .msg-card:nth-child(2) { animation-delay: 0.5s; }
-        .msg-card:nth-child(3) { animation-delay: 1s; }
-        .msg-card:nth-child(4) { animation-delay: 1.5s; }
-
-        @keyframes msgFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* Proposal Button */
-        .proposal-btn {
-            background: linear-gradient(135deg, #ff0040, #ff6b8a);
-            color: #fff;
-            border: none;
-            padding: 20px 50px;
-            font-size: 1.8rem;
-            font-weight: 700;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 
-                0 10px 40px rgba(255, 0, 100, 0.4),
-                inset 0 2px 0 rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            letter-spacing: 2px;
-            margin-top: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .proposal-btn::before {
-            content: '❤️';
-            margin-right: 10px;
-        }
-
-        .proposal-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 60px rgba(255, 0, 100, 0.6);
-        }
-
-        .proposal-btn:active {
-            transform: scale(0.95);
-        }
-
-        /* Sparkle Effect */
-        .sparkle {
-            position: fixed;
-            pointer-events: none;
-            width: 10px;
-            height: 10px;
-            background: radial-gradient(circle, #fff, #ff0040);
-            border-radius: 50%;
-            animation: sparkleAnim 1s ease-out forwards;
-            z-index: 999;
-        }
-
-        @keyframes sparkleAnim {
-            0% {
-                transform: scale(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(2) rotate(180deg);
-                opacity: 0;
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .main-text {
-                font-size: 2.8rem;
-            }
-            .name-glow {
-                font-size: 3rem;
-            }
-            .sub-text {
-                font-size: 1.5rem;
-            }
-            .big-heart {
-                font-size: 70px;
-            }
-            .msg-card {
-                font-size: 1rem;
-                padding: 10px 18px;
-            }
-            .proposal-btn {
-                font-size: 1.3rem;
-                padding: 15px 30px;
-            }
-            .container {
-                padding: 25px;
-                border-radius: 30px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .main-text {
-                font-size: 2rem;
-            }
-            .name-glow {
-                font-size: 2.2rem;
-            }
-            .sub-text {
-                font-size: 1.2rem;
-            }
-            .big-heart {
-                font-size: 50px;
-            }
-            .msg-card {
-                font-size: 0.9rem;
-                padding: 8px 14px;
-            }
-            .proposal-btn {
-                font-size: 1rem;
-                padding: 12px 20px;
-            }
-            .container {
-                padding: 20px;
-                border-radius: 20px;
-            }
-        }
-
-        /* Cursor Trail */
-        .trail {
-            position: fixed;
-            pointer-events: none;
-            font-size: 20px;
-            z-index: 9999;
-            animation: trailFade 1s ease-out forwards;
-        }
-
-        @keyframes trailFade {
-            0% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(0.5) translateY(-50px);
-                opacity: 0;
-            }
-        }
-
-        /* Rainbow border animation */
-        .rainbow-border {
-            position: absolute;
-            top: -3px;
-            left: -3px;
-            right: -3px;
-            bottom: -3px;
-            border-radius: 50px;
-            background: conic-gradient(
-                from 0deg,
-                #ff0066,
-                #ff3366,
-                #ff6699,
-                #ff0066,
-                #ff3366,
-                #ff6699,
-                #ff0066
-            );
-            animation: rainbowSpin 4s linear infinite;
-            z-index: -1;
-            opacity: 0.5;
-        }
-
-        @keyframes rainbowSpin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
+<style>
+  body {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: Arial;
+  }
+  
+  .box {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    width: 350px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  input, select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+  
+  button:hover {
+    transform: scale(1.05);
+  }
+</style>
 </head>
 <body>
 
-    <!-- Background Floating Hearts -->
-    <div class="bg-hearts" id="bgHearts"></div>
-
-    <!-- Rainbow Border -->
-    <div class="rainbow-border"></div>
-
-    <!-- Main Container -->
-    <div class="container">
-
-        <!-- Big Heart -->
-        <div class="big-heart">❤️</div>
-
-        <!-- Main "I Love Uh" Text -->
-        <div class="main-text">I Love Uh</div>
-
-        <!-- Name with Glow -->
-        <div class="name-glow">Punyaprabha Acharya</div>
-
-        <!-- Sub Text -->
-        <div class="sub-text">❤️ Will You Be My Valentine? ❤️</div>
-
-        <!-- Romantic Messages -->
-        <div class="messages">
-            <div class="msg-card">💕 You're My Everything</div>
-            <div class="msg-card">✨ You Complete Me</div>
-            <div class="msg-card">🌹 My Heart Beats For You</div>
-            <div class="msg-card">💖 Forever & Always</div>
-        </div>
-
-        <!-- Proposal Button -->
-        <button class="proposal-btn" onclick="propose()">
-            Say Yes! 💍
-        </button>
-
-        <!-- Response Message -->
-        <div id="response" style="margin-top: 30px; font-size: 2rem; color: #fff; min-height: 60px;"></div>
-
-    </div>
-
-    <script>
-        // Generate Background Hearts
-        function createBgHearts() {
-            const container = document.getElementById('bgHearts');
-            const emojis = ['❤️', '💕', '💖', '💗', '💓', '♥️', '❣️'];
-            
-            for (let i = 0; i < 50; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'heart-float';
-                heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-                heart.style.left = Math.random() * 100 + '%';
-                heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
-                heart.style.animationDuration = (Math.random() * 15 + 10) + 's';
-                heart.style.animationDelay = (Math.random() * 20) + 's';
-                container.appendChild(heart);
-            }
-        }
-
-        // Create Sparkles on Click
-        function createSparkles(x, y) {
-            for (let i = 0; i < 20; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                sparkle.style.left = (x + (Math.random() - 0.5) * 100) + 'px';
-                sparkle.style.top = (y + (Math.random() - 0.5) * 100) + 'px';
-                sparkle.style.width = (Math.random() * 15 + 5) + 'px';
-                sparkle.style.height = sparkle.style.width;
-                document.body.appendChild(sparkle);
-                
-                setTimeout(() => sparkle.remove(), 1000);
-            }
-        }
-
-        // Mouse Trail (Hearts)
-        document.addEventListener('mousemove', (e) => {
-            if (Math.random() > 0.7) {
-                const trail = document.createElement('div');
-                trail.className = 'trail';
-                trail.textContent = ['❤️', '💕', '💖', '✨'][Math.floor(Math.random() * 4)];
-                trail.style.left = (e.pageX - 10) + 'px';
-                trail.style.top = (e.pageY - 10) + 'px';
-                document.body.appendChild(trail);
-                
-                setTimeout(() => trail.remove(), 1000);
-            }
-        });
-
-        // Click Sparkles
-        document.addEventListener('click', (e) => {
-            createSparkles(e.pageX, e.pageY);
-        });
-
-        // Proposal Function
-        function propose() {
-            const response = document.getElementById('response');
-            const responses = [
-                '🎉 YES! She said YES! 💍❤️',
-                '💕 Forever Together! You\'re Mine! 🌹',
-                '✨ Best Decision Ever! I Love You! 💖',
-                '❤️ She\'s The One! Happily Ever After! 💕',
-                '💗 My Heart is Yours Forever! 🌟',
-                '🌹 You Made My Life Complete! 💖'
-            ];
-            
-            // Create big celebration
-            response.textContent = responses[Math.floor(Math.random() * responses.length)];
-            
-            // Confetti effect
-            for (let i = 0; i < 100; i++) {
-                setTimeout(() => {
-                    createSparkles(
-                        Math.random() * window.innerWidth,
-                        Math.random() * window.innerHeight
-                    );
-                }, i * 50);
-            }
-            
-            // Animate response
-            response.style.animation = 'none';
-            setTimeout(() => {
-                response.style.animation = 'heartBeat 0.5s ease-in-out 3';
-            }, 10);
-            
-            // Disable button temporarily
-            const btn = document.querySelector('.proposal-btn');
-            btn.textContent = '💕 She Said Yes! 💕';
-            btn.style.background = 'linear-gradient(135deg, #00c851, #00e676)';
-            btn.disabled = true;
-            
-            // Add more hearts
-            for (let i = 0; i < 30; i++) {
-                setTimeout(() => {
-                    const heart = document.createElement('div');
-                    heart.style.cssText = `
-                        position: fixed;
-                        left: ${Math.random() * 100}%;
-                        top: ${Math.random() * 100}%;
-                        font-size: ${Math.random() * 40 + 30}px;
-                        z-index: 9999;
-                        animation: floatHeart 5s ease-out forwards;
-                        pointer-events: none;
-                    `;
-                    heart.textContent = '❤️';
-                    document.body.appendChild(heart);
-                    setTimeout(() => heart.remove(), 5000);
-                }, i * 100);
-            }
-        }
-
-        // Initialize
-        createBgHearts();
-
-        // Add rainbow border on hover
-        document.querySelector('.container').addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.02)';
-        });
-        
-        document.querySelector('.container').addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
-        });
-
-        console.log('❤️ Made with Love for Punyaprabha Acharya ❤️');
-    </script>
+<div class="box">
+  <h2>🏆 Sports Registration</h2>
+  
+  <form action="https://formspree.io/f/xnparqpq" method="POST">
+    <input type="text" name="name" placeholder="👤 Full Name" required>
+    
+    <input type="tel" name="number" placeholder="📱 Phone Number" required>
+    
+    <select name="gender" required>
+      <option value="">👥 Gender</option>
+      <option>Male</option>
+      <option>Female</option>
+      <option>Other</option>
+    </select>
+    
+    <select name="hostel" required>
+      <option value="">🏠 Hosteller/Dayscholar</option>
+      <option>Hosteller</option>
+      <option>Dayscholar</option>
+    </select>
+    
+    <select name="sport" required>
+      <option value="">🎯 Sports Choose Karo</option>
+      <option>Cricket 🏏</option>
+      <option>Football ⚽</option>
+      <option>Basketball 🏀</option>
+      <option>Volleyball 🏐</option>
+      <option>Badminton 🏸</option>
+      <option>Athletics 🏃</option>
+    </select>
+    
+    <button type="submit">🚀 Register Karo!</button>
+  </form>
+</div>
 
 </body>
 </html>
