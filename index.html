@@ -650,6 +650,25 @@
     display: block;
   }
 
+  .sport-label {
+    color: #00ff88;
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+
+  .sport-label-optional {
+    color: #00ccff;
+    margin: 15px 0 10px 0;
+    font-size: 18px;
+  }
+
+  .sport-info {
+    color: #669988;
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+  }
+
   .success-message {
     display: none;
     text-align: center;
@@ -792,17 +811,35 @@
 
     <div class="page" id="page4">
       <h2>&gt; Select_Sport_</h2>
-      <select name="sport" id="sportSelect" onchange="checkOther()" required>
-        <option value="">Select_Sport_</option>
+      
+      <div class="sport-label">⚡ Sport 1 (Compulsory)</div>
+      <select name="sport1" id="sportSelect1" onchange="checkOther1()" required>
+        <option value="">Select_Sport_1</option>
         <option>Cricket 🏏</option>
         <option>Football ⚽</option>
         <option>Volleyball 🏐</option>
         <option>Badminton 🏸</option>
         <option>Kho_Kho 🏃</option>
         <option>Kabaddi 🤼</option>
-        <option value="other">Other ➕</option>
+        <option value="other1">Other ➕</option>
       </select>
-      <input type="text" name="otherSport" id="otherSportInput" placeholder="Type_Your_Sport" style="display:none;">
+      <input type="text" name="otherSport1" id="otherSportInput1" placeholder="Type_Your_Sport_1" style="display:none;">
+
+      <div class="sport-label-optional">⚡ Sport 2 (Optional)</div>
+      <select name="sport2" id="sportSelect2" onchange="checkOther2()">
+        <option value="">Select_Sport_2 (Optional)</option>
+        <option>Cricket 🏏</option>
+        <option>Football ⚽</option>
+        <option>Volleyball 🏐</option>
+        <option>Badminton 🏸</option>
+        <option>Kho_Kho 🏃</option>
+        <option>Kabaddi 🤼</option>
+        <option value="other2">Other ➕</option>
+      </select>
+      <input type="text" name="otherSport2" id="otherSportInput2" placeholder="Type_Your_Sport_2" style="display:none;">
+
+      <div class="sport-info">ℹ️ Minimum 1 sport required, maximum 2 sports allowed</div>
+
       <div class="btn-group">
         <button type="button" class="btn-back" onclick="prevPage(3)">⬅ BACK</button>
         <button type="button" class="btn-next" onclick="nextPage(5)">NEXT ➜</button>
@@ -886,6 +923,32 @@ function validateCaptcha() {
   }
 }
 
+function checkOther1() {
+  const select = document.getElementById('sportSelect1');
+  const otherInput = document.getElementById('otherSportInput1');
+  if (select.value === 'other1') {
+    otherInput.style.display = 'block';
+    otherInput.required = true;
+  } else {
+    otherInput.style.display = 'none';
+    otherInput.required = false;
+    otherInput.value = '';
+  }
+}
+
+function checkOther2() {
+  const select = document.getElementById('sportSelect2');
+  const otherInput = document.getElementById('otherSportInput2');
+  if (select.value === 'other2') {
+    otherInput.style.display = 'block';
+    otherInput.required = false;
+  } else {
+    otherInput.style.display = 'none';
+    otherInput.required = false;
+    otherInput.value = '';
+  }
+}
+
 function nextPage(page) {
   if (page === 2) {
     const name = document.querySelector('input[name="name"]').value;
@@ -913,19 +976,32 @@ function nextPage(page) {
   }
   
   if (page === 5) {
-    const sport = document.getElementById('sportSelect').value;
-    if (!sport) {
-      alert('Please select sport!');
+    const sport1 = document.getElementById('sportSelect1').value;
+    const sport2 = document.getElementById('sportSelect2').value;
+    
+    if (!sport1) {
+      alert('⚠️ Please select at least 1 sport!');
       return;
     }
-    if (sport === 'other') {
-      const otherSport = document.getElementById('otherSportInput').value.trim();
-      if (!otherSport) {
+    
+    if (sport1 === 'other1') {
+      const otherSport1 = document.getElementById('otherSportInput1').value.trim();
+      if (!otherSport1) {
         alert('⚠️ Please enter your sport name!');
-        document.getElementById('otherSportInput').focus();
+        document.getElementById('otherSportInput1').focus();
         return;
       }
     }
+    
+    if (sport2 === 'other2') {
+      const otherSport2 = document.getElementById('otherSportInput2').value.trim();
+      if (!otherSport2) {
+        alert('⚠️ Please enter your sport name!');
+        document.getElementById('otherSportInput2').focus();
+        return;
+      }
+    }
+    
     generateCaptcha();
   }
   
@@ -956,19 +1032,6 @@ function selectRadio(element) {
   });
   element.classList.add('selected');
   element.querySelector('input').checked = true;
-}
-
-function checkOther() {
-  const select = document.getElementById('sportSelect');
-  const otherInput = document.getElementById('otherSportInput');
-  if (select.value === 'other') {
-    otherInput.style.display = 'block';
-    otherInput.required = true;
-  } else {
-    otherInput.style.display = 'none';
-    otherInput.required = false;
-    otherInput.value = '';
-  }
 }
 
 document.getElementById('multiForm').addEventListener('submit', function(e) {
