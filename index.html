@@ -20,7 +20,6 @@
     overflow: hidden;
   }
 
-  /* Grid lines */
   body::before {
     content: '';
     position: fixed;
@@ -29,148 +28,266 @@
     width: 100%;
     height: 100%;
     background: 
-      linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+      linear-gradient(rgba(0, 255, 136, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 136, 0.05) 1px, transparent 1px);
     background-size: 50px 50px;
     z-index: -2;
+    animation: gridPulse 3s ease-in-out infinite;
   }
 
-  /* Programming laser lines */
+  @keyframes gridPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 255, 136, 0.05) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    animation: glowPulse 4s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+    50% { transform: translate(-50%, -50%) scale(1.5); opacity: 1; }
+  }
+
   .laser {
     position: fixed;
-    height: 2px;
+    height: 3px;
     z-index: -1;
     animation: laserScan 4s infinite linear;
-    box-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+    box-shadow: 0 0 20px currentColor, 0 0 40px currentColor, 0 0 80px currentColor;
+    border-radius: 50%;
+    opacity: 0.7;
   }
 
   .laser1 {
     width: 100%;
-    background: #00ff88;
+    background: linear-gradient(90deg, transparent, #00ff88, transparent);
     color: #00ff88;
     top: 10%;
     animation-delay: 0s;
+    height: 4px;
   }
 
   .laser2 {
     width: 100%;
-    background: #00ccff;
+    background: linear-gradient(90deg, transparent, #00ccff, transparent);
     color: #00ccff;
-    top: 30%;
-    animation-delay: 0.5s;
+    top: 25%;
+    animation-delay: 0.8s;
+    height: 3px;
   }
 
   .laser3 {
     width: 100%;
-    background: #ff6600;
+    background: linear-gradient(90deg, transparent, #ff6600, transparent);
     color: #ff6600;
-    top: 50%;
-    animation-delay: 1s;
+    top: 40%;
+    animation-delay: 1.6s;
+    height: 4px;
   }
 
   .laser4 {
     width: 100%;
-    background: #ff00ff;
+    background: linear-gradient(90deg, transparent, #ff00ff, transparent);
     color: #ff00ff;
-    top: 70%;
-    animation-delay: 1.5s;
+    top: 55%;
+    animation-delay: 2.4s;
+    height: 3px;
   }
 
   .laser5 {
     width: 100%;
-    background: #ffff00;
+    background: linear-gradient(90deg, transparent, #ffff00, transparent);
     color: #ffff00;
-    top: 90%;
-    animation-delay: 2s;
+    top: 70%;
+    animation-delay: 3.2s;
+    height: 4px;
   }
 
   .laser6 {
     width: 100%;
-    background: #ff0000;
+    background: linear-gradient(90deg, transparent, #ff0000, transparent);
     color: #ff0000;
-    top: 20%;
-    animation-delay: 2.5s;
+    top: 15%;
+    animation-delay: 0.4s;
+    height: 2px;
   }
 
   .laser7 {
     width: 100%;
-    background: #00ff00;
+    background: linear-gradient(90deg, transparent, #00ff00, transparent);
     color: #00ff00;
-    top: 40%;
-    animation-delay: 3s;
+    top: 35%;
+    animation-delay: 1.2s;
+    height: 3px;
   }
 
   .laser8 {
     width: 100%;
-    background: #0066ff;
+    background: linear-gradient(90deg, transparent, #0066ff, transparent);
     color: #0066ff;
-    top: 60%;
-    animation-delay: 3.5s;
+    top: 50%;
+    animation-delay: 2s;
+    height: 4px;
+  }
+
+  .laser9 {
+    width: 100%;
+    background: linear-gradient(90deg, transparent, #ff66ff, transparent);
+    color: #ff66ff;
+    top: 65%;
+    animation-delay: 2.8s;
+    height: 3px;
+  }
+
+  .laser10 {
+    width: 100%;
+    background: linear-gradient(90deg, transparent, #66ffcc, transparent);
+    color: #66ffcc;
+    top: 85%;
+    animation-delay: 3.6s;
+    height: 4px;
   }
 
   @keyframes laserScan {
     0% {
-      transform: translateX(-100%);
+      transform: translateX(-100%) scaleX(0.5);
       opacity: 0;
     }
     10% {
       opacity: 1;
+      transform: translateX(-80%) scaleX(1);
     }
     90% {
       opacity: 1;
+      transform: translateX(80%) scaleX(1);
     }
     100% {
-      transform: translateX(100%);
+      transform: translateX(100%) scaleX(0.5);
       opacity: 0;
     }
   }
 
-  /* Code snippets floating */
+  .particle {
+    position: fixed;
+    width: 3px;
+    height: 3px;
+    background: #00ff88;
+    border-radius: 50%;
+    z-index: -1;
+    animation: particleFloat 8s infinite linear;
+    box-shadow: 0 0 10px #00ff88;
+  }
+
+  .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+  .particle:nth-child(2) { left: 30%; animation-delay: 1s; }
+  .particle:nth-child(3) { left: 50%; animation-delay: 2s; }
+  .particle:nth-child(4) { left: 70%; animation-delay: 3s; }
+  .particle:nth-child(5) { left: 90%; animation-delay: 4s; }
+  .particle:nth-child(6) { left: 20%; animation-delay: 5s; }
+  .particle:nth-child(7) { left: 40%; animation-delay: 6s; }
+  .particle:nth-child(8) { left: 60%; animation-delay: 7s; }
+  .particle:nth-child(9) { left: 80%; animation-delay: 8s; }
+  .particle:nth-child(10) { left: 95%; animation-delay: 9s; }
+
+  @keyframes particleFloat {
+    0% {
+      transform: translateY(100vh) scale(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+      transform: translateY(80vh) scale(1);
+    }
+    90% {
+      opacity: 1;
+      transform: translateY(10vh) scale(1);
+    }
+    100% {
+      transform: translateY(-10vh) scale(0);
+      opacity: 0;
+    }
+  }
+
   .code-text {
     position: fixed;
-    color: rgba(0, 255, 136, 0.1);
+    color: rgba(0, 255, 136, 0.08);
     font-family: 'Courier New', monospace;
     font-size: 14px;
     z-index: -1;
-    animation: floatCode 10s infinite linear;
+    animation: floatCode 12s infinite linear;
+    white-space: nowrap;
+    text-shadow: 0 0 20px rgba(0, 255, 136, 0.1);
   }
 
-  .code1 { top: 5%; left: 20%; animation-delay: 0s; }
-  .code2 { top: 15%; left: 60%; animation-delay: 2s; }
-  .code3 { top: 25%; left: 40%; animation-delay: 4s; }
-  .code4 { top: 35%; left: 80%; animation-delay: 6s; }
-  .code5 { top: 45%; left: 10%; animation-delay: 8s; }
-  .code6 { top: 55%; left: 70%; animation-delay: 3s; }
-  .code7 { top: 65%; left: 30%; animation-delay: 5s; }
-  .code8 { top: 75%; left: 50%; animation-delay: 7s; }
-  .code9 { top: 85%; left: 90%; animation-delay: 1s; }
-  .code10 { top: 95%; left: 15%; animation-delay: 9s; }
+  .code1 { top: 5%; left: 20%; animation-delay: 0s; font-size: 16px; }
+  .code2 { top: 15%; left: 60%; animation-delay: 2s; font-size: 14px; }
+  .code3 { top: 25%; left: 40%; animation-delay: 4s; font-size: 18px; }
+  .code4 { top: 35%; left: 80%; animation-delay: 6s; font-size: 12px; }
+  .code5 { top: 45%; left: 10%; animation-delay: 8s; font-size: 16px; }
+  .code6 { top: 55%; left: 70%; animation-delay: 3s; font-size: 14px; }
+  .code7 { top: 65%; left: 30%; animation-delay: 5s; font-size: 18px; }
+  .code8 { top: 75%; left: 50%; animation-delay: 7s; font-size: 12px; }
+  .code9 { top: 85%; left: 90%; animation-delay: 1s; font-size: 16px; }
+  .code10 { top: 95%; left: 15%; animation-delay: 9s; font-size: 14px; }
 
   @keyframes floatCode {
     0% {
-      transform: translateY(100vh);
+      transform: translateY(100vh) rotate(0deg);
       opacity: 0;
     }
     10% {
-      opacity: 0.1;
+      opacity: 0.12;
     }
     90% {
-      opacity: 0.1;
+      opacity: 0.12;
     }
     100% {
-      transform: translateY(-100vh);
+      transform: translateY(-100vh) rotate(360deg);
       opacity: 0;
     }
   }
 
   .container {
-    background: rgba(10, 14, 20, 0.95);
+    background: rgba(10, 14, 20, 0.92);
     padding: 50px;
     border-radius: 25px;
     width: 700px;
     max-width: 100%;
     border: 2px solid #00ff88;
-    box-shadow: 0 0 30px rgba(0, 255, 136, 0.2), 0 0 60px rgba(0, 204, 255, 0.1);
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.2), 0 0 60px rgba(0, 204, 255, 0.1), inset 0 0 30px rgba(0, 255, 136, 0.05);
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 1;
+  }
+
+  .container::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #00ff88, #00ccff, #ff00ff, #00ff88);
+    background-size: 300% 300%;
+    border-radius: 27px;
+    z-index: -1;
+    animation: borderGlow 4s ease-in-out infinite;
+    opacity: 0.3;
+  }
+
+  @keyframes borderGlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
   }
 
   .college-header {
@@ -178,6 +295,24 @@
     margin-bottom: 30px;
     padding-bottom: 20px;
     border-bottom: 2px solid #00ff88;
+    position: relative;
+  }
+
+  .college-header::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00ff88, transparent);
+    animation: headerLine 3s ease-in-out infinite;
+  }
+
+  @keyframes headerLine {
+    0%, 100% { width: 50%; opacity: 0.5; }
+    50% { width: 80%; opacity: 1; }
   }
 
   .college-name {
@@ -186,7 +321,13 @@
     font-weight: bold;
     letter-spacing: 2px;
     margin-bottom: 8px;
-    text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+    text-shadow: 0 0 20px rgba(0, 255, 136, 0.5), 0 0 40px rgba(0, 255, 136, 0.2);
+    animation: textGlow 2s ease-in-out infinite;
+  }
+
+  @keyframes textGlow {
+    0%, 100% { text-shadow: 0 0 20px rgba(0, 255, 136, 0.5); }
+    50% { text-shadow: 0 0 30px rgba(0, 255, 136, 0.8), 0 0 60px rgba(0, 255, 136, 0.4); }
   }
 
   .dept-name {
@@ -200,6 +341,25 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;
+    position: relative;
+  }
+
+  .progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, #00ff88, #00ccff);
+    transform: translateY(-50%);
+    z-index: 0;
+    animation: progressBar 2s ease-in-out infinite;
+  }
+
+  @keyframes progressBar {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
   }
 
   .progress-step {
@@ -215,13 +375,21 @@
     font-weight: bold;
     font-size: 22px;
     transition: all 0.3s;
+    position: relative;
+    z-index: 1;
   }
 
   .progress-step.active {
     background: #00ff88;
     border-color: #00ff88;
     color: #0a0e14;
-    box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.5), 0 0 40px rgba(0, 255, 136, 0.2);
+    animation: stepPulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes stepPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.5); }
+    50% { box-shadow: 0 0 40px rgba(0, 255, 136, 0.8), 0 0 80px rgba(0, 255, 136, 0.4); }
   }
 
   .progress-step.done {
@@ -233,6 +401,12 @@
 
   .page {
     display: none;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   .page.active {
@@ -247,7 +421,6 @@
     text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
   }
 
-  /* ===== FIX: Bigger & Brighter Inputs ===== */
   input, select {
     width: 100%;
     padding: 22px 25px;
@@ -266,9 +439,9 @@
     border-color: #00ccff;
     box-shadow: 0 0 25px rgba(0, 204, 255, 0.3);
     background: #0d1520;
+    transform: scale(1.02);
   }
 
-  /* ===== FIX: Brighter Placeholder Text ===== */
   input::placeholder {
     color: #44cc88;
     font-size: 20px;
@@ -303,6 +476,24 @@
     cursor: pointer;
     transition: all 0.3s;
     font-family: 'Courier New', monospace;
+    position: relative;
+    overflow: hidden;
+  }
+
+  button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+    transform: scale(0);
+    transition: transform 0.5s;
+  }
+
+  button:hover::after {
+    transform: scale(1);
   }
 
   .btn-next {
@@ -313,7 +504,7 @@
   .btn-next:hover {
     background: #00ccff;
     box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
-    transform: scale(1.02);
+    transform: scale(1.05);
   }
 
   .btn-back {
@@ -324,7 +515,7 @@
 
   .btn-back:hover {
     background: #2a2a2a;
-    transform: scale(1.02);
+    transform: scale(1.05);
   }
 
   .btn-submit {
@@ -336,7 +527,17 @@
   .btn-submit:hover {
     background: #00ff88;
     box-shadow: 0 0 30px rgba(0, 204, 255, 0.5);
-    transform: scale(1.02);
+    transform: scale(1.05);
+  }
+
+  .btn-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+
+  .btn-submit:disabled:hover {
+    box-shadow: none !important;
   }
 
   .radio-group {
@@ -360,12 +561,14 @@
     border-color: #00ccff;
     background: rgba(0, 255, 136, 0.08);
     box-shadow: 0 0 20px rgba(0, 255, 136, 0.15);
+    transform: scale(1.02);
   }
 
   .radio-card.selected {
     border-color: #00ccff;
     background: rgba(0, 255, 136, 0.15);
     box-shadow: 0 0 25px rgba(0, 255, 136, 0.3);
+    transform: scale(1.02);
   }
 
   .radio-card input {
@@ -378,6 +581,75 @@
     font-weight: bold;
   }
 
+  .captcha-container {
+    background: #111820;
+    border: 2px solid #00ff88;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+  }
+
+  .captcha-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 10px 0;
+  }
+
+  .captcha-row label {
+    color: #b3ffd9;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+
+  .captcha-row input[type="checkbox"] {
+    width: 25px;
+    height: 25px;
+    margin: 0;
+    cursor: pointer;
+    accent-color: #00ff88;
+  }
+
+  .captcha-puzzle {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+  }
+
+  .captcha-puzzle span {
+    color: #00ff88;
+    font-size: 28px;
+    font-weight: bold;
+    background: #0a0e14;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid #00ff88;
+  }
+
+  .captcha-puzzle input {
+    flex: 1;
+    min-width: 150px;
+    margin: 0;
+    padding: 15px 20px;
+    font-size: 20px;
+  }
+
+  .captcha-error {
+    color: #ff4444;
+    font-size: 16px;
+    margin-top: 10px;
+    display: none;
+  }
+
+  .captcha-error.show {
+    display: block;
+  }
+
   .success-message {
     display: none;
     text-align: center;
@@ -388,15 +660,14 @@
 
   .success-message.show {
     display: block;
+    animation: fadeIn 0.5s ease-in-out;
   }
 
-  /* ===== FIX: Better visibility for confirmation text ===== */
   #page5 p {
     color: #b3ffd9 !important;
     font-size: 22px !important;
   }
 
-  /* Responsive */
   @media (max-width: 600px) {
     .container {
       padding: 25px;
@@ -417,12 +688,26 @@
     .dept-name {
       font-size: 18px;
     }
+    .captcha-puzzle {
+      flex-direction: column;
+      align-items: stretch;
+    }
   }
 </style>
 </head>
 <body>
 
-<!-- Laser lines -->
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+
 <div class="laser laser1"></div>
 <div class="laser laser2"></div>
 <div class="laser laser3"></div>
@@ -431,8 +716,9 @@
 <div class="laser laser6"></div>
 <div class="laser laser7"></div>
 <div class="laser laser8"></div>
+<div class="laser laser9"></div>
+<div class="laser laser10"></div>
 
-<!-- Floating code -->
 <div class="code-text code1">&lt;?php echo "Hello World"; ?&gt;</div>
 <div class="code-text code2">function register() { return true; }</div>
 <div class="code-text code3">const sport = "Cricket";</div>
@@ -460,7 +746,6 @@
 
   <form id="multiForm" action="https://formspree.io/f/xnparqpq" method="POST">
     
-    <!-- PAGE 1: Basic Info -->
     <div class="page active" id="page1">
       <h2>&gt; Student_Details_</h2>
       <input type="text" name="name" placeholder="Full_Name" required>
@@ -469,7 +754,6 @@
       <button type="button" class="btn-next" onclick="nextPage(2)">NEXT ➜</button>
     </div>
 
-    <!-- PAGE 2: Gender -->
     <div class="page" id="page2">
       <h2>&gt; Select_Gender_</h2>
       <div class="radio-group">
@@ -488,7 +772,6 @@
       </div>
     </div>
 
-    <!-- PAGE 3: Hostel -->
     <div class="page" id="page3">
       <h2>&gt; Living_Type_</h2>
       <div class="radio-group">
@@ -507,7 +790,6 @@
       </div>
     </div>
 
-    <!-- PAGE 4: Sports -->
     <div class="page" id="page4">
       <h2>&gt; Select_Sport_</h2>
       <select name="sport" id="sportSelect" onchange="checkOther()" required>
@@ -527,16 +809,30 @@
       </div>
     </div>
 
-    <!-- PAGE 5: Submit -->
     <div class="page" id="page5">
       <h2>&gt; Confirm_&_Submit_</h2>
-      <div style="color: #b3ffd9; text-align: center; padding: 20px; font-size: 22px;">
+      <div style="color: #b3ffd9; text-align: center; padding: 10px 0; font-size: 22px;">
         <p style="margin: 10px 0;">✅ All details filled correctly?</p>
         <p style="margin: 10px 0;">Click submit to complete registration</p>
       </div>
+
+      <div class="captcha-container">
+        <div class="captcha-row">
+          <label>
+            <input type="checkbox" id="captchaCheck" onchange="validateCaptcha()">
+            🤖 I'm not a robot
+          </label>
+        </div>
+        <div class="captcha-puzzle">
+          <span id="captchaQuestion">2 + 3 = ?</span>
+          <input type="text" id="captchaAnswer" placeholder="Enter answer" oninput="validateCaptcha()">
+        </div>
+        <div class="captcha-error" id="captchaError">❌ Please complete the captcha!</div>
+      </div>
+
       <div class="btn-group">
         <button type="button" class="btn-back" onclick="prevPage(4)">⬅ BACK</button>
-        <button type="submit" class="btn-submit" id="submitBtn">🚀 SUBMIT</button>
+        <button type="submit" class="btn-submit" id="submitBtn" disabled>🔒 VERIFY & SUBMIT</button>
       </div>
     </div>
 
@@ -545,12 +841,50 @@
   <div class="success-message" id="successMsg">
     <p style="font-size: 40px; margin-bottom: 20px;">✅</p>
     <p>Registration Successful!</p>
+    <p style="font-size: 18px; margin-top: 10px;">📧 Check your email for confirmation</p>
   </div>
 </div>
 
 <script>
 let currentPage = 1;
-const totalPages = 5;
+let captchaSolved = false;
+
+function generateCaptcha() {
+  const num1 = Math.floor(Math.random() * 10) + 1;
+  const num2 = Math.floor(Math.random() * 10) + 1;
+  document.getElementById('captchaQuestion').textContent = `${num1} + ${num2} = ?`;
+  document.getElementById('captchaAnswer').dataset.answer = num1 + num2;
+  document.getElementById('captchaCheck').checked = false;
+  document.getElementById('captchaAnswer').value = '';
+  captchaSolved = false;
+  document.getElementById('submitBtn').disabled = true;
+  document.getElementById('submitBtn').textContent = '🔒 VERIFY & SUBMIT';
+  document.getElementById('captchaError').classList.remove('show');
+}
+
+function validateCaptcha() {
+  const check = document.getElementById('captchaCheck').checked;
+  const answer = document.getElementById('captchaAnswer').value;
+  const correctAnswer = document.getElementById('captchaAnswer').dataset.answer;
+  
+  if (check && answer == correctAnswer) {
+    captchaSolved = true;
+    document.getElementById('captchaError').classList.remove('show');
+    document.getElementById('submitBtn').disabled = false;
+    document.getElementById('submitBtn').textContent = '🚀 SUBMIT';
+  } else {
+    captchaSolved = false;
+    document.getElementById('submitBtn').disabled = true;
+    document.getElementById('submitBtn').textContent = '🔒 VERIFY & SUBMIT';
+    if (answer && answer != correctAnswer) {
+      document.getElementById('captchaError').textContent = '❌ Wrong answer! Please try again.';
+      document.getElementById('captchaError').classList.add('show');
+    } else if (!check) {
+      document.getElementById('captchaError').textContent = '❌ Please check "I\'m not a robot"';
+      document.getElementById('captchaError').classList.add('show');
+    }
+  }
+}
 
 function nextPage(page) {
   if (page === 2) {
@@ -584,6 +918,15 @@ function nextPage(page) {
       alert('Please select sport!');
       return;
     }
+    if (sport === 'other') {
+      const otherSport = document.getElementById('otherSportInput').value.trim();
+      if (!otherSport) {
+        alert('⚠️ Please enter your sport name!');
+        document.getElementById('otherSportInput').focus();
+        return;
+      }
+    }
+    generateCaptcha();
   }
   
   document.getElementById('page' + currentPage).classList.remove('active');
@@ -624,8 +967,33 @@ function checkOther() {
   } else {
     otherInput.style.display = 'none';
     otherInput.required = false;
+    otherInput.value = '';
   }
 }
+
+document.getElementById('multiForm').addEventListener('submit', function(e) {
+  if (!captchaSolved) {
+    e.preventDefault();
+    alert('⚠️ Please complete the captcha first!');
+    document.getElementById('captchaError').textContent = '❌ Please complete the captcha!';
+    document.getElementById('captchaError').classList.add('show');
+    return;
+  }
+  
+  e.preventDefault();
+  document.getElementById('multiForm').style.display = 'none';
+  document.querySelector('.progress-bar').style.display = 'none';
+  document.querySelector('.college-header').style.display = 'none';
+  document.getElementById('successMsg').classList.add('show');
+  
+  setTimeout(() => {
+    document.getElementById('multiForm').submit();
+  }, 1000);
+});
+
+window.onload = function() {
+  generateCaptcha();
+};
 </script>
 
 </body>
